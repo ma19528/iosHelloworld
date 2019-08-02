@@ -17,7 +17,7 @@
                BlueprintIdentifier = "AC4446B51E568E5D00685571"
                BuildableName = "QuickPay.app"
                BlueprintName = "QuickPay"
-               ReferencedContainer = "container:YHChat.xcodeproj">
+               ReferencedContainer = "container:QuickPay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,6 +63,10 @@
       </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
+      <LocationScenarioReference
+         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+         referenceType = "1">
+      </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

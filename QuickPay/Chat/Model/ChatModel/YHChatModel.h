@@ -17,13 +17,13 @@
 @interface YHChatModel : NSObject
 
 @property (nonatomic,copy) NSString *chatId;       //聊天记录Id
-@property (nonatomic,assign) int chatType;         //聊天类型（1:群聊/0:单聊）
+@property (nonatomic,assign) int chatType;          //聊天类型（1:群聊/0:单聊）
 @property (nonatomic,copy) NSString *msgContent;   //聊天内容
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,copy) NSString *createTime;   //发言时间
 @property (nonatomic,copy) NSString *updateTime;   //最近更新时间
 @property (nonatomic,copy) NSString *audienceId;   //听众Id
-@property (nonatomic,copy) NSURL *audienceAvatar;  //听众头像
+@property (nonatomic,copy) NSURL *audienceAvatar;    //听众头像
 @property (nonatomic,copy) NSString *audienceName; //听众名字
 @property (nonatomic,copy) NSString *speakerName;  //发布者名称
 @property (nonatomic,copy) NSURL *speakerAvatar;   //发布者头像缩略图

@@ -9,5 +9,8 @@ target 'QuickPay' do
     pod 'AFNetworking'
     pod 'SocketRocket'
     pod 'FMDB'
+    pod 'QTEventBus'
+    pod 'QTEventBus/AppModule'
+    pod 'QTEventBus/UIKit'
 end
 

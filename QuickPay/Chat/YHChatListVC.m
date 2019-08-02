@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"YHChat得到的点点滴滴";
+    self.title = @"信息";
     self.navigationController.navigationBar.translucent = NO;
     [self initUI];
 

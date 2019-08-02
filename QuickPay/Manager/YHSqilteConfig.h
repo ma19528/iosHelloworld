@@ -12,13 +12,16 @@
 //#import "YHDebug.h"
 /**********common宏定义**************/
 #define kDatabaseVersionKey     @"YH_DBVersion" //数据库版本
+
 //Doc目录
 #define YHDocumentDir [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
 //Cache目录
 #define YHCacheDir [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 
-//用户目录 (包含聊天目录)
+
+//用户目录 (包含聊天目录),以自己的UID 作为目录。
+// Documents/1/
 #define YHUserDir [YHDocumentDir stringByAppendingPathComponent:MYUID]
 
 
@@ -44,6 +47,7 @@ static inline NSString *tableNameLogin(NSString *userID){
 
 /********************聊天表*****************/
 //聊天目录 (包括:群聊目录 + 单聊目录 + 语音目录 + 办公文件目录)
+// // Documents/1/ChatLog/
 #define YHChatLogDir [YHUserDir stringByAppendingPathComponent:@"ChatLog"]
 
 //群聊目录

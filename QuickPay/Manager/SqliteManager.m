@@ -1,6 +1,6 @@
 //
 //  DataManager.m
-//  FMDBDemo
+//  SqliteManager
 //
 //  Created by YHIOS002 on 16/11/2.
 //  Copyright © 2016年 YHSoft. All rights reserved.

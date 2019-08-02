@@ -10,7 +10,7 @@
 #import "NetManager.h"
 #import "YHChatModel.h"
 //#import "YHDebug.h"
-
+#import "../Chat/Model/ChatInfo/ChatInfo.h"
 
 #define kUploadAudioMAXCount 3      //上传音频数量限制
 #define kUploadOfficeFileMAXCount 3 //上传办公格式文件数量限制
@@ -102,7 +102,7 @@
     NSString *mimeType = [self _getMIMETypeWithFilePath:filePath];
     
     NSDictionary *params = @{
-                             @"accessToken":MYTOKEN
+                             @"accessToken":serviceToken
                              };
     [self _uploadFileInQueue:self.uploadOfficeFileQueue filePath:filePath requestUrl:requestUrl fileNameInServer:@"files" maxConcurrentCount:kUploadOfficeFileMAXCount mimeType:mimeType params:params complete:^(BOOL success, id obj) {
         if (success) {

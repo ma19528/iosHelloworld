@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SocketRocket.h>
 
 @interface YHChatManager : NSObject
 
@@ -14,6 +15,19 @@
 
 //连接
 - (void)connectToUserID:(NSString *)toUserId isGroupChat:(BOOL)isGroupChat;
-//关闭
-- (void)close;
+
+
+/** 获取连接状态 */
+@property (nonatomic,assign,readonly) SRReadyState socketReadyState;
+
+/** 开始连接 */
+- (void)SRWebSocketOpenWithURLString:(NSString *)urlString;
+
+/** 关闭连接 */
+- (void)SRWebSocketClose;
+
+/** 发送数据 */
+- (void)sendData:(id)data;
+
+
 @end
