@@ -2,71 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3631bf4f-513d-4eda-aa1a-b5db778a1922" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/quickPay.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/QuickPay.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/xcode.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppDelegate.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppDelegate.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppEvents.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppEvents.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppModule.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppModuleManager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTAppModuleManager.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/AppModule/QTEventBus+AppModule.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSNotification+QTEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSNotification+QTEvent.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSObject+QTEventBus.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSObject+QTEventBus.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSObject+QTEventBus_Private.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSObject+QTEventBus_Private.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSString+QTEevnt.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/NSString+QTEevnt.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTDisposeBag.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTDisposeBag.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTEventBus.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTEventBus.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTEventBusCollection.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTEventBusCollection.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTEventTypes.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTJsonEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/Core/QTJsonEvent.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/UIKit/QTEventBus+UIKit.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/UIKit/UIResponder+QTEventBus.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/QTEventBus/Sources/UIKit/UIResponder+QTEventBus.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/Target Support Files/QTEventBus/QTEventBus-Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/Target Support Files/QTEventBus/QTEventBus-dummy.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/Target Support Files/QTEventBus/QTEventBus-prefix.pch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/Target Support Files/QTEventBus/QTEventBus-umbrella.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/Target Support Files/QTEventBus/QTEventBus.modulemap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pods/Target Support Files/QTEventBus/QTEventBus.xcconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QuickPay/Chat/Model/ChatInfo/ChatInfo.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/QuickPay/Chat/Model/ChatInfo/ChatInfo.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay-acknowledgements.markdown" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay-acknowledgements.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay-frameworks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay-frameworks.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/Model/ChatModel/YHChatModel.h" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/Model/ChatModel/YHChatModel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/YHChatListVC.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/YHChatListVC.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Manager/SqliteManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Manager/SqliteManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Manager/YHSqilteConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Manager/YHSqilteConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Manager/YHUploadManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Manager/YHUploadManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/TestData/YHDebug.h" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/TestData/YHDebug.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/emoticons.plist" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/emoticons.plist" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Caches/AppCode2019.1/DerivedData/QuickPay-eidrmvofiqtwvggctcfrlozcvema/Build/Intermediates.noindex/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,11 +14,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_0c4a9a68b2acda53a7d341a642107191a8b6b9ee" />
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="-445">
+              <caret line="79" column="21" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/emoticons.plist">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -101,6 +46,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m" />
+        <option value="$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/emoticons.plist" />
       </list>
     </option>
   </component>
@@ -115,7 +61,47 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="QuickPay" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="QuickPay" type="1d218c8b:XcodeProjectNode" />
+              <item name="QuickPay" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="QuickPay" type="1d218c8b:XcodeProjectNode" />
+              <item name="QuickPay" type="fcab9f18:XcodeViewNode" />
+              <item name="Chat" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="QuickPay" type="1d218c8b:XcodeProjectNode" />
+              <item name="QuickPay" type="fcab9f18:XcodeViewNode" />
+              <item name="Resource" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="QuickPay" type="1d218c8b:XcodeProjectNode" />
+              <item name="QuickPay" type="fcab9f18:XcodeViewNode" />
+              <item name="Resource" type="fcab9f18:XcodeViewNode" />
+              <item name="ExpressionKeyboard.bundle" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="QuickPay" type="1d218c8b:XcodeProjectNode" />
+              <item name="QuickPay" type="fcab9f18:XcodeViewNode" />
+              <item name="TestData" type="fcab9f18:XcodeViewNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Cidr.FilesView" />
       <pane id="Scope" />
     </panes>
@@ -150,29 +136,30 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1564739731751</updated>
-      <workItem from="1564739740177" duration="556000" />
+      <workItem from="1564739740177" duration="1122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556000" />
+    <option name="totallyTimeSpent" value="1122000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="988" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="986" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Designer" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19860813" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19860813" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.33522728" />
+      <window_info anchor="bottom" id="Messages" weight="0.33522728" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3375" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.26309794" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -188,11 +175,43 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m</url>
+          <line>116</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m</url>
+          <line>200</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/QuickPay/Info.plist">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/com.sina.lxh/lxh_beicui.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/com.sina.default/d_aini@2x.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        <state relative-caret-position="-445">
+          <caret line="79" column="21" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuickPay/Resource/ExpressionKeyboard.bundle/emoticons.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>

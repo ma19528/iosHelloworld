@@ -14,14 +14,7 @@
 			<key>display_only</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>id</key>
-			<string>com.sina.lxh</string>
-			<key>version</key>
-			<integer>0</integer>
-			<key>display_only</key>
-			<integer>0</integer>
-		</dict>
+
 	</array>
 </dict>
 </plist>
