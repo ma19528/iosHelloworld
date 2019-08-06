@@ -6,6 +6,8 @@
 //
 //
 
+#import <AFNetworking/AFNetworkReachabilityManager.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import "NetManager.h"
 
 

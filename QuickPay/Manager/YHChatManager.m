@@ -227,6 +227,12 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
         NSLog(@"************************** socket收到数据了************************** ");
         NSLog(@"我这后台约定的 message 是 json 格式数据收到数据，就按格式解析吧，然后把数据发给调用层");
         NSLog(@"message:%@", message);
+        // TODO。。。 在这里进行数据解析并存储在数据库里面
+
+//        Boolean subscriptionWasSuccessful = [[message valueForKeyPath:@"successful"] boolValue];
+//        if (subscriptionWasSuccessful) {
+//
+//        }
 
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
     }

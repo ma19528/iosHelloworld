@@ -1,0 +1,7 @@
+{
+    "id":"e24d4cb2-52fe-4fe3-a749-15156bc1a8b1",
+    "method":"chat.pay",
+    "params":{
+        "agent_id":"1"
+    }
+}

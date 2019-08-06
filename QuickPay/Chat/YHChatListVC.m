@@ -36,6 +36,24 @@
         
     }
 
+
+//    //1 获得json文件的全路径
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"response_pay_mehtod.json" ofType:nil];
+//
+//    //2 加载json文件到data中
+//        NSData *data = [NSData dataWithContentsOfFile:path];
+//
+//    //3 解析json数据
+//    //json数据中的[] 对应OC中的NSArray
+//    //json数据中的{} 对应OC中的NSDictionary
+//
+//    NSArray *jsonArray =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+    NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_pay_mehtod" ofType:@"json"] encoding:0 error:nil];
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    //handleJsonProcess();
+
 }
 
 - (NSMutableArray *)dataArray{

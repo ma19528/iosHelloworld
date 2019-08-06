@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		586030BC6E80501371347457 /* receive_normal_chatmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */; };
+		58603148C658F39826D420E7 /* response_pay_mehtod.json in Resources */ = {isa = PBXBuildFile; fileRef = 586033932F29D801434E5BEE /* response_pay_mehtod.json */; };
+		5860322AECF89C15D0F855F7 /* request_text.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603BD4162EC049BF50351F /* request_text.json */; };
+		586033B2811420E5584F3AC4 /* request_pay.json in Resources */ = {isa = PBXBuildFile; fileRef = 586037F9E1F153E64D344AD3 /* request_pay.json */; };
+		58603B7988C975EF10C53A62 /* request_chatOffmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603D9D2C92FEB078436818 /* request_chatOffmsg.json */; };
+		58603D1847C4C5235BD1D0DB /* request_chat_int.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860374D0C9481292D0D34C0 /* request_chat_int.json */; };
+		58603EABA4E5E1B4A1A038F2 /* request_chatPay.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860329A4C6B024D8F1611D8 /* request_chatPay.json */; };
+		58603EB85BDCD766F59C597D /* response_received.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603F011BE82C102703A230 /* response_received.json */; };
+		58603EDA682F540CCA511DC5 /* response_offSingle.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860302E5B2F0C1654B8678A /* response_offSingle.json */; };
 		84F6D59922F329E100FA10B4 /* ChatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6D59722F329E100FA10B4 /* ChatInfo.m */; };
 		AC002DA21E63AE5600EE2851 /* YHGroupIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DA11E63AE5600EE2851 /* YHGroupIconView.m */; };
 		AC002DB41E63BBF100EE2851 /* YHChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DA81E63BBF100EE2851 /* YHChatListModel.m */; };
@@ -105,6 +114,15 @@
 /* Begin PBXFileReference section */
 		2EB0B0CF0EC5B60F2CBE1C61 /* Pods-YHChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-YHChat.debug.xcconfig"; sourceTree = "<group>"; };
 		4EA88F2431203C5A9749AB4E /* Pods-YHChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-YHChat.release.xcconfig"; sourceTree = "<group>"; };
+		5860302E5B2F0C1654B8678A /* response_offSingle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_offSingle.json; sourceTree = "<group>"; };
+		5860329A4C6B024D8F1611D8 /* request_chatPay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatPay.json; sourceTree = "<group>"; };
+		586033932F29D801434E5BEE /* response_pay_mehtod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_pay_mehtod.json; sourceTree = "<group>"; };
+		5860374D0C9481292D0D34C0 /* request_chat_int.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chat_int.json; sourceTree = "<group>"; };
+		586037F9E1F153E64D344AD3 /* request_pay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_pay.json; sourceTree = "<group>"; };
+		58603BD4162EC049BF50351F /* request_text.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_text.json; sourceTree = "<group>"; };
+		58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = receive_normal_chatmsg.json; sourceTree = "<group>"; };
+		58603D9D2C92FEB078436818 /* request_chatOffmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatOffmsg.json; sourceTree = "<group>"; };
+		58603F011BE82C102703A230 /* response_received.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_received.json; sourceTree = "<group>"; };
 		5C5EA0762A3D65A285B0C43B /* Pods-QuickPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig"; sourceTree = "<group>"; };
 		762089047A00BECC39D4D733 /* Pods_QuickPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8015156D9238E30B7B818700 /* Pods-QuickPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -336,6 +354,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8441D9E722F47F7C0060F53B /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				58603BD4162EC049BF50351F /* request_text.json */,
+				5860302E5B2F0C1654B8678A /* response_offSingle.json */,
+				5860374D0C9481292D0D34C0 /* request_chat_int.json */,
+				586033932F29D801434E5BEE /* response_pay_mehtod.json */,
+				58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */,
+				5860329A4C6B024D8F1611D8 /* request_chatPay.json */,
+				586037F9E1F153E64D344AD3 /* request_pay.json */,
+				58603D9D2C92FEB078436818 /* request_chatOffmsg.json */,
+				58603F011BE82C102703A230 /* response_received.json */,
+			);
+			path = TestFiles;
+			sourceTree = "<group>";
+		};
 		84F6D59622F329E100FA10B4 /* ChatInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +590,7 @@
 		AC4446D21E56970E00685571 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8441D9E722F47F7C0060F53B /* TestFiles */,
 				84F6D59622F329E100FA10B4 /* ChatInfo */,
 				AC2A4B271E83CD2400B67A9E /* LayoutModel */,
 				AC002DA61E63BBF100EE2851 /* ChatModel */,
@@ -855,6 +890,15 @@
 				AC4446C91E568E5D00685571 /* LaunchScreen.storyboard in Resources */,
 				AC4446C61E568E5D00685571 /* Assets.xcassets in Resources */,
 				AC4446DE1E5699A200685571 /* ExpressionKeyboard.bundle in Resources */,
+				5860322AECF89C15D0F855F7 /* request_text.json in Resources */,
+				58603EDA682F540CCA511DC5 /* response_offSingle.json in Resources */,
+				58603D1847C4C5235BD1D0DB /* request_chat_int.json in Resources */,
+				58603148C658F39826D420E7 /* response_pay_mehtod.json in Resources */,
+				586030BC6E80501371347457 /* receive_normal_chatmsg.json in Resources */,
+				58603EABA4E5E1B4A1A038F2 /* request_chatPay.json in Resources */,
+				586033B2811420E5584F3AC4 /* request_pay.json in Resources */,
+				58603B7988C975EF10C53A62 /* request_chatOffmsg.json in Resources */,
+				58603EB85BDCD766F59C597D /* response_received.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

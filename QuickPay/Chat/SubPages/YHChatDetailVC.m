@@ -27,6 +27,7 @@
 #import "YHNavigationController.h"
 #import "YHWebViewController.h"
 #import "YHShootVC.h"
+#import "YHChatManager.h"
 
 @interface YHChatDetailVC ()<UITableViewDelegate,UITableViewDataSource,YHExpressionKeyboardDelegate,CellChatTextLeftDelegate,CellChatTextRightDelegate,CellChatVoiceLeftDelegate,CellChatVoiceRightDelegate,CellChatImageLeftDelegate,CellChatImageRightDelegate,CellChatBaseDelegate,
 CellChatFileLeftDelegate,CellChatFileRightDelegate>{
@@ -94,7 +95,12 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     
     //设置WebScoket
     [[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
-    
+
+    // 有收到网络的数据，及时去数据库拿数据进行更新。
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+
+
 }
 
 
@@ -626,5 +632,19 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - 收到消息通知
+
+- (void)SRWebSocketDidOpen {
+    NSLog(@"开启成功");
+    //在成功后需要做的操作。。。
+
+}
+
+- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
+    //收到服务端发送过来的消息
+    NSString * message = note.object;
+    NSLog(@"%@",message);
+}
 
 @end

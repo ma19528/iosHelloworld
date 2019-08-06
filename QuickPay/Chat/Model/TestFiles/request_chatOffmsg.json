@@ -1,0 +1,7 @@
+{
+    "id":"c98acc4d-a062-49e1-9379-c732bc33e0f1",
+    "method":"chat.off_msg",
+    "params":{
+        "agent_id":"1"
+    }
+}

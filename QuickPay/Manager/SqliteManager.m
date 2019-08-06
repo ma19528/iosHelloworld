@@ -6,6 +6,7 @@
 //  Copyright © 2016年 YHSoft. All rights reserved.
 //
 
+#import <FMDB/FMDatabaseQueue.h>
 #import "SqliteManager.h"
 #import "NetManager.h"
 

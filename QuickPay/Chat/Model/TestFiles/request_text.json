@@ -1,0 +1,14 @@
+{
+    "id":"03e6fff8-5630-421a-ab84-36d2499ebb66",
+    "method":"chat.agent",
+    "params":{
+        "avatar":"https://www.weilan246.com/images/weilan.jpg",
+        "content":"模棱两可",
+        "content_type":"0",
+        "from_id":"1130610",
+        "msg_id":"03e6fff8-5630-421a-ab84-36d2499ebb66",
+        "nickname":"猪猪侠1",
+        "send_time":"1564733535699",
+        "to_id":"1"
+    }
+}

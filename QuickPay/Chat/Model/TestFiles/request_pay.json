@@ -1,0 +1,14 @@
+{
+    "id":"a507381e-586d-4e24-a782-93a321c96627",
+    "method":"chat.agent",
+    "params":{
+        "avatar":"https://www.weilan246.com/images/weilan.jpg",
+        "content":"用微信充值",
+        "content_type":"2",
+        "from_id":"1130610",
+        "msg_id":"a507381e-586d-4e24-a782-93a321c96627",
+        "nickname":"猪猪侠1",
+        "send_time":"1564733213099",
+        "to_id":"1"
+    }
+}
