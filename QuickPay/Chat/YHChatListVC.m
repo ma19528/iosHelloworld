@@ -48,7 +48,7 @@
 //    //json数据中的{} 对应OC中的NSDictionary
 //
 //    NSArray *jsonArray =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
+// 这个是 解析 支付类型的 例子
     NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_pay_mehtod" ofType:@"json"] encoding:0 error:nil];
     NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
@@ -82,7 +82,7 @@
     [YHChatTouch registerForPreviewInVC:self sourceView:cell model:cell.model];
 }
 
-- (void)onAvatarInCell:(CellChatList *)cell{
+- (void)onAvatarInCell:(CellChatList *)cell {
     YHChatDetailVC *vc = [[YHChatDetailVC alloc] init];
     vc.model = cell.model;
     vc.hidesBottomBarWhenPushed = YES;
@@ -127,7 +127,7 @@
     return NO;
 }
 
-//点击删除d
+//点击删除
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     //在这里实现删除操作
     

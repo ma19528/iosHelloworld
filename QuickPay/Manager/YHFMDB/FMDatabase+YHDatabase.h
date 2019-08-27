@@ -6,6 +6,7 @@
 //  Copyright © 2016年 YHSoft. All rights reserved.
 //
 
+#import <FMDB/FMDatabase.h>
 #import "FMDB.h"
 
 //补充其他SQL语句

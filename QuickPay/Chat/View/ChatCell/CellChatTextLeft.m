@@ -12,6 +12,7 @@
 #import <HYBMasonryAutoCellHeight/UITableViewCell+HYBMasonryAutoCellHeight.h>
 #import "YHChatModel.h"
 #import "YHChatLabel.h"
+#import "SqliteManager.h"
 
 @interface CellChatTextLeft()
 
@@ -137,6 +138,16 @@
     self.lbTime.text    = self.model.createTime;
     
     [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
+
+    //关联聊天到数据库
+    [[SqliteManager sharedInstance] createOneChat:model.speakerId chatModel:model complete:^(BOOL success, id obj) {
+        if (success) {
+            DDLog(@"下载文件关联到数据库成功:%@",obj);
+        }else{
+            DDLog(@"下载文件关联到数据库失败:%@",obj);
+        }
+    }];
+
 }
 
 #pragma mark - Life

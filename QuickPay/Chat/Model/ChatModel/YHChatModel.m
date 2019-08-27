@@ -7,23 +7,27 @@
 //
 
 #import "YHChatModel.h"
+#import "NSObject+YHDBRuntime.h"
 //#import "NSObject+YHDBRuntime.h"
 
 
 @implementation YHChatModel
 
-//#pragma mark - 数据库操作
-//+ (NSString *)yh_primaryKey{
-//    return @"chatId";
-//}
-//
-//+ (NSDictionary *)yh_replacedKeyFromPropertyName{
-//    return @{@"chatId":YHDB_PrimaryKey};
-//}
-//
-//-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
-//    
-//}
+#pragma mark - 数据库操作
++ (NSString *)yh_primaryKey{
+    return @"chatId";
+}
+
++ (NSDictionary *)yh_replacedKeyFromPropertyName{
+    return @{@"chatId":YHDB_PrimaryKey};
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+
+}
+
+
+
 
 - (instancetype)init
 {

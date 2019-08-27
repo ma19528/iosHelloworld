@@ -45,6 +45,7 @@ typedef NS_ENUM(int,DBChatType){
 
 
 #pragma mark - 聊天
+- (void)createOneChat:(NSString *)sessionID chatModel:(YHChatModel *)chatModel complete:(void (^)(BOOL success, id obj))complete;
 
 /*
  *  更新ChatLog表多条信息

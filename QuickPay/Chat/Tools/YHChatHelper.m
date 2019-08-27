@@ -30,6 +30,7 @@
 }
 
 #pragma mark - Public
+// TODO... 在这里面构造发送的消息。
 + (YHChatModel *)creatMessage:(NSString *)msg msgType:(YHMessageType)msgType  toID:(NSString *)toID {
     YHChatModel *model  = [YHChatModel new];
     model.speakerId     = MYUID;

@@ -59,7 +59,7 @@
     model.speakerId = uidArr[nUidLength];
     if ([model.speakerId isEqualToString:MYUID]) {
         model.direction = 0;
-    }else{
+    } else{
         model.direction = 1;
     }
     
@@ -295,8 +295,8 @@
     
     
     //上次发布内容
-    //消息内容为文本
-    NSString *contentStr = model.isGroupChat? @"群聊内容。":@"单聊内容。";
+    //消息内容为文本: 这里显示的是最后一条的文本内容
+    NSString *contentStr = model.isGroupChat? @"群聊最后一条内容。":@"单聊最后一条的内容。";
     
     CGFloat lConlength = arc4random() % 2+1;
     NSMutableString *qStr = [[NSMutableString alloc] init];

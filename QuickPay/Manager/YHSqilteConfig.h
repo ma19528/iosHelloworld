@@ -65,13 +65,16 @@ static inline NSString *tableNameLogin(NSString *userID){
 
 //获取聊天记录路径  dir:目录名称 sessionID:会话ID
 static inline NSString *pathLogWithDir( NSString *dir,NSString *sessionID){
-    NSString *pathLog = [dir stringByAppendingPathComponent:[NSString stringWithFormat:@"yh_%@.sqlite",sessionID]];
+    // TODO>>>>TAG
+    //NSString *pathLog = [dir stringByAppendingPathComponent:[NSString stringWithFormat:@"chatLog.sqlite"]];
+     NSString *pathLog = [dir stringByAppendingPathComponent:[NSString stringWithFormat:@"yh_%@.sqlite",sessionID]];
     return pathLog;
 }
 
 //ChatLog表名的命名方式
 static inline NSString *tableNameChatLog(NSString *sessionID){
-    
+    // TODO>>>>TAG
+    //return @"chatLog";
     return [NSString stringWithFormat:@"yh_%@",[sessionID stringByReplacingOccurrencesOfString:@"-" withString:@""]];
 }
 

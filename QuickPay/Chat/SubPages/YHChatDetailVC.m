@@ -28,6 +28,7 @@
 #import "YHWebViewController.h"
 #import "YHShootVC.h"
 #import "YHChatManager.h"
+#import "SqliteManager.h"
 
 @interface YHChatDetailVC ()<UITableViewDelegate,UITableViewDataSource,YHExpressionKeyboardDelegate,CellChatTextLeftDelegate,CellChatTextRightDelegate,CellChatVoiceLeftDelegate,CellChatVoiceRightDelegate,CellChatImageLeftDelegate,CellChatImageRightDelegate,CellChatBaseDelegate,
 CellChatFileLeftDelegate,CellChatFileRightDelegate>{
@@ -69,29 +70,39 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
    
     
     //模拟数据源
-    [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
-    CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
-    for (YHChatModel *model in self.dataArray) {
-        UIColor *textColor = [UIColor blackColor];
-        UIColor *matchTextColor = UIColorHex(527ead);
-        UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
-        if (model.direction == 0) {
-            textColor = [UIColor whiteColor];
-            matchTextColor = [UIColor greenColor];
-            matchTextHighlightBGColor = [UIColor grayColor];
-        }
-        YHChatTextLayout *layout = [[YHChatTextLayout alloc] init];
-        [layout layoutWithText:model.msgContent fontSize:(14+addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
-        model.layout = layout;
-        [self.layouts addObject:layout];
-    }
-    
-    if (self.dataArray.count) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView scrollToBottomAnimated:NO];
-        });
+   // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
+    //---TODO...从数据库拿数据。
+    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:_model.userId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
+        if (success) {
+            //----
+            CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
+            for (YHChatModel *model in obj) {
+                [self.dataArray addObject:model];
+                UIColor *textColor = [UIColor blackColor];
+                UIColor *matchTextColor = UIColorHex(527ead);
+                UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
+                if (model.direction == 0) {
+                    textColor = [UIColor whiteColor];
+                    matchTextColor = [UIColor greenColor];
+                    matchTextHighlightBGColor = [UIColor grayColor];
+                }
+                YHChatTextLayout *layout = [[YHChatTextLayout alloc] init];
+                [layout layoutWithText:model.msgContent fontSize:(14+addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
+                model.layout = layout;
+                [self.layouts addObject:layout];
+            }
 
-    }
+            if (self.dataArray.count) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.tableView scrollToBottomAnimated:NO];
+                });
+
+            }
+        } else {
+            DDLog(@"查询数据库数据库失败，没获取到数据。:%@",obj);
+        }
+    }];
+
     
     //设置WebScoket
     [[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
@@ -506,12 +517,15 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 
 
 #pragma mark - @protocol YHExpressionKeyboardDelegate
-//发送
+//发送-click keyboad sending button.
 - (void)didTapSendBtn:(NSString *)text{
     
     if (text.length) {
-        YHChatModel *model = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
-        [self.dataArray addObject:model];
+        YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
+        chatModel.agentId = _model.userId;
+        chatModel.agentAvatar = _model.sessionUserHead[0];
+        chatModel.agentName = _model.sessionUserName;
+        [self.dataArray addObject:chatModel];
         
         [self.tableView reloadData];
         [self.tableView scrollToBottomAnimated:NO];
@@ -570,6 +584,7 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     [[YHAudioRecorder shareInstanced] removeCurrentRecordFile];
 }
 
+// TODO... select system's photo选择相片，照相机。 然后上传。 这个要添加相应的代码。
 - (void)didSelectExtraItem:(NSString *)itemName{
     if ([itemName isEqualToString:@"文件"]) {
         YHDocumentVC *vc = [[YHDocumentVC alloc] init];
@@ -580,6 +595,11 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
         [self.navigationController presentViewController:nav animated:YES completion:NULL];
     }else if([itemName isEqualToString:@"拍摄"]){
          DDLog(@"拍摄");
+        YHShootVC *vc = [[YHShootVC alloc] init];
+        [self.navigationController presentViewController:vc animated:YES completion:NULL];
+    }
+    else if([itemName isEqualToString:@"照片"]){
+        DDLog(@"照片");
         YHShootVC *vc = [[YHShootVC alloc] init];
         [self.navigationController presentViewController:vc animated:YES completion:NULL];
     }

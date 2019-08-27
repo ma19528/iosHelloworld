@@ -234,6 +234,7 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
 //
 //        }
 
+        // 在这里通知 yhchatdetailvc.m 聊天详情 界面进行更新。
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:message];
     }
 }

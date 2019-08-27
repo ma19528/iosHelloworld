@@ -21,3 +21,5 @@ align=center /></br>
 - MQTT 和 WebSocket</br>
 项目中可能会遇到的问题：滑动的流畅性，富文本显示问题，表情键盘封装以及弹出，项目的结构。</br>
 ## 听说点赞的都是帅哥和美女，你今天点赞了没!
+
+苹果帐号：shangpuxiug0541@163.com；苹果密码：Lemon1028416A；邮箱密码：wanpi8306；密保问题school: Apple111，job: Apple222，meet: Apple333；生日：1988年8月8日
