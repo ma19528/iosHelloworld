@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3631bf4f-513d-4eda-aa1a-b5db778a1922" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/QuickPay/Manager/QuickPayNetConstants.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Manager/QuickPayNetConstants.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/Model/ChatModel/YHChatModel.h" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/Model/ChatModel/YHChatModel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatImageLeft.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatImageLeft.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatImageRight.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatImageRight.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/YHChatListVC.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/YHChatListVC.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Manager/YHChatManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/TestData/TestData.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/TestData/TestData.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +39,7 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="QuickPay" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/QuickPay/Chat/Model/ChatInfo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/QuickPay/Manager" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -51,6 +47,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/QuickPay/Manager" />
       <recent name="$PROJECT_DIR$/QuickPay/Chat/Model/ChatInfo" />
     </key>
   </component>
@@ -95,7 +92,7 @@
       <workItem from="1566465670348" duration="2747000" />
       <workItem from="1566533522699" duration="59232000" />
       <workItem from="1566880644209" duration="342000" />
-      <workItem from="1566891532903" duration="9848000" />
+      <workItem from="1566891532903" duration="12162000" />
     </task>
     <servers />
   </component>

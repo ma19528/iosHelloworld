@@ -12,6 +12,7 @@
 		5860322AECF89C15D0F855F7 /* request_text.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603BD4162EC049BF50351F /* request_text.json */; };
 		586033B2811420E5584F3AC4 /* request_pay.json in Resources */ = {isa = PBXBuildFile; fileRef = 586037F9E1F153E64D344AD3 /* request_pay.json */; };
 		58603B7988C975EF10C53A62 /* request_chatOffmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603D9D2C92FEB078436818 /* request_chatOffmsg.json */; };
+		58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */; };
 		58603D1847C4C5235BD1D0DB /* request_chat_int.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860374D0C9481292D0D34C0 /* request_chat_int.json */; };
 		58603EABA4E5E1B4A1A038F2 /* request_chatPay.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860329A4C6B024D8F1611D8 /* request_chatPay.json */; };
 		58603EB85BDCD766F59C597D /* response_received.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603F011BE82C102703A230 /* response_received.json */; };
@@ -117,10 +118,12 @@
 		5860302E5B2F0C1654B8678A /* response_offSingle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_offSingle.json; sourceTree = "<group>"; };
 		5860329A4C6B024D8F1611D8 /* request_chatPay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatPay.json; sourceTree = "<group>"; };
 		586033932F29D801434E5BEE /* response_pay_mehtod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_pay_mehtod.json; sourceTree = "<group>"; };
+		58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPayNetConstants.m; sourceTree = "<group>"; };
 		5860374D0C9481292D0D34C0 /* request_chat_int.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chat_int.json; sourceTree = "<group>"; };
 		586037F9E1F153E64D344AD3 /* request_pay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_pay.json; sourceTree = "<group>"; };
 		58603BD4162EC049BF50351F /* request_text.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_text.json; sourceTree = "<group>"; };
 		58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = receive_normal_chatmsg.json; sourceTree = "<group>"; };
+		58603D06182C56A73CD7CB4D /* QuickPayNetConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayNetConstants.h; sourceTree = "<group>"; };
 		58603D9D2C92FEB078436818 /* request_chatOffmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatOffmsg.json; sourceTree = "<group>"; };
 		58603F011BE82C102703A230 /* response_received.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_received.json; sourceTree = "<group>"; };
 		5C5EA0762A3D65A285B0C43B /* Pods-QuickPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig"; sourceTree = "<group>"; };
@@ -442,6 +445,8 @@
 				AC64004E1E8BB6B3001DF0F2 /* SqliteManager.h */,
 				AC64004F1E8BB6B3001DF0F2 /* SqliteManager.m */,
 				AC6400511E8BB6E3001DF0F2 /* YHFMDB */,
+				58603D06182C56A73CD7CB4D /* QuickPayNetConstants.h */,
+				58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1050,6 +1055,7 @@
 				AC30AA421E7A7EF300E0C9A6 /* CellChatTips.m in Sources */,
 				ACF8047D1E5D264800B27336 /* YHChatHelper.m in Sources */,
 				AC6400741E8BB976001DF0F2 /* MJPropertyType.m in Sources */,
+				58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
