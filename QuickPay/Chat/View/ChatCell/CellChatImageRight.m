@@ -14,6 +14,7 @@
 #import "UIImage+Extension.h"
 #import "YHPhotoBrowserView.h"
 #import "YHChatImageView.h"
+#import "SqliteManager.h"
 
 @interface CellChatImageRight()<YHPhotoBrowserViewDelegate>
 
@@ -128,6 +129,14 @@
             
         }];
     }
+    //关联聊天到数据库
+    [[SqliteManager sharedInstance] createOneChat:model.agentId chatModel:model complete:^(BOOL success, id obj) {
+        if (success) {
+            DDLog(@"下载文件关联到数据库成功:%@",obj);
+        }else{
+            DDLog(@"下载文件关联到数据库失败:%@",obj);
+        }
+    }];
 }
 
 //更新Cell高度

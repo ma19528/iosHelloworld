@@ -110,6 +110,37 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
 
 #define WeakSelf(ws) __weak __typeof(&*self)weakSelf = self
 
+//// 如果数组或者字典中存储了  NSString, NSNumber, NSArray, NSDictionary, or NSNull 之外的其他对象,就不能直接保存成文件了.也不能序列化成 JSON 数据.
+//NSDictionary *dict = @{@"name" : @"me", @"do" : @"something", @"with" : @"her", @"address" : @"home"};
+//
+//// 1.判断当前对象是否能够转换成JSON数据.
+//// YES if obj can be converted to JSON data, otherwise NO
+//BOOL isYes = [NSJSONSerialization isValidJSONObject:dict];
+
+//if (isYes) {
+//    NSLog(@"可以转换");
+//
+//    /* JSON data for obj, or nil if an internal error occurs. The resulting data is a encoded in UTF-8.
+//     */
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
+//
+//    /*
+//     Writes the bytes in the receiver to the file specified by a given path.
+//     YES if the operation succeeds, otherwise NO
+//     */
+//    // 将JSON数据写成文件
+//    // 文件添加后缀名: 告诉别人当前文件的类型.
+//    // 注意: AFN是通过文件类型来确定数据类型的!如果不添加类型,有可能识别不了! 自己最好添加文件类型.
+//    [jsonData writeToFile:@"/Users/SunnyBoy/Sites/JSON_XML/dict.json" atomically:YES];
+//
+//    NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+//
+//} else {
+//
+//    NSLog(@"JSON数据生成失败，请检查数据格式");
+//
+//}
+
 - (void)sendData:(id)data {
     NSLog(@"socketSendData --------------- %@", data);
 
@@ -120,6 +151,8 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
         if (weakSelf.socket != nil) {
             // 只有 SR_OPEN 开启状态才能调 send 方法啊，不然要崩
             if (weakSelf.socket.readyState == SR_OPEN) {
+//                NSString *jsonString = @"{\"sid\": \"13b313a3-fea9-4e28-9e56-352458f7007f\"}";
+//                [_socket send:jsonString];   //发送数据包
                 [weakSelf.socket send:data];    // 发送数据
 
             } else if (weakSelf.socket.readyState == SR_CONNECTING) {

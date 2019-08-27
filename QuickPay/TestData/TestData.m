@@ -291,9 +291,9 @@
     //是否群聊天
     NSArray *isGroupChatArr = @[@(0),@(1),@(1),@(0),@(1)];
     int isGChatLength  = arc4random() % isGroupChatArr.count;
-    model.isGroupChat = [isGroupChatArr[isGChatLength] boolValue];
-    
-    
+    // model.isGroupChat = [isGroupChatArr[isGChatLength] boolValue];
+    model.isGroupChat = 0;
+
     //上次发布内容
     //消息内容为文本: 这里显示的是最后一条的文本内容
     NSString *contentStr = model.isGroupChat? @"群聊最后一条内容。":@"单聊最后一条的内容。";
@@ -360,7 +360,7 @@
         NSArray *headArray = [urlArr subarrayWithRange:NSMakeRange(0, memLength-1)];
         model.sessionUserHead = headArray;
         
-    }else{
+    } else {
     
         //对话用户名字
         NSArray *sessionNickArr = @[@"李一",@"张国富",@"黎明",@"你不是我的菜",@"这名字会好长的啊！呵呵",@"天天",@"我不要要不要" ];

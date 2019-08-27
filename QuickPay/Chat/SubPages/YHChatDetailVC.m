@@ -30,19 +30,19 @@
 #import "YHChatManager.h"
 #import "SqliteManager.h"
 
-@interface YHChatDetailVC ()<UITableViewDelegate,UITableViewDataSource,YHExpressionKeyboardDelegate,CellChatTextLeftDelegate,CellChatTextRightDelegate,CellChatVoiceLeftDelegate,CellChatVoiceRightDelegate,CellChatImageLeftDelegate,CellChatImageRightDelegate,CellChatBaseDelegate,
-CellChatFileLeftDelegate,CellChatFileRightDelegate>{
-    
+@interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
+        CellChatFileLeftDelegate, CellChatFileRightDelegate> {
+
 }
-@property (nonatomic,strong) YHRefreshTableView *tableView;
-@property (nonatomic,strong) NSMutableArray *dataArray;
-@property (nonatomic,strong) NSMutableArray *layouts;
-@property (nonatomic,strong) YHExpressionKeyboard *keyboard;
-@property (nonatomic,strong) YHVoiceHUD *imgvVoiceTips;
+@property(nonatomic, strong) YHRefreshTableView *tableView;
+@property(nonatomic, strong) NSMutableArray *dataArray;
+@property(nonatomic, strong) NSMutableArray *layouts;
+@property(nonatomic, strong) YHExpressionKeyboard *keyboard;
+@property(nonatomic, strong) YHVoiceHUD *imgvVoiceTips;
 
-@property (nonatomic,strong) YHChatHelper *chatHelper;
+@property(nonatomic, strong) YHChatHelper *chatHelper;
 
-@property (nonatomic,assign) BOOL showCheckBox;
+@property(nonatomic, assign) BOOL showCheckBox;
 
 @end
 
@@ -51,26 +51,26 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+
     self.navigationController.navigationBar.translucent = NO;
-    
+
     //设置导航栏
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
-    
+
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitle:@"取消" forState:UIControlStateSelected];
         [btn setTitle:@"更多" forState:UIControlStateNormal];
     }];
-    
-    
-    self.title = self.model.isGroupChat?[NSString stringWithFormat:@"%@(%lu)",self.model.sessionUserName,(unsigned long)self.model.sessionUserHead.count]: self.model.sessionUserName;
-    
+
+
+    self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;
+
     [self initUI];
-   
-    
+
+
     //模拟数据源
-   // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
+    //[self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
     [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:_model.userId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
@@ -87,23 +87,23 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     matchTextHighlightBGColor = [UIColor grayColor];
                 }
                 YHChatTextLayout *layout = [[YHChatTextLayout alloc] init];
-                [layout layoutWithText:model.msgContent fontSize:(14+addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
+                [layout layoutWithText:model.msgContent fontSize:(14 + addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
                 model.layout = layout;
                 [self.layouts addObject:layout];
             }
 
             if (self.dataArray.count) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView scrollToBottomAnimated:NO];
                 });
 
             }
         } else {
-            DDLog(@"查询数据库数据库失败，没获取到数据。:%@",obj);
+            DDLog(@"查询数据库数据库失败，没获取到数据。:%@", obj);
         }
     }];
 
-    
+
     //设置WebScoket
     [[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
 
@@ -112,39 +112,72 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
 
 
+    NSDictionary *params = @{@"hello": @"workd", @"agent_id": @"1"};
+
+    // 如果数组或者字典中存储了  NSString, NSNumber, NSArray, NSDictionary, or NSNull 之外的其他对象,就不能直接保存成文件了.也不能序列化成 JSON 数据.
+    NSDictionary *dict = @{@"name": @"me", @"do": @"something", @"with": @"her", @"params": params};
+
+    // 1.判断当前对象是否能够转换成JSON数据.
+    // YES if obj can be converted to JSON data, otherwise NO
+    BOOL isYes = [NSJSONSerialization isValidJSONObject:dict];
+
+    if (isYes) {
+        NSLog(@"可以转换");
+
+        /* JSON data for obj, or nil if an internal error occurs. The resulting data is a encoded in UTF-8.
+         */
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
+
+        /*
+         Writes the bytes in the receiver to the file specified by a given path.
+         YES if the operation succeeds, otherwise NO
+         */
+        // 将JSON数据写成文件
+        // 文件添加后缀名: 告诉别人当前文件的类型.
+        // 注意: AFN是通过文件类型来确定数据类型的!如果不添加类型,有可能识别不了! 自己最好添加文件类型.
+        //[jsonData writeToFile:@"/Users/SunnyBoy/Sites/JSON_XML/dict.json" atomically:YES];
+
+        NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+
+    } else {
+
+        NSLog(@"JSON数据生成失败，请检查数据格式");
+
+    }
+
 }
 
 
-- (NSMutableArray *)dataArray{
+- (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray new];
     }
     return _dataArray;
 }
 
-- (NSMutableArray *)layouts{
+- (NSMutableArray *)layouts {
     if (!_layouts) {
         _layouts = [NSMutableArray new];
     }
     return _layouts;
 }
 
-- (YHVoiceHUD *)imgvVoiceTips{
+- (YHVoiceHUD *)imgvVoiceTips {
     if (!_imgvVoiceTips) {
         _imgvVoiceTips = [[YHVoiceHUD alloc] initWithFrame:CGRectMake(0, 0, 155, 155)];
-        _imgvVoiceTips.center = CGPointMake(self.view.center.x, self.view.center.y-64);
+        _imgvVoiceTips.center = CGPointMake(self.view.center.x, self.view.center.y - 64);
         [self.view addSubview:_imgvVoiceTips];
     }
     return _imgvVoiceTips;
 }
 
 
-- (void)initUI{
-    
-    
+- (void)initUI {
+
+
     self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = RGBCOLOR(239, 236, 236);
-    
+
     //tableview
     self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -152,11 +185,11 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = RGBCOLOR(239, 236, 236);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-   
+
     //注册Cell
-    _chatHelper = [[YHChatHelper alloc ] init];
+    _chatHelper = [[YHChatHelper alloc] init];
     [_chatHelper registerCellClassWithTableView:self.tableView];
-    
+
     //表情键盘
     YHExpressionKeyboard *keyboard = [[YHExpressionKeyboard alloc] initWithViewController:self aboveView:self.tableView];
     _keyboard = keyboard;
@@ -166,35 +199,36 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 
 #pragma mark - @protocol CellChatTextLeftDelegate
 
-- (void)tapLeftAvatar:(YHUserInfo *)userInfo{
+- (void)tapLeftAvatar:(YHUserInfo *)userInfo {
     DDLog(@"点击左边头像");
 }
 
-- (void)retweetMsg:(NSString *)msg inLeftCell:(CellChatTextLeft *)leftCell{
-    DDLog(@"转发左边消息:%@",msg);
-    DDLog(@"所在的行是:%ld",leftCell.indexPath.row);
+- (void)retweetMsg:(NSString *)msg inLeftCell:(CellChatTextLeft *)leftCell {
+    DDLog(@"转发左边消息:%@", msg);
+    DDLog(@"所在的行是:%ld", leftCell.indexPath.row);
 }
 
-- (void)onLinkInChatTextLeftCell:(CellChatTextLeft *)cell linkType:(int)linkType linkText:(NSString *)linkText{
+- (void)onLinkInChatTextLeftCell:(CellChatTextLeft *)cell linkType:(int)linkType linkText:(NSString *)linkText {
     if (linkType == 1) {
         //点击URL
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) url:[NSURL URLWithString:linkText]];
+        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL URLWithString:linkText]];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 #pragma mark - @protocol CellChatTextRightDelegate
-- (void)tapRightAvatar:(YHUserInfo *)userInfo{
+
+- (void)tapRightAvatar:(YHUserInfo *)userInfo {
     DDLog(@"点击右边头像");
 }
 
-- (void)retweetMsg:(NSString *)msg inRightCell:(CellChatTextRight *)rightCell{
-    DDLog(@"转发右边消息:%@",msg);
-    DDLog(@"所在的行是:%ld",(long)rightCell.indexPath.row);
+- (void)retweetMsg:(NSString *)msg inRightCell:(CellChatTextRight *)rightCell {
+    DDLog(@"转发右边消息:%@", msg);
+    DDLog(@"所在的行是:%ld", (long) rightCell.indexPath.row);
 }
 
-- (void)tapSendMsgFailImg{
+- (void)tapSendMsgFailImg {
     DDLog(@"重发该消息?");
     [HHUtils showAlertWithTitle:@"重发该消息?" message:nil okTitle:@"重发" cancelTitle:@"取消" inViewController:self dismiss:^(BOOL resultYes) {
         if (resultYes) {
@@ -203,18 +237,18 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     }];
 }
 
-- (void)withDrawMsg:(NSString *)msg inRightCell:(CellChatTextRight *)rightCell{
-    DDLog(@"撤回消息:\n%@",msg);
+- (void)withDrawMsg:(NSString *)msg inRightCell:(CellChatTextRight *)rightCell {
+    DDLog(@"撤回消息:\n%@", msg);
     if (rightCell.indexPath.row < self.dataArray.count) {
         [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
         [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
-- (void)onLinkInChatTextRightCell:(CellChatTextRight *)cell linkType:(int)linkType linkText:(NSString *)linkText{
+- (void)onLinkInChatTextRightCell:(CellChatTextRight *)cell linkType:(int)linkType linkText:(NSString *)linkText {
     if (linkType == 1) {
         //点击URL
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) url:[NSURL URLWithString:linkText]];
+        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL URLWithString:linkText]];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -222,50 +256,52 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 
 #pragma mark - @protocol CellChatImageLeftDelegate
 
-- (void)retweetImage:(UIImage *)image inLeftCell:(CellChatImageLeft *)leftCell{
-    DDLog(@"转发图片：%@",image);
+- (void)retweetImage:(UIImage *)image inLeftCell:(CellChatImageLeft *)leftCell {
+    DDLog(@"转发图片：%@", image);
 }
 
 #pragma mark - @protocol CellChatImageRightDelegate
 
-- (void)retweetImage:(UIImage *)image inRightCell:(CellChatImageRight *)rightCell{
-    DDLog(@"转发图片：%@",image);
+- (void)retweetImage:(UIImage *)image inRightCell:(CellChatImageRight *)rightCell {
+    DDLog(@"转发图片：%@", image);
 }
 
-- (void)withDrawImage:(UIImage *)image inRightCell:(CellChatImageRight *)rightCell{
-    DDLog(@"撤回图片：%@",image);
+- (void)withDrawImage:(UIImage *)image inRightCell:(CellChatImageRight *)rightCell {
+    DDLog(@"撤回图片：%@", image);
     if (rightCell.indexPath.row < self.dataArray.count) {
         [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
         [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
     }
-    
+
 }
 
 
 #pragma mark - @protocol CellChatVoiceLeftDelegate
-- (void)playInLeftCellWithVoicePath:(NSString *)voicePath{
-    DDLog(@"播放:%@",voicePath);
+
+- (void)playInLeftCellWithVoicePath:(NSString *)voicePath {
+    DDLog(@"播放:%@", voicePath);
 
 }
 
-- (void)retweetVoice:(NSString *)voicePath inLeftCell:(CellChatVoiceLeft *)leftCell{
-    DDLog(@"转发语音:%@",voicePath);
+- (void)retweetVoice:(NSString *)voicePath inLeftCell:(CellChatVoiceLeft *)leftCell {
+    DDLog(@"转发语音:%@", voicePath);
 }
 
 #pragma mark - @protocol CellChatVoiceRightDelegate
-- (void)playInRightCellWithVoicePath:(NSString *)voicePath{
-    DDLog(@"播放:%@",voicePath);
+
+- (void)playInRightCellWithVoicePath:(NSString *)voicePath {
+    DDLog(@"播放:%@", voicePath);
 
 }
 
 //转发语音
-- (void)retweetVoice:(NSString *)voicePath inRightCell:(CellChatVoiceRight *)rightCell{
-    DDLog(@"转发语音:%@",voicePath);
+- (void)retweetVoice:(NSString *)voicePath inRightCell:(CellChatVoiceRight *)rightCell {
+    DDLog(@"转发语音:%@", voicePath);
 }
 
 //撤回语音
-- (void)withDrawVoice:(NSString *)voicePath inRightCell:(CellChatVoiceRight *)rightCell{
-    DDLog(@"撤回语音:%@",voicePath);
+- (void)withDrawVoice:(NSString *)voicePath inRightCell:(CellChatVoiceRight *)rightCell {
+    DDLog(@"撤回语音:%@", voicePath);
     if (rightCell.indexPath.row < self.dataArray.count) {
         [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
         [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
@@ -273,41 +309,43 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 }
 
 #pragma mark - @protocol CellChatFileLeftDelegate
+
 //点击文件
-- (void)onChatFile:(YHFileModel *)chatFile inLeftCell:(CellChatFileLeft *)leftCell{
+- (void)onChatFile:(YHFileModel *)chatFile inLeftCell:(CellChatFileLeft *)leftCell {
     if (chatFile.filePathInLocal) {
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) url:[NSURL fileURLWithPath:chatFile.filePathInLocal]];
+        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL fileURLWithPath:chatFile.filePathInLocal]];
         vc.title = chatFile.fileName;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
+
 }
 
 //转发文件
-- (void)retweetFile:(YHFileModel *)chatFile inLeftCell:(CellChatFileLeft *)leftCell{
+- (void)retweetFile:(YHFileModel *)chatFile inLeftCell:(CellChatFileLeft *)leftCell {
 
 }
 
 #pragma mark - @protocol CellChatFileRightDelegate
+
 //点击文件
-- (void)onChatFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell{
+- (void)onChatFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell {
     if (chatFile.filePathInLocal) {
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) url:[NSURL fileURLWithPath:chatFile.filePathInLocal]];
+        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL fileURLWithPath:chatFile.filePathInLocal]];
         vc.title = chatFile.fileName;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
+
 }
 
 //转发文件
-- (void)retweetFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell{
+- (void)retweetFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell {
 
 }
 
 //撤回文件
-- (void)withDrawFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell{
+- (void)withDrawFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell {
     if (rightCell.indexPath.row < self.dataArray.count) {
         [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
         [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
@@ -316,13 +354,15 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 }
 
 #pragma mark - @protocol CellChatBaseDelegate
-- (void)onCheckBoxAtIndexPath:(NSIndexPath *)indexPath model:(YHChatModel *)model{
-    DDLog(@"选择第%ld行的聊天记录",(long)indexPath.row);
+
+- (void)onCheckBoxAtIndexPath:(NSIndexPath *)indexPath model:(YHChatModel *)model {
+    DDLog(@"选择第%ld行的聊天记录", (long) indexPath.row);
 }
 
 
 #pragma mark - @protocol UIScrollViewDelegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [_keyboard endEditing];
     [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
 }
@@ -330,25 +370,23 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 
 #pragma mark - @protocol UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     if (indexPath.row < self.dataArray.count) {
         YHChatModel *model = self.dataArray[indexPath.row];
-        if(model.status == 1){
+        if (model.status == 1) {
             //消息撤回
             CellChatTips *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTips class])];
             cell.model = model;
             return cell;
-        }else{
-            if (model.msgType == YHMessageType_Image){
+        } else {
+            if (model.msgType == YHMessageType_Image) {
                 if (model.direction == 0) {
-                    
+
                     CellChatImageRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatImageRight class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
@@ -356,21 +394,21 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
-                    
-                }else{
-                    
+
+                } else {
+
                     CellChatImageLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatImageLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
                     cell.indexPath = indexPath;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
-                    
+
                     return cell;
                 }
-                
-            }else if (model.msgType == YHMessageType_Voice){
-                
+
+            } else if (model.msgType == YHMessageType_Voice) {
+
                 if (model.direction == 0) {
                     CellChatVoiceRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatVoiceRight class])];
                     cell.delegate = self;
@@ -379,7 +417,7 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
-                }else{
+                } else {
                     CellChatVoiceLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatVoiceLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
@@ -388,8 +426,8 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     [cell setupModel:model];
                     return cell;
                 }
-                
-            }else if(model.msgType == YHMessageType_Doc){
+
+            } else if (model.msgType == YHMessageType_Doc) {
                 if (model.direction == 0) {
                     CellChatFileRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatFileRight class])];
                     cell.delegate = self;
@@ -398,7 +436,7 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
-                }else{
+                } else {
                     CellChatFileLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatFileLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
@@ -407,24 +445,24 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     [cell setupModel:model];
                     return cell;
                 }
-                
-            }else if (model.msgType == YHMessageType_GIF){
-                
+
+            } else if (model.msgType == YHMessageType_GIF) {
+
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
-                }else{
+                } else {
                     CellChatGIFLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFLeft class])];
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
                 }
-                
-            }else{
+
+            } else {
                 if (model.direction == 0) {
                     CellChatTextRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextRight class])];
                     cell.delegate = self;
@@ -433,7 +471,7 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
-                }else{
+                } else {
                     CellChatTextLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
@@ -445,119 +483,117 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
             }
 
         }
-        
-        
-        
+
+
     }
     return [[UITableViewCell alloc] init];
 }
 
 #pragma mark - @protocol UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.dataArray.count) {
         YHChatModel *model = self.dataArray[indexPath.row];
         return [_chatHelper heightWithModel:model tableView:tableView];
     }
     return 44.0f;
-   
+
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 }
 
 
 // 松手时已经静止,只会调用scrollViewDidEndDragging
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (decelerate == NO) { // scrollView已经完全静止
         [self _handleAnimatedImageView];
     }
 }
 
 // 松手时还在运动, 先调用scrollViewDidEndDragging,在调用scrollViewDidEndDecelerating
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     // scrollView已经完全静止
     [self _handleAnimatedImageView];
 }
 
-- (void)_handleAnimatedImageView{
+- (void)_handleAnimatedImageView {
     for (UITableViewCell *visiableCell in self.tableView.visibleCells) {
         if ([visiableCell isKindOfClass:[CellChatGIFLeft class]]) {
-             [(CellChatGIFLeft *)visiableCell startAnimating];
-        }else if ([visiableCell isKindOfClass:[CellChatGIFRight class]]){
-             [(CellChatGIFRight *)visiableCell startAnimating];
+            [(CellChatGIFLeft *) visiableCell startAnimating];
+        } else if ([visiableCell isKindOfClass:[CellChatGIFRight class]]) {
+            [(CellChatGIFRight *) visiableCell startAnimating];
         }
     }
 }
 
 #pragma mark - Private
-- (NSString *)currentRecordFileName
-{
+
+- (NSString *)currentRecordFileName {
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
-    NSString *fileName = [NSString stringWithFormat:@"%ld",(long)timeInterval];
+    NSString *fileName = [NSString stringWithFormat:@"%ld", (long) timeInterval];
     return fileName;
 }
 
 //显示录音时间太短Tips
-- (void)showShortRecordTips{
+- (void)showShortRecordTips {
     WeakSelf
     self.imgvVoiceTips.hidden = NO;
-    self.imgvVoiceTips.image  =  [UIImage imageNamed:@"voiceShort"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    self.imgvVoiceTips.image = [UIImage imageNamed:@"voiceShort"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         weakSelf.imgvVoiceTips.hidden = YES;
     });
 }
 
 
 #pragma mark - @protocol YHExpressionKeyboardDelegate
+
 //发送-click keyboad sending button.
-- (void)didTapSendBtn:(NSString *)text{
-    
+- (void)didTapSendBtn:(NSString *)text {
+
     if (text.length) {
         YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
         chatModel.agentId = _model.userId;
         chatModel.agentAvatar = _model.sessionUserHead[0];
         chatModel.agentName = _model.sessionUserName;
         [self.dataArray addObject:chatModel];
-        
+
         [self.tableView reloadData];
         [self.tableView scrollToBottomAnimated:NO];
     }
-    
+
 }
 
-- (void)didStartRecordingVoice{
+- (void)didStartRecordingVoice {
     WeakSelf
     self.imgvVoiceTips.hidden = NO;
     [[YHAudioRecorder shareInstanced] startRecordingWithFileName:[self currentRecordFileName] completion:^(NSError *error) {
         if (error) {
             if (error.code != 122) {
                 [HHUtils showAlertWithTitle:@"" message:error.localizedDescription okTitle:@"确定" cancelTitle:nil inViewController:self dismiss:^(BOOL resultYes) {
-                    
+
                 }];
             }
         }
-    }power:^(float progress) {
+    }                                                      power:^(float progress) {
         weakSelf.imgvVoiceTips.progress = progress;
     }];
 }
 
-- (void)didStopRecordingVoice{
+- (void)didStopRecordingVoice {
     self.imgvVoiceTips.hidden = YES;
     WeakSelf
     [[YHAudioRecorder shareInstanced] stopRecordingWithCompletion:^(NSString *recordPath) {
         if ([recordPath isEqualToString:shortRecord]) {
             [weakSelf showShortRecordTips];
-        }else{
-            DDLog(@"record finish , file path is :\n%@",recordPath);
-            NSString *voiceMsg = [NSString stringWithFormat:@"voice[local://%@]",recordPath];
+        } else {
+            DDLog(@"record finish , file path is :\n%@", recordPath);
+            NSString *voiceMsg = [NSString stringWithFormat:@"voice[local://%@]", recordPath];
             [weakSelf.dataArray addObject:[YHChatHelper creatMessage:voiceMsg msgType:YHMessageType_Voice toID:@"1"]];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView scrollToBottomAnimated:NO];
@@ -565,13 +601,13 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     }];
 }
 
-- (void)didDragInside:(BOOL)inside{
+- (void)didDragInside:(BOOL)inside {
     if (inside) {
 
         [[YHAudioRecorder shareInstanced] resumeUpdateMeters];
         self.imgvVoiceTips.image = [UIImage imageNamed:@"voice_1"];
         self.imgvVoiceTips.hidden = NO;
-    }else{
+    } else {
 
         [[YHAudioRecorder shareInstanced] pauseUpdateMeters];
         self.imgvVoiceTips.image = [UIImage imageNamed:@"cancelVoice"];
@@ -579,13 +615,13 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
     }
 }
 
-- (void)didCancelRecordingVoice{
+- (void)didCancelRecordingVoice {
     self.imgvVoiceTips.hidden = YES;
     [[YHAudioRecorder shareInstanced] removeCurrentRecordFile];
 }
 
 // TODO... select system's photo选择相片，照相机。 然后上传。 这个要添加相应的代码。
-- (void)didSelectExtraItem:(NSString *)itemName{
+- (void)didSelectExtraItem:(NSString *)itemName {
     if ([itemName isEqualToString:@"文件"]) {
         YHDocumentVC *vc = [[YHDocumentVC alloc] init];
         YHNavigationController *nav = [[YHNavigationController alloc] initWithRootViewController:vc];
@@ -593,12 +629,11 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
             DDLog(@"准备发送文件。");
         }];
         [self.navigationController presentViewController:nav animated:YES completion:NULL];
-    }else if([itemName isEqualToString:@"拍摄"]){
-         DDLog(@"拍摄");
+    } else if ([itemName isEqualToString:@"拍摄"]) {
+        DDLog(@"拍摄");
         YHShootVC *vc = [[YHShootVC alloc] init];
         [self.navigationController presentViewController:vc animated:YES completion:NULL];
-    }
-    else if([itemName isEqualToString:@"照片"]){
+    } else if ([itemName isEqualToString:@"照片"]) {
         DDLog(@"照片");
         YHShootVC *vc = [[YHShootVC alloc] init];
         [self.navigationController presentViewController:vc animated:YES completion:NULL];
@@ -606,36 +641,39 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 }
 
 #pragma mark - 网络请求
-- (void)uploadRecordFile:(NSString *)filePath{
+
+- (void)uploadRecordFile:(NSString *)filePath {
     //上传录音文件
     [[YHUploadManager sharedInstance] uploadChatRecordWithPath:filePath complete:^(BOOL success, id obj) {
         if (success) {
-            DDLog(@"上传成功,%@",obj);
-        }else{
-            DDLog(@"上传失败,%@",obj);
+            DDLog(@"上传成功,%@", obj);
+        } else {
+            DDLog(@"上传失败,%@", obj);
         }
-    } progress:^(int64_t bytesWritten, int64_t totalBytesWritten) {
-        DDLog(@"bytesWritten:%lld -- totalBytesWritten:%lld",bytesWritten,totalBytesWritten);
+    }                                                 progress:^(int64_t bytesWritten, int64_t totalBytesWritten) {
+        DDLog(@"bytesWritten:%lld -- totalBytesWritten:%lld", bytesWritten, totalBytesWritten);
     }];
 
 }
 
 #pragma mark - Action
-- (void)onMore:(UIButton *)sender{
+
+- (void)onMore:(UIButton *)sender {
     sender.selected = !sender.selected;
-    _showCheckBox = sender.selected? YES:NO;
+    _showCheckBox = sender.selected ? YES : NO;
     [self.tableView reloadData];
 }
 
 #pragma mark -  Action
-- (void)onBack:(id)sender{
+
+- (void)onBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Life Cycle
 
-- (void)dealloc{
-    DDLog(@"%s is dealloc",__func__);
+- (void)dealloc {
+    DDLog(@"%s is dealloc", __func__);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -663,8 +701,8 @@ CellChatFileLeftDelegate,CellChatFileRightDelegate>{
 
 - (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
     //收到服务端发送过来的消息
-    NSString * message = note.object;
-    NSLog(@"%@",message);
+    NSString *message = note.object;
+    NSLog(@"%@", message);
 }
 
 @end
