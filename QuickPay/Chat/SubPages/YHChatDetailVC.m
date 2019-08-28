@@ -29,6 +29,7 @@
 #import "YHShootVC.h"
 #import "YHChatManager.h"
 #import "SqliteManager.h"
+#import "QuickPayNetConstants.h"
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
         CellChatFileLeftDelegate, CellChatFileRightDelegate> {
@@ -111,39 +112,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
 
-
-    NSDictionary *params = @{@"hello": @"workd", @"agent_id": @"1"};
-
-    // 如果数组或者字典中存储了  NSString, NSNumber, NSArray, NSDictionary, or NSNull 之外的其他对象,就不能直接保存成文件了.也不能序列化成 JSON 数据.
-    NSDictionary *dict = @{@"name": @"me", @"do": @"something", @"with": @"her", @"params": params};
-
-    // 1.判断当前对象是否能够转换成JSON数据.
-    // YES if obj can be converted to JSON data, otherwise NO
-    BOOL isYes = [NSJSONSerialization isValidJSONObject:dict];
-
-    if (isYes) {
-        NSLog(@"可以转换");
-
-        /* JSON data for obj, or nil if an internal error occurs. The resulting data is a encoded in UTF-8.
-         */
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
-
-        /*
-         Writes the bytes in the receiver to the file specified by a given path.
-         YES if the operation succeeds, otherwise NO
-         */
-        // 将JSON数据写成文件
-        // 文件添加后缀名: 告诉别人当前文件的类型.
-        // 注意: AFN是通过文件类型来确定数据类型的!如果不添加类型,有可能识别不了! 自己最好添加文件类型.
-        //[jsonData writeToFile:@"/Users/SunnyBoy/Sites/JSON_XML/dict.json" atomically:YES];
-
-        NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
-
-    } else {
-
-        NSLog(@"JSON数据生成失败，请检查数据格式");
-
-    }
+    NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
+    NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
+    NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
+    NSString *alipy = [[QuickPayNetConstants sharedInstance] assembleSendAlipay:@"1234567890"];
+    NSString *wechat = [[QuickPayNetConstants sharedInstance] assembleSendWeChat:@"1234567890"];
+    NSString *bank = [[QuickPayNetConstants sharedInstance] assembleSendBank:@"1234567890"];
+    NSString *credit = [[QuickPayNetConstants sharedInstance] assembleSendCredit:@"1234567890"];
+    NSString *hub = [[QuickPayNetConstants sharedInstance] assembleSendHuaBie:@"1234567890"];
+    NSString *sendok = [[QuickPayNetConstants sharedInstance] assembleSendOK:@"1234567890"];
+    NSString *normakltext = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowod" agentID:@"1234567890"];
+    NSString *normakltext2 = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowoddd4444" agentID:@"1234567890"];
 
 }
 
