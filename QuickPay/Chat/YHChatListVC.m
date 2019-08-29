@@ -12,6 +12,8 @@
 #import "CellChatList.h"
 #import "UIImage+Extension.h"
 #import "TestData.h"
+#import "QuickPayNetConstants.h"
+#import "YHChatManager.h"
 
 @interface YHChatListVC ()<UITableViewDelegate,UITableViewDataSource,CellChatListDelegate>
 @property (nonatomic,strong) YHRefreshTableView *tableView;
@@ -50,10 +52,48 @@
 //
 //    NSArray *jsonArray =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 // 这个是 解析 支付类型的 例子
-    NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_pay_mehtod" ofType:@"json"] encoding:0 error:nil];
-    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    //handleJsonProcess();
+//    NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:jsonStr];
+
+//    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+//    NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+//    //handleJsonProcess();
+//    NSLog(@"%lu", [jsonDic count]);
+//    NSEnumerator *enumeratorKey = [jsonDic keyEnumerator];
+////    for (NSObject *object in enumeratorKey) {
+////        NSLog(@"==========key:%@", object);
+////    }
+//    NSNumber *resultCode = [jsonDic objectForKey:kKey_code];
+//    NSString *resultMsg  = [jsonDic objectForKey:kKey_message];
+//    NSDictionary *result = [jsonDic objectForKey:kKey_result];
+//    NSString *msgID  = [jsonDic objectForKey:kKey_id];
+//
+//
+//    if(resultCode != nil && resultMsg != nil ) {
+//        // 从最外层开始解析。
+//        if ([resultCode longValue] == kValueSucessCode && [resultMsg isEqualToString:kValueSucessMsg]) {
+//            // 正确的消息解析。
+//            NSLog(@"==========key:%@", resultCode);
+//            NSString *emit = [result objectForKey:kKey_emit];
+//
+//        } else {
+//            // 错误消息解析。
+//        }
+//    } else {
+//        // 第二层开始解析。
+//    }
+//
+////
+////    for(NSString * akey in jsonDic) {
+////        //........
+////        NSLog(@"==========key:%@", akey);
+////        BOOL result = [akey isEqualToString:kKey_code];
+////        if(result) {
+////            NSNumber *number = [jsonDic objectForKey:kKey_code];
+////        }
+////    }
+////    NSLog(@"%@",jsonDic );
 
 }
 

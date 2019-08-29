@@ -12,6 +12,7 @@
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
 #import "YHChatModel.h"
 #import "YHExpressionKeyboard.h"
+#import "QuickPayConfigModel.h"
 #import "YHUserInfo.h"
 #import "HHUtils.h"
 #import "YHChatHeader.h"
@@ -106,12 +107,15 @@
 
 
     //设置WebScoket
-    [[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
+    //[[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
+    [[YHChatManager sharedInstance] connectQuickpay];
+
 
     // 有收到网络的数据，及时去数据库拿数据进行更新。
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
 
+    // 测试发送的请求构造json
     NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
     NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
     NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
@@ -546,6 +550,10 @@
         [self.tableView scrollToBottomAnimated:NO];
     }
 
+    NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:jsonStr];
+
 }
 
 - (void)didStartRecordingVoice {
@@ -680,8 +688,98 @@
 
 - (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
     //收到服务端发送过来的消息
-    NSString *message = note.object;
-    NSLog(@"%@", message);
+    NSString *jsonStr = nil;
+
+
+    // 测试的时候用本地的数据
+// TODO>>> 重要重要重要
+    jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
+    // jsonStr = note.object; // TODO。。用网络服务器时候要打开打开。
+    NSLog(@"%@", jsonStr);
+
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+
+    NSNumber *resultCode = [jsonDic objectForKey:kKey_code];
+    NSString *resultMsg  = [jsonDic objectForKey:kKey_message];
+    NSDictionary *resultDict = [jsonDic objectForKey:kKey_result];
+    NSString *msgID  = [jsonDic objectForKey:kKey_id];
+
+    if(resultCode != nil && resultMsg != nil ) {
+        // 从最外层开始解析。
+        if ([resultCode longValue] == kValueSucessCode && [resultMsg isEqualToString:kValueSucessMsg]) {
+            // 正确的消息解析。
+            NSLog(@"==========key:%@", resultCode);
+            [self processMsgEntry:resultDict];
+        } else {
+            // 错误消息解析。
+            NSLog(@"========= json 有错误");
+        }
+    } else {
+        // 第二层开始解析。
+    }
+
+
 }
 
+- (void)processMsgEntry:(NSDictionary *)dict {
+    NSString *emit = [dict objectForKey:kKey_emit];
+    if(emit == nil) {
+        // 有错误错误。
+        NSLog(@"==========emit == nil, json 有错误");
+    } else {
+        id dataDict = [dict objectForKey:kKey_data];
+        if([emit isEqualToString:kValueEmit_off_single]) {
+            [self processOffSinleMsg:dataDict];
+        } else if([emit isEqualToString:kValueEmit_pay_method]) {
+            [self processPayMethodMsg:dataDict];
+        } else if([emit isEqualToString:kValueEmit_receive]) {
+            [self processReceivedMsg:dataDict];
+        } else if([emit isEqualToString:kValueEmit_chat]) {
+            [self processChatMsg:dataDict];
+        }
+    }
+}
+
+- (void)processOffSinleMsg:(NSArray *)dict {
+    NSLog(@"==========processOffSinleMsg 开始");
+    int count = [dict count];
+    for(int i=0; i< count; i++) {
+        NSDictionary *dataDict = [[dict[i] objectForKey:kKey_data]objectForKey:kKey_data];
+        if (dataDict != nil) {
+            [self processChatMsg:dataDict];
+        }
+    }
+    //NSDictionary *dataDict = [dict objectForKey:kKey_data];
+
+    NSLog(@"==========processOffSinleMsg end");
+}
+- (void)processPayMethodMsg:(NSDictionary *)dict {
+    NSLog(@"==========processPayMethodMsg 开始");
+}
+- (void)processReceivedMsg:(NSDictionary *)dict {
+    NSLog(@"==========processReceivedMsg 开始");
+}
+
+- (void)processChatMsg:(NSDictionary *)dict {
+    NSLog(@"==========processChatMsg 开始");
+    NSString *fromId  = [dict objectForKey:kKey_formId];
+    NSString *avatar  = [dict objectForKey:kKey_avatar];
+    NSNumber *msgType  = [dict objectForKey:kKey_msgType];
+    NSString *nickName  = [dict objectForKey:kKey_nickname];
+    NSNumber *sendTime  = [dict objectForKey:kKey_sendTime];
+    id msgID  = [dict objectForKey:kKey_msgId];       // 这个服务器怎么发过来是 number，要统一转换为NSString
+    // 解析msgBody的时候，要根据 msgType来进行解析， 不同的类型装进去的数据结构不一样。
+    NSDictionary *msgBody   = [dict objectForKey:kKey_body];
+    NSLog(@"==========processChatMsg end");
+    BOOL test = [msgID isKindOfClass:[NSString class]];
+    BOOL test1 = [msgID isKindOfClass:[NSNumber class]];
+    if ([msgType longValue] == TEXT) {
+        NSLog(@"==========msgBody 为 text 类型");
+    } else if ([msgType longValue] >= ALIPAY && [msgType longValue] <= PAYOK) {
+        NSLog(@"==========msgBody 为 支付 类型");
+    }else if ([msgType longValue] == IMAGE) {
+        NSLog(@"==========msgBody 为 图片 类型");
+    }
+}
 @end

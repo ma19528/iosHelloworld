@@ -22,7 +22,7 @@ extern NSString * const kWebSocketdidReceiveMessageNote;
 
 //连接
 - (void)connectToUserID:(NSString *)toUserId isGroupChat:(BOOL)isGroupChat;
-
+- (void)connectQuickpay;
 
 /** 获取连接状态 */
 @property (nonatomic,assign,readonly) SRReadyState socketReadyState;

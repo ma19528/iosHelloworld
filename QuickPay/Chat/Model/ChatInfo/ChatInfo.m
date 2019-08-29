@@ -18,9 +18,9 @@ NSString *agentNickName = @"VIP 24小时服务";         // 代理的昵称
 NSString *agentAvater = @"https://static.oschina.net/uploads/space/2015/0629/170157_rxDh_1767531.png";  // 代理的头像
 NSString *uploadPicHost = @"http://192.168.188.126:9501/im/image?serviceToken=";  // 图片上传的主机，要更换。
 NSString *packageName = @"com.jbl.quickpay";
-NSString *preFixWs = @"ws://192.168.188.126:9512/websocket?token=";
+NSString *preFixWs = @"ws://192.168.188.126:9517/websocket?token=";
 
-NSString *wsServiceAddr = @"ws://192.168.188.126:9512/websocket?token=ldMSnrHQWeEw6ciw";     //[NSString initWithFormat:@"%@,%@", preFixWs, serviceToken ];
+NSString *wsServiceAddr = @"ws://192.168.188.126:9517/websocket?token=ldMSnrHQWeEw6ciw";     //[NSString initWithFormat:@"%@,%@", preFixWs, serviceToken ];
 
 
 

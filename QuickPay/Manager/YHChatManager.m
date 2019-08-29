@@ -71,7 +71,23 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
     [_socket open];
 }
 
+//连接
+- (void)connectQuickpay {
+    //wss://apps.gtax.cn/taxtao/web_im.ws?access_token=&is_group=&to_user_id=&type=0
+    //is_group 是否群聊0否 1是
+    NSString *token = serviceToken;
+    NSString *isGroup = @"0";
+    //NSString *urlStr  = [NSString stringWithFormat:@"wss://apps.gtax.cn/taxtao/web_im.ws?access_token=%@&is_group=%@&to_user_id=%@&type=0" ,token,isGroup,toUserId];
+    NSString *urlStr = wsServiceAddr;
+    NSURL *url = [NSURL URLWithString:urlStr];
 
+    _socket = [[SRWebSocket alloc] initWithURLRequest:
+            [NSURLRequest requestWithURL:url]];
+    //_socketQueue = dispatch_queue_create("com.yhsoft.sockeQueue", DISPATCH_QUEUE_SERIAL);
+    _socketQueue = dispatch_queue_create("com.jbl.quickpay", DISPATCH_QUEUE_SERIAL);
+    _socket.delegate = self;
+    [_socket open];
+}
 #pragma mark - **************** public methods
 
 - (void)SRWebSocketOpenWithURLString:(NSString *)urlString {
@@ -110,36 +126,6 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
 
 #define WeakSelf(ws) __weak __typeof(&*self)weakSelf = self
 
-//// 如果数组或者字典中存储了  NSString, NSNumber, NSArray, NSDictionary, or NSNull 之外的其他对象,就不能直接保存成文件了.也不能序列化成 JSON 数据.
-//NSDictionary *dict = @{@"name" : @"me", @"do" : @"something", @"with" : @"her", @"address" : @"home"};
-//
-//// 1.判断当前对象是否能够转换成JSON数据.
-//// YES if obj can be converted to JSON data, otherwise NO
-//BOOL isYes = [NSJSONSerialization isValidJSONObject:dict];
-
-//if (isYes) {
-//    NSLog(@"可以转换");
-//
-//    /* JSON data for obj, or nil if an internal error occurs. The resulting data is a encoded in UTF-8.
-//     */
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:NULL];
-//
-//    /*
-//     Writes the bytes in the receiver to the file specified by a given path.
-//     YES if the operation succeeds, otherwise NO
-//     */
-//    // 将JSON数据写成文件
-//    // 文件添加后缀名: 告诉别人当前文件的类型.
-//    // 注意: AFN是通过文件类型来确定数据类型的!如果不添加类型,有可能识别不了! 自己最好添加文件类型.
-//    [jsonData writeToFile:@"/Users/SunnyBoy/Sites/JSON_XML/dict.json" atomically:YES];
-//
-//    NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
-//
-//} else {
-//
-//    NSLog(@"JSON数据生成失败，请检查数据格式");
-//
-//}
 
 - (void)sendData:(id)data {
     NSLog(@"socketSendData --------------- %@", data);
@@ -261,6 +247,7 @@ NSString *const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageN
         NSLog(@"我这后台约定的 message 是 json 格式数据收到数据，就按格式解析吧，然后把数据发给调用层");
         NSLog(@"message:%@", message);
         // TODO。。。 在这里进行数据解析并存储在数据库里面
+       // NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:message options:NSJSONReadingAllowFragments error:nil];
 
 //        Boolean subscriptionWasSuccessful = [[message valueForKeyPath:@"successful"] boolValue];
 //        if (subscriptionWasSuccessful) {

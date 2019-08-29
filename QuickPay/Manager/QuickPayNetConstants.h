@@ -39,7 +39,7 @@
 // 正常的聊天类型，包括文本聊天， 请求各种支付信息
 #define kReqMethod_ChatAgent @"chat.agent"
 
-#define kTextKey     @"0"
+#define kTextKey        @"0"
 #define kPayAlipayKey   @"1"
 #define kPayWeChatKey   @"2"
 #define kPayBankCardKey @"3"
@@ -55,24 +55,67 @@
 #define kPayHuabie   @"用花呗充值"
 #define kPayOK       @"我已经充好了"
 
- typedef enum  {
-     TEXT = 0,           // 文本消息
-     ALIPAY,             // 支付宝充值消息
-     WEPAY,              // 微信充值消息
-     BANK_CARD,          // 银行卡充值消息
-     CREDIT_CARD,        // 信用卡充值消息
-     HUA_BEI,            // 花呗充值消息
-     PAYOK,              // 我充好了。
+typedef enum  {
+    TEXT = 0,           // 文本消息
+    ALIPAY,             // 支付宝充值消息
+    WEPAY,              // 微信充值消息
+    BANK_CARD,          // 银行卡充值消息
+    CREDIT_CARD,        // 信用卡充值消息
+    HUA_BEI,            // 花呗充值消息
+    PAYOK,              // 我充好了。
 
-     IMAGE, //图片消息
-     AUDIO, //语音消息
-     VIDEO, //视频消息
-     FILE_TYPE,  //文件消息
-     LOCATION, //位置消息
- } SendMsgType;
+    IMAGE, //图片消息
+    AUDIO, //语音消息
+    VIDEO, //视频消息
+    FILE_TYPE,  //文件消息
+    LOCATION, //位置消息
+} SendMsgType;
 
+//---------------------json 解析
+//---1
+#define kKey_code  @"code"
+#define kKey_jsonrpc  @"jsonrpc"
+#define kKey_message  @"message"
+#define kKey_result   @"result"
+// ----2
+#define kKey_emit     @"emit"
+#define kKey_data     @"data"
+// -----3---pay support
+#define kKey_id       @"id"
+#define kKey_support  @"support"
+// -----3--receive msg
+#define kKey_msgId       @"msgId"
+#define kKey_status      @"status"
+#define kKey_msg         @"msg"
+// ----3--off single
+#define kKey_from_id       @"from_id"
+// kKey_data
+// ---3,5 normal msg,如果是 off-single，则包括每个代理的最后一条normal消息。
+#define kKey_msgType     @"msgType"
+#define kKey_sendTime    @"sendTime"
+#define kKey_formId      @"formId"
+#define kKey_formId      @"formId"
+#define kKey_nickname    @"nickname"
+#define kKey_avatar      @"avatar"
+#define kKey_body        @"body"
+#define kKey_message     @"message"
+// 3 --- 支付信息
+#define kKey_accounts     @"accounts"        // 账号
+#define kKey_accounts     @"firstName"       // 姓
+#define kKey_accounts     @"lastName"        // 名
+#define kKey_accounts     @"payQrcodeUrl"    // 二维码地址
+#define kKey_accounts     @"displayType"      // 显示方式
+#define kKey_accounts     @"extra"            // 额外数据。提示。
+#define kKey_accounts     @"accountAddr"      // 开户行主地址
+#define kKey_accounts     @"accountSubAddr"   // 开户行次地址
 
+#define kValueEmit_off_single @"off_single"   // 离线消息
+#define kValueEmit_pay_method @"pay_method"   // 支持支付类型
+#define kValueEmit_receive    @"receive"      // 消息回执
+#define kValueEmit_chat       @"chat"         // 聊天（普通文本，图片，支付信息）注意的 各种聊天类型用的不同的data body。 要分开解析
 
+#define kValueSucessCode   0
+#define kValueSucessMsg    @"Success"
 
 @interface QuickPayNetConstants : NSObject
 
@@ -113,4 +156,7 @@
 - (NSString *)assembleSendNormalText:(NSString *)content agentID:(NSString *)agentID;
 
 - (NSString *) getSendMsgType:(SendMsgType)msgType;
+
+
+
 @end

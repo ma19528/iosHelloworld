@@ -1,37 +1,29 @@
 {
     "jsonrpc":"2.0",
-    "code":0,
+    "code":"0",
     "message":"Success",
     "result":{
         "emit":"off_single",
         "data":[
             {
                 "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":1564715737605,"sendTime":1564715737605,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"123"},"msgType":0}}"
+                "data":{"emit":"chat","data":{"msgId":1564715737605,"sendTime":1564715737605,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"123"},"msgType":0}}
             },
             {
                 "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":1564648316239,"sendTime":1564648316239,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"http:\/\/padimg.vh57beuzg.com:47170\/uploads\/vtSmvCQR7Fbt0Ml2.jpg"},"msgType":7}}"
+                "data":{"emit":"chat","data":{"msgId":1564648316239,"sendTime":1564648316239,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"http:\/\/padimg.vh57beuzg.com:47170\/uploads\/vtSmvCQR7Fbt0Ml2.jpg"},"msgType":7}}
             },
             {
                 "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":1564648288850,"sendTime":1564648288850,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"上帝发誓地方"},"msgType":0}}"
+                "data":{"emit":"chat","data":{"msgId":1564648288850,"sendTime":1564648288850,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"上帝发誓地方"},"msgType":0}}
             },
             {
                 "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":1564586019333,"sendTime":1564586019333,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"fdsafsdffsdf "},"msgType":0}}"
+                "data":{"emit":"chat","data":{"msgId":1564586019333,"sendTime":1564586019333,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"fdsafsdffsdf "},"msgType":0}}
             },
             {
                 "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":1564586012748,"sendTime":1564586012748,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"3123123123123123"},"msgType":0}}"
-            },
-            {
-                "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":"bQ6A3wHOfj1cRnmx","sendTime":15644634870,"formId":"1","nickname":"发生大幅","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"请提供到帐截图，谢谢哥哥"},"msgType":0}}"
-            },
-            {
-                "from_id":1,
-                "data":"{"emit":"chat","data":{"msgId":"zIfD83LoWe92NB82","sendTime":15644634730,"formId":"1","nickname":"发生大幅","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"已经发送了支付宝信息:账号为：2332","accounts":"2332","firstName":"2323","lastName":"1231","payQrcodeUrl":"","downUrl":"","accountAddr":"","accountSubAddr":"","displayType":1,"extra":{"tips":["请您点击上方小卡片进行充值,充好后告诉我一下，我给您加金币"]}},"msgType":"1"}}"
+                "data":{"emit":"chat","data":{"msgId":1564586012748,"sendTime":1564586012748,"formId":"1","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{"message":"3123123123123123"},"msgType":0}}
             }
         ]
     },
