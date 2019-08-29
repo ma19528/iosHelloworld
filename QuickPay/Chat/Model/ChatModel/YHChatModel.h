@@ -30,7 +30,7 @@
 @property (nonatomic,assign) int msgType;          // 消息类型      // 0是文本 1是图片 2是语音 3是文件 4是gif
 @property (nonatomic,assign) int direction;        // 0: 自己发出的消息， 1： 收到的消息
 @property (nonatomic,assign) int status;           //消息状态（撤回：1,未撤回：0）
-@property (nonatomic,copy) NSString *msgId;       //消息ID
+@property (nonatomic,copy) NSString *msgId;        //消息ID
 
 /**add by quick pay***/
 @property (nonatomic,copy) NSString *agentId;   //代理Id

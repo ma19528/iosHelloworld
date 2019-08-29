@@ -550,8 +550,8 @@
         [self.tableView scrollToBottomAnimated:NO];
     }
 
+    // TODO...这个shi本地测试。。。。
     NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
-
     [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:jsonStr];
 
 }
@@ -701,11 +701,11 @@
     NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
 
     NSNumber *resultCode = [jsonDic objectForKey:kKey_code];
-    NSString *resultMsg  = [jsonDic objectForKey:kKey_message];
+    NSString *resultMsg = [jsonDic objectForKey:kKey_message];
     NSDictionary *resultDict = [jsonDic objectForKey:kKey_result];
-    NSString *msgID  = [jsonDic objectForKey:kKey_id];
+    NSString *msgID = [jsonDic objectForKey:kKey_id];
 
-    if(resultCode != nil && resultMsg != nil ) {
+    if (resultCode != nil && resultMsg != nil) {
         // 从最外层开始解析。
         if ([resultCode longValue] == kValueSucessCode && [resultMsg isEqualToString:kValueSucessMsg]) {
             // 正确的消息解析。
@@ -724,18 +724,18 @@
 
 - (void)processMsgEntry:(NSDictionary *)dict {
     NSString *emit = [dict objectForKey:kKey_emit];
-    if(emit == nil) {
+    if (emit == nil) {
         // 有错误错误。
         NSLog(@"==========emit == nil, json 有错误");
     } else {
         id dataDict = [dict objectForKey:kKey_data];
-        if([emit isEqualToString:kValueEmit_off_single]) {
+        if ([emit isEqualToString:kValueEmit_off_single]) {
             [self processOffSinleMsg:dataDict];
-        } else if([emit isEqualToString:kValueEmit_pay_method]) {
+        } else if ([emit isEqualToString:kValueEmit_pay_method]) {
             [self processPayMethodMsg:dataDict];
-        } else if([emit isEqualToString:kValueEmit_receive]) {
+        } else if ([emit isEqualToString:kValueEmit_receive]) {
             [self processReceivedMsg:dataDict];
-        } else if([emit isEqualToString:kValueEmit_chat]) {
+        } else if ([emit isEqualToString:kValueEmit_chat]) {
             [self processChatMsg:dataDict];
         }
     }
@@ -744,8 +744,8 @@
 - (void)processOffSinleMsg:(NSArray *)dict {
     NSLog(@"==========processOffSinleMsg 开始");
     int count = [dict count];
-    for(int i=0; i< count; i++) {
-        NSDictionary *dataDict = [[dict[i] objectForKey:kKey_data]objectForKey:kKey_data];
+    for (int i = 0; i < count; i++) {
+        NSDictionary *dataDict = [[dict[i] objectForKey:kKey_data] objectForKey:kKey_data];
         if (dataDict != nil) {
             [self processChatMsg:dataDict];
         }
@@ -754,32 +754,63 @@
 
     NSLog(@"==========processOffSinleMsg end");
 }
+
 - (void)processPayMethodMsg:(NSDictionary *)dict {
     NSLog(@"==========processPayMethodMsg 开始");
 }
+
 - (void)processReceivedMsg:(NSDictionary *)dict {
     NSLog(@"==========processReceivedMsg 开始");
 }
 
 - (void)processChatMsg:(NSDictionary *)dict {
     NSLog(@"==========processChatMsg 开始");
-    NSString *fromId  = [dict objectForKey:kKey_formId];
-    NSString *avatar  = [dict objectForKey:kKey_avatar];
-    NSNumber *msgType  = [dict objectForKey:kKey_msgType];
-    NSString *nickName  = [dict objectForKey:kKey_nickname];
-    NSNumber *sendTime  = [dict objectForKey:kKey_sendTime];
-    id msgID  = [dict objectForKey:kKey_msgId];       // 这个服务器怎么发过来是 number，要统一转换为NSString
+    NSString *fromId = [dict objectForKey:kKey_formId];
+    NSString *avatar = [dict objectForKey:kKey_avatar];
+    NSNumber *msgType = [dict objectForKey:kKey_msgType];
+    NSString *nickName = [dict objectForKey:kKey_nickname];
+    NSNumber *sendTime = [dict objectForKey:kKey_sendTime];
+    id msgID = [dict objectForKey:kKey_msgId];       // 这个服务器怎么发过来是 number，要统一转换为NSString
     // 解析msgBody的时候，要根据 msgType来进行解析， 不同的类型装进去的数据结构不一样。
-    NSDictionary *msgBody   = [dict objectForKey:kKey_body];
+    NSDictionary *msgBody = [dict objectForKey:kKey_body];
     NSLog(@"==========processChatMsg end");
-    BOOL test = [msgID isKindOfClass:[NSString class]];
+    //BOOL test = [msgID isKindOfClass:[NSString class]];
     BOOL test1 = [msgID isKindOfClass:[NSNumber class]];
+    NSString *strMsgID = nil;
+    if (test1) {
+        strMsgID = [msgID stringValue];
+    } else {
+        strMsgID = msgID;
+    }
+
     if ([msgType longValue] == TEXT) {
         NSLog(@"==========msgBody 为 text 类型");
     } else if ([msgType longValue] >= ALIPAY && [msgType longValue] <= PAYOK) {
         NSLog(@"==========msgBody 为 支付 类型");
-    }else if ([msgType longValue] == IMAGE) {
+    } else if ([msgType longValue] == IMAGE) {
         NSLog(@"==========msgBody 为 图片 类型");
     }
+
+    // 构造要显示的消息。
+
+
+    YHChatModel *chatModel = [YHChatHelper creatRecvMessage:@"gogo"
+                                                    msgType:YHMessageType_Text
+                                                    agentID:fromId
+                                                agentAvater:avatar
+                                                  agentName:nickName
+                                                      msgID:strMsgID
+                                                    msgTime:sendTime];
+//    chatModel.agentId = _model.userId;
+//    chatModel.agentAvatar = _model.sessionUserHead[0];
+//    chatModel.agentName = _model.sessionUserName;
+
+    [self.dataArray addObject:chatModel];
+
+    [self.tableView reloadData];
+    [self.tableView scrollToBottomAnimated:NO];
+    // 历史消息存在数据库里面。
+    // TOODO。。。
+
 }
 @end

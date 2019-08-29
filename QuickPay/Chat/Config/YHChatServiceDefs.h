@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, YHMessageDeliveryState) {
 // 消息类型
 typedef NS_ENUM(NSUInteger,YHMessageType){
     YHMessageType_Text  = 0,             // 文本
+
     YHMessageType_Image,                 // 图片
     YHMessageType_Voice,                 // 短录音
     YHMessageType_Doc,                   // 文档

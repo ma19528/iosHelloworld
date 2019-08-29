@@ -42,7 +42,7 @@
     model.chatType   = msgType;
     model.chatId        = [NSString stringWithFormat:@"%ld",1000 + random()%1000];//本地消息记录ID是手动设置，等消息发送成功后将此替换。
     CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
-    
+
     UIColor *textColor = [UIColor blackColor];
     UIColor *matchTextColor = UIColorHex(527ead);
     UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
@@ -57,6 +57,53 @@
     model.layout = layout;
     NSDate *date = [[NSDate alloc] init ];
     model.createTime  = [date getNowDate];
+    return model;
+}
+
++ (YHChatModel *)creatRecvMessage:(NSString *)msg msgType:(YHMessageType)msgType
+                          agentID:(NSString *)agentID
+                          agentAvater:(NSString *)agentAvater
+                          agentName:(NSString *)agentName
+                          msgID:(NSString *)msgID
+        msgTime:(NSString *)msgTime
+{
+    YHChatModel *model  = [YHChatModel new];
+    model.direction     = 1;
+    model.msgType       = msgType;
+    model.chatType      = msgType;
+
+    model.speakerId     = agentID; //MYUID
+    model.speakerAvatar = agentAvater; //  MYAVTARURL;
+    model.speakerName   = agentName;   //@"samuelandkevin";
+
+
+//
+//    @property (nonatomic,copy) NSString *audienceId;   //听众Id
+//    @property (nonatomic,copy) NSURL *audienceAvatar;  //听众头像
+//    @property (nonatomic,copy) NSString *audienceName; //听众名字
+
+    model.audienceId = MYUID;
+    model.audienceAvatar = MYAVTARURL;
+            model.audienceName =@"samuelandkevin";
+
+                    model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
+    CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
+
+    UIColor *textColor = [UIColor blackColor];
+    UIColor *matchTextColor = UIColorHex(527ead);
+    UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
+    if (model.direction == 0) {
+        textColor = [UIColor whiteColor];
+        matchTextColor = [UIColor greenColor];
+        matchTextHighlightBGColor = [UIColor grayColor];
+    }
+    model.msgContent = msg;
+    YHChatTextLayout *layout = [[YHChatTextLayout alloc] init];
+    [layout layoutWithText:msg fontSize:addFontSize+14 textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
+    model.layout = layout;
+
+    NSDate *date = [[NSDate alloc] init ];
+    model.createTime  = msgTime; // [date getNowDate];
     return model;
 }
 
