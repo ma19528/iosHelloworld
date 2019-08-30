@@ -721,7 +721,9 @@
 
 
     [self.tableView reloadData];
-    [self.tableView scrollToBottomAnimated:YES];
+    //[self.tableView scrollToBottomAnimated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
 
 }
 
