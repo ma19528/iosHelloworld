@@ -77,16 +77,15 @@
     model.speakerName   = agentName;   //@"samuelandkevin";
 
 
-//
-//    @property (nonatomic,copy) NSString *audienceId;   //听众Id
-//    @property (nonatomic,copy) NSURL *audienceAvatar;  //听众头像
-//    @property (nonatomic,copy) NSString *audienceName; //听众名字
+//    model.audienceId = MYUID;
+//    model.audienceAvatar = MYAVTARURL;
+//    model.audienceName =@"samuelandkevin";
 
-    model.audienceId = MYUID;
-    model.audienceAvatar = MYAVTARURL;
-            model.audienceName =@"samuelandkevin";
+    model.agentId = MYUID;
+    model.agentAvatar = MYAVTARURL;
+    model.agentName = @"ddd";
 
-                    model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
+    model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
     CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
 
     UIColor *textColor = [UIColor blackColor];
@@ -103,7 +102,7 @@
     model.layout = layout;
 
     NSDate *date = [[NSDate alloc] init ];
-    model.createTime  = msgTime; // [date getNowDate];
+    model.createTime  =  [date getNowDate];  //msgTime; //
     return model;
 }
 

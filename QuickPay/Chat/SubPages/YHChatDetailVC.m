@@ -720,6 +720,9 @@
     }
 
 
+    [self.tableView reloadData];
+    [self.tableView scrollToBottomAnimated:YES];
+
 }
 
 - (void)processMsgEntry:(NSDictionary *)dict {
@@ -801,14 +804,10 @@
                                                   agentName:nickName
                                                       msgID:strMsgID
                                                     msgTime:sendTime];
-//    chatModel.agentId = _model.userId;
-//    chatModel.agentAvatar = _model.sessionUserHead[0];
-//    chatModel.agentName = _model.sessionUserName;
 
     [self.dataArray addObject:chatModel];
 
-    [self.tableView reloadData];
-    [self.tableView scrollToBottomAnimated:NO];
+
     // 历史消息存在数据库里面。
     // TOODO。。。
 
