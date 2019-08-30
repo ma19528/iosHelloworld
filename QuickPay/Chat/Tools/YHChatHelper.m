@@ -101,8 +101,26 @@
     [layout layoutWithText:msg fontSize:addFontSize+14 textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
     model.layout = layout;
 
+//    NSDate *datenow =[NSDate date];//现在时间,你可以输出来看下是什么格式
+//
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//
+//    NSInteger interval = [zone secondsFromGMTForDate:datenow];
+//
+//    NSDate *localeDate = [datenow  dateByAddingTimeInterval: interval];
+//
+//    NSString *timeSp = [NSString stringWithFormat:@"%d", (long)[localeDate timeIntervalSince1970]];
+
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
+    NSTimeInterval time =  [msgTime doubleValue]/1000;
+    NSString *strData = [NSString stringWithFormat:@"%@",
+            [formatter stringFromDate: [NSDate dateWithTimeIntervalSince1970:time]]];
+
     NSDate *date = [[NSDate alloc] init ];
-    model.createTime  =  [date getNowDate];  //msgTime; //
+    NSString *dat = [date getNowDate];
+    model.createTime  = strData;//  [date getNowDate];  //msgTime; //
     return model;
 }
 
