@@ -89,7 +89,15 @@
     model.status = [stautsArr[nStatusLength] intValue];
     
     
-    //消息类型  0是文本 1是图片 2是语音 3是文件 4是gif
+    //消息类型 YHChatServiceDefs_h    0是文本 1是图片 2是语音 3是文件 4是gif
+//    YHMessageType_Text  = 0,             // 文本
+//            YHMessageType_ALIPAY,                // alipay
+//
+//            YHMessageType_Image,                 // 图片
+//            YHMessageType_Voice,                 // 短录音
+//            YHMessageType_Doc,                   // 文档
+//            YHMessageType_GIF,                   // 动态图
+
     NSArray *msgTypeArr = @[@(0),@(1),@(2),@(3),@(4)];
     int nMsgTypeLength  = arc4random() % msgTypeArr.count;
     model.msgType = nMsgTypeLength;
@@ -135,11 +143,17 @@
                            
                            @"img[https://csapp.gtax.cn/images/2016/08/25/ea6a22e8b4794b9ba63fd6ee587be4d1.jpg!t300x300.jpg]"];
     int imglength = arc4random() % imgMsgArr.count;
-    if (model.msgType == 1) {
+
+    if (model.msgType == YHMessageType_Image) {
         NSString *imgUrlStr = imgMsgArr[imglength];
         model.msgContent = imgUrlStr;
     }
-    
+
+    if (model.msgType == YHMessageType_ALIPAY) {
+        NSString *imgUrlStr = imgMsgArr[imglength];
+        model.msgContent = imgUrlStr;
+    }
+
     //消息内容为语音
     
     NSArray *voiceArr = @[@"voice[http://apps.gtax.cn/images/2017/01/13/11f9ba99dd3541f38028f841f0b74b64.wav]",
@@ -150,7 +164,7 @@
                           @"voice[http://apps.gtax.cn/images/2017/01/12/9d70932816824b5b890c0817d0b992a9.wav]",
                           @"voice[http://apps.gtax.cn/images/2017/01/24/50f06e140ea644b6ac686fec86681f38.wav]"];
     int voicelength = arc4random() % voiceArr.count;
-    if (model.msgType == 2) {
+    if (model.msgType == YHMessageType_Voice) {
         NSString *voiceUrlStr = voiceArr[voicelength];
         model.msgContent = voiceUrlStr;
     }
@@ -163,7 +177,7 @@
                             @"file(http://csapp.gtax.cn/images/2017/01/22/885b4d1dc46d46c09e23f97f8c1a21c6.xlsx)[exel.xlsx]",
                             @"file(http://csapp.gtax.cn/images/2017/03/31/5773839b5ea043aaa4c7c20041ffa394.docx)[hhy.docx]"];
     int filelength = arc4random() % fileMsgArr.count;
-    if (model.msgType == 3) {
+    if (model.msgType == YHMessageType_Doc) {
         NSString *fileStr = fileMsgArr[filelength];
         model.msgContent = fileStr;
         
@@ -201,7 +215,7 @@
                            @"gif[http://file.digitaling.com/eImg/uimages/20150818/1439870587358907.gif][400_158]",
                            @"gif[http://file.digitaling.com/eImg/uimages/20150818/1439870563878858.gif][500_281]"];
     int giflength = arc4random() % gifMsgArr.count;
-    if (model.msgType == 4) {
+    if (model.msgType == YHMessageType_GIF) {
         NSString *gifUrlStr = gifMsgArr[giflength];
         model.msgContent = gifUrlStr;
         

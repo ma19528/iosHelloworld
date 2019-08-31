@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, YHMessageDeliveryState) {
 // 消息类型
 typedef NS_ENUM(NSUInteger,YHMessageType){
     YHMessageType_Text  = 0,             // 文本
+    YHMessageType_ALIPAY,                // alipay
 
     YHMessageType_Image,                 // 图片
     YHMessageType_Voice,                 // 短录音
@@ -104,7 +105,7 @@ typedef NS_ENUM(NSUInteger,YHDeliverTopStatus){
 
 // 文件类型
 typedef NS_ENUM(NSUInteger,YHFileType){
-    YHFileType_Other = 0,                // 其它类型
+    YHFileType_Txt = 0,                // 其它类型
     YHFileType_Audio,                    //
     YHFileType_Video,                    //
     YHFileType_Html,
@@ -113,7 +114,7 @@ typedef NS_ENUM(NSUInteger,YHFileType){
     YHFileType_Xls,
     YHFileType_Ppt,
     YHFileType_Img,
-    YHFileType_Txt
+    YHFileType_END
 };
 
 typedef NS_ENUM(int,FileStatus){

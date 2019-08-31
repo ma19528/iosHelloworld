@@ -13,6 +13,7 @@
 #import "YHExpressionHelper.h"
 #import "NSDate+Extension.h"
 #import "YHChatTextLayout.h"
+#import "CellChatAlipayLeft.h"
 
 @interface YHChatHelper()
 
@@ -151,6 +152,8 @@
     [tableView registerClass:[CellChatGIFLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatGIFLeft class])];
     [tableView registerClass:[CellChatGIFRight class] forCellReuseIdentifier:NSStringFromClass([CellChatGIFRight class])];
 
+    [tableView registerClass:[CellChatAlipayLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatAlipayLeft class])];
+
 }
 
 
@@ -255,7 +258,7 @@
                     [cell setupModel:model];
                 } ];
             }
-        }else if (model.msgType == YHMessageType_Doc){
+        } else if (model.msgType == YHMessageType_Doc){
             if (model.direction == 0) {
                 height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
                     CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
@@ -268,7 +271,22 @@
                 } ];
             }
             
-        }else if (model.msgType == YHMessageType_GIF){
+        }   else if (model.msgType == YHMessageType_ALIPAY){
+            if (model.direction == 0) {
+                height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }else{
+                height = [CellChatAlipayLeft hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatAlipayLeft *cell = (CellChatAlipayLeft *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }
+
+        }
+
+        else if (model.msgType == YHMessageType_GIF){
             
             if (model.direction == 0) {
                 height = [CellChatGIFRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {

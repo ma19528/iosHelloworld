@@ -159,36 +159,38 @@
     [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
     
     NSString *msgContent = self.model.msgContent;
-    if (self.model.msgType == 3 && msgContent) {
+    if (self.model.msgType == YHMessageType_ALIPAY && msgContent) {
 
-        _lbFileName.text = self.model.fileModel.fileName;
-        NSNumber *num = self.model.fileModel.fileType;
-        if (num == nil) {
-            self.imgvIcon.image = [UIImage imageNamed:@"chat_pay_alipay"];//iconfont-wenjian
-        } else {
-            self.imgvIcon.image = [UIImage imageNamed:@"chat_pay_alipay"];//[YHChatHelper imageWithFileType:[num intValue]];
-        }
+//        _lbFileName.text = self.model.fileModel.fileName;
+//        NSNumber *num = self.model.fileModel.fileType;
+//        if (num == nil) {
+//            //iconfont-wenjian
+//            self.imgvIcon.image = [UIImage imageNamed:@"chat_pay_alipay"];
+//        } else {
+//            self.imgvIcon.image = [UIImage imageNamed:@"chat_pay_alipay"];//[YHChatHelper imageWithFileType:[num intValue]];
+//        }
+        self.imgvIcon.image = [UIImage imageNamed:@"chat_pay_alipay"];
     }
     
-    if (self.model.fileModel.status == FileStatus_UnDownLoaded) {
-        _progressView.hidden = YES;
-    }
-    
-    //wifi状态下自动下载
-    if ([NetManager sharedInstance].currentNetWorkStatus == YHNetworkStatus_ReachableViaWiFi) {
-         [self _downLoadFile];
-    }
-    
-   
-    _progressView.hidden = (self.model.fileModel.status == FileStatus_HasDownLoaded || self.model.fileModel.status == FileStatus_UnDownLoaded) ? YES:NO;
-    _lbFileSize.text = self.model.fileModel.fileSizeStr;
-    if(self.model.fileModel.status == FileStatus_UnDownLoaded){
-        self.lbStatus.text = @"未完成";
-    }else if(self.model.fileModel.status == FileStatus_isDownLoading){
-        self.lbStatus.text = @"下载中";
-    }else if(self.model.fileModel.status == FileStatus_HasDownLoaded){
-        self.lbStatus.text = @"已下载";
-    }
+//    if (self.model.fileModel.status == FileStatus_UnDownLoaded) {
+//        _progressView.hidden = YES;
+//    }
+//
+//    //wifi状态下自动下载
+//    if ([NetManager sharedInstance].currentNetWorkStatus == YHNetworkStatus_ReachableViaWiFi) {
+//         [self _downLoadFile];
+//    }
+//
+//
+//    _progressView.hidden = (self.model.fileModel.status == FileStatus_HasDownLoaded || self.model.fileModel.status == FileStatus_UnDownLoaded) ? YES:NO;
+//    _lbFileSize.text = self.model.fileModel.fileSizeStr;
+//    if(self.model.fileModel.status == FileStatus_UnDownLoaded){
+//        self.lbStatus.text = @"未完成";
+//    }else if(self.model.fileModel.status == FileStatus_isDownLoading){
+//        self.lbStatus.text = @"下载中";
+//    }else if(self.model.fileModel.status == FileStatus_HasDownLoaded){
+//        self.lbStatus.text = @"已下载";
+//    }
     
     
 }

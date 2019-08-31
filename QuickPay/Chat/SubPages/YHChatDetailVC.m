@@ -31,9 +31,10 @@
 #import "YHChatManager.h"
 #import "SqliteManager.h"
 #import "QuickPayNetConstants.h"
+#import "CellChatAlipayLeft.h"
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
-        CellChatFileLeftDelegate, CellChatFileRightDelegate> {
+        CellChatFileLeftDelegate, CellChatFileRightDelegate,CellChatAlipayLeftDelegate> {
 
 }
 @property(nonatomic, strong) YHRefreshTableView *tableView;
@@ -72,7 +73,7 @@
 
 
     //模拟数据源
-    [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
+    [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
     // TODO。。。 sessionID 用 代理的id。。
     [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:@"67553" userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
@@ -116,7 +117,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
 
-    // 测试发送的请求构造json
+    // 测试要发送的消息的数据结构json
     NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
     NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
     NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
@@ -446,7 +447,24 @@
                     return cell;
                 }
 
-            } else {
+            }
+            else if (model.msgType == YHMessageType_ALIPAY) {
+
+                if (model.direction == 0) {
+                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                } else {
+                    CellChatAlipayLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatAlipayLeft class])];
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                }
+            }
+            else {
                 if (model.direction == 0) {
                     CellChatTextRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextRight class])];
                     cell.delegate = self;
@@ -806,7 +824,7 @@
 
 
     YHChatModel *chatModel = [YHChatHelper creatRecvMessage:@"gogo"
-                                                    msgType:YHMessageType_Text
+                                                    msgType:YHMessageType_ALIPAY
                                                     agentID:fromId
                                                 agentAvater:avatar
                                                   agentName:nickName
