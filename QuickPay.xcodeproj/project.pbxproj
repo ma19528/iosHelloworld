@@ -11,6 +11,7 @@
 		58603148C658F39826D420E7 /* response_pay_mehtod.json in Resources */ = {isa = PBXBuildFile; fileRef = 586033932F29D801434E5BEE /* response_pay_mehtod.json */; };
 		5860322AECF89C15D0F855F7 /* request_text.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603BD4162EC049BF50351F /* request_text.json */; };
 		586033B2811420E5584F3AC4 /* request_pay.json in Resources */ = {isa = PBXBuildFile; fileRef = 586037F9E1F153E64D344AD3 /* request_pay.json */; };
+		586033FD847C3329F06FD7CC /* CellChatAlipayLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */; };
 		586035A22666158FEC75E64E /* QuickPaySocketConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603C242AD5CD07E1E47E76 /* QuickPaySocketConstant.m */; };
 		58603B7988C975EF10C53A62 /* request_chatOffmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603D9D2C92FEB078436818 /* request_chatOffmsg.json */; };
 		58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */; };
@@ -127,11 +128,13 @@
 		58603869CD3C267475D26037 /* QuickPayConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPayConfigModel.m; sourceTree = "<group>"; };
 		58603BBCD1148FFCE71EDA2F /* QuickPayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayConfigModel.h; sourceTree = "<group>"; };
 		58603BD4162EC049BF50351F /* request_text.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_text.json; sourceTree = "<group>"; };
+		58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatAlipayLeft.m; sourceTree = "<group>"; };
 		58603C242AD5CD07E1E47E76 /* QuickPaySocketConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPaySocketConstant.m; sourceTree = "<group>"; };
 		58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = receive_normal_chatmsg.json; sourceTree = "<group>"; };
 		58603D06182C56A73CD7CB4D /* QuickPayNetConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayNetConstants.h; sourceTree = "<group>"; };
 		58603D9D2C92FEB078436818 /* request_chatOffmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatOffmsg.json; sourceTree = "<group>"; };
 		58603F011BE82C102703A230 /* response_received.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_received.json; sourceTree = "<group>"; };
+		58603FC58A4EADBD97A27F89 /* CellChatAlipayLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatAlipayLeft.h; sourceTree = "<group>"; };
 		5C5EA0762A3D65A285B0C43B /* Pods-QuickPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig"; sourceTree = "<group>"; };
 		762089047A00BECC39D4D733 /* Pods_QuickPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8015156D9238E30B7B818700 /* Pods-QuickPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,7 +202,7 @@
 		AC4446B61E568E5D00685571 /* QuickPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC4446BA1E568E5D00685571 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC4446BC1E568E5D00685571 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		AC4446BD1E568E5D00685571 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AC4446BD1E568E5D00685571 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		AC4446C51E568E5D00685571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC4446C81E568E5D00685571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC4446CA1E568E5D00685571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -503,6 +506,8 @@
 				ACD188FD1E9CD7A7006F6A42 /* CellChatGIFRight.m */,
 				AC30AA401E7A7EF300E0C9A6 /* CellChatTips.h */,
 				AC30AA411E7A7EF300E0C9A6 /* CellChatTips.m */,
+				58603FC58A4EADBD97A27F89 /* CellChatAlipayLeft.h */,
+				58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */,
 			);
 			path = ChatCell;
 			sourceTree = "<group>";
@@ -556,7 +561,6 @@
 				AC2967CB1E5C4273000856F8 /* Tools */,
 				AC4446D01E56970E00685571 /* Chat */,
 				AC4446BC1E568E5D00685571 /* AppDelegate.h */,
-				AC4446BD1E568E5D00685571 /* AppDelegate.m */,
 				AC4446F31E569B3900685571 /* QuickPay-PrefixHeader.pch */,
 				AC4446C51E568E5D00685571 /* Assets.xcassets */,
 				AC4446C71E568E5D00685571 /* LaunchScreen.storyboard */,
@@ -584,6 +588,7 @@
 				AC4446D21E56970E00685571 /* Model */,
 				AC4446D31E56970E00685571 /* View */,
 				AC4446F01E569A5600685571 /* YHChatListVC.h */,
+				AC4446BD1E568E5D00685571 /* AppDelegate.m */,
 				AC4446F11E569A5600685571 /* YHChatListVC.m */,
 			);
 			path = Chat;
@@ -1068,6 +1073,7 @@
 				58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */,
 				58603F2E87D034F3865D1D6A /* QuickPayConfigModel.m in Sources */,
 				586035A22666158FEC75E64E /* QuickPaySocketConstant.m in Sources */,
+				586033FD847C3329F06FD7CC /* CellChatAlipayLeft.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

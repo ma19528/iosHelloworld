@@ -73,17 +73,21 @@
     model.chatType      = msgType;
 
     model.speakerId     = agentID; //MYUID
-    model.speakerAvatar = agentAvater; //  MYAVTARURL;
-    model.speakerName   = agentName;   //@"samuelandkevin";
+    // TODO...现在写死做测试放开
+    agentAvater = @"https://static.oschina.net/uploads/space/2015/0629/170157_rxDh_1767531.png";
+
+    model.speakerAvatar = [NSURL URLWithString:agentAvater]; //  MYAVTARURL;
+    model.speakerName   = agentName;   //@"samuelandkevin";  // 这个是 显示用的。
 
 
-//    model.audienceId = MYUID;
-//    model.audienceAvatar = MYAVTARURL;
-//    model.audienceName =@"samuelandkevin";
+    model.audienceId = MYUID;
+    model.audienceAvatar = MYAVTARURL;
+    model.audienceName =@"samuelandkevin";
 
-    model.agentId = MYUID;
-    model.agentAvatar = MYAVTARURL;
-    model.agentName = @"ddd";
+    model.agentId = agentID;
+    model.agentAvatar = [NSURL URLWithString:agentAvater]; ;
+    model.agentName = agentName;
+
 
     model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
     CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
@@ -118,9 +122,10 @@
     NSString *strData = [NSString stringWithFormat:@"%@",
             [formatter stringFromDate: [NSDate dateWithTimeIntervalSince1970:time]]];
 
+
     NSDate *date = [[NSDate alloc] init ];
     NSString *dat = [date getNowDate];
-    model.createTime  = strData;//  [date getNowDate];  //msgTime; //
+    model.createTime  = strData;//  [date getNowDate];
     return model;
 }
 
@@ -159,11 +164,11 @@
     }else{
         if (model.msgType == YHMessageType_Image){
             if (model.direction == 0) {
-                
+
                 CellChatImageRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatImageRight class])];
                 [cell setupModel:model];
                 return cell;
-                
+
             }else{
                 
                 CellChatImageLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatImageLeft class])];

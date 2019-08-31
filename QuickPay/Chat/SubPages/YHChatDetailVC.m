@@ -72,9 +72,10 @@
 
 
     //模拟数据源
-    //[self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
+    [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:40 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
-    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:_model.userId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
+    // TODO。。。 sessionID 用 代理的id。。
+    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:@"67553" userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
             //----
             CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
@@ -484,7 +485,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    DDLog(@"选择第%ld行的聊天记录", (long) indexPath.row);
+    if (indexPath.row < self.dataArray.count) {
+        YHChatModel *model = self.dataArray[indexPath.row];
+        DDLog(@"选择第%ld行的聊天记录", (long) indexPath.row);
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -541,9 +546,10 @@
 
     if (text.length) {
         YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
-        chatModel.agentId = _model.userId;
+        // TODO.... agentID 要写如对应的那个代理。
+        chatModel.agentId     = @"67553";
         chatModel.agentAvatar = _model.sessionUserHead[0];
-        chatModel.agentName = _model.sessionUserName;
+        chatModel.agentName   = _model.sessionUserName;
         [self.dataArray addObject:chatModel];
 
         [self.tableView reloadData];
