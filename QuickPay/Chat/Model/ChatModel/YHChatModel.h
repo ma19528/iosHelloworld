@@ -32,6 +32,7 @@
 @property (nonatomic,assign) int status;           //消息状态（撤回：1,未撤回：0）
 @property (nonatomic,copy) NSString *msgId;        //消息ID
 
+
 /**add by quick pay***/
 @property (nonatomic,copy) NSString *agentId;   //代理Id
 @property (nonatomic,copy) NSURL *agentAvatar;  //代理头像
@@ -46,6 +47,7 @@
 
 /*****自定义,以后可能并入服务器****/
 @property (nonatomic,assign) YHMessageDeliveryState deliveryState;//消息发送状态
+
 
 
 /******以下非服务器返回字段******/

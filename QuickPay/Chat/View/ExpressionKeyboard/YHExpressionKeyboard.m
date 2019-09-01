@@ -242,10 +242,13 @@
     
     [_toolbarVioceButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(kToolbarBtnH);
-        make.left.equalTo(weakSelf.topToolBar.mas_left).offset(5);
+        make.left.equalTo(weakSelf.topToolBar.mas_left); //.offset(5)
         make.bottom.equalTo(weakSelf.topToolBar).offset(-8);
     }];
-    
+    [_toolbarVioceButton setWidth:0];
+    [_toolbarVioceButton setHidden:YES];
+
+
     [_toolbarEmoticonButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(kToolbarBtnH);
         make.right.equalTo(weakSelf.toolbarExtraButton.mas_left);
@@ -262,7 +265,8 @@
     
     
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.toolbarVioceButton.mas_right).offset(5);
+        // make.left.equalTo(weakSelf.toolbarVioceButton.mas_right).offset(5);
+        make.left.equalTo(weakSelf.topToolBar).offset(5);
         make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
         make.bottom.equalTo(weakSelf.topToolBar).offset(-kTextVTopMargin);
         make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
@@ -274,6 +278,7 @@
         make.height.mas_equalTo(30);
         make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
     }];
+    [_toolbarPresstoSpeakButton setHidden:YES];
     
     
     [_botContainer mas_updateConstraints:^(MASConstraintMaker *make) {

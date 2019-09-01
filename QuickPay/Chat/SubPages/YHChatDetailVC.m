@@ -459,12 +459,14 @@
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
+                    //cell.delegate = self;
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
                 } else {
                     CellChatAlipayLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatAlipayLeft class])];
+                    cell.delegate = self;
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];

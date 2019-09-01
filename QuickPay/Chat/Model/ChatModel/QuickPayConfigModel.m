@@ -13,7 +13,6 @@
 @implementation QuickPayConfigModel
 
 
-
 - (instancetype)init
 {
     self = [super init];
