@@ -53,7 +53,7 @@
     CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
     _lbContent.textColor = [UIColor whiteColor];
     _lbContent.numberOfLines = 0;
-    _lbContent.font = [UIFont systemFontOfSize:(14+addFontSize)];
+    _lbContent.font = [UIFont systemFontOfSize:(20+addFontSize)];
     _lbContent.ignoreCommonProperties = YES;
     _lbContent.displaysAsynchronously = YES;
     
@@ -103,14 +103,19 @@
     [self.lbName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.imgvAvatar.mas_left).offset(-10);
     }];
-    
+    [self.lbName setHidden:YES];
+
+    // TODO.. 在这里可以判断是否是同一个sesion的对话，如果同一个session 则不需要显示时间。
+    [self.viewTimeBG setHidden:YES];
+    [self.viewTimeBG setHeight:0.0];
+
     [self.imgvAvatar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakSelf.contentView).offset(-5);
     }];
     
     [_imgvBubble mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.lbContent.mas_left).offset(-5);
-        make.top.equalTo(weakSelf.lbName.mas_bottom).offset(5);
+        make.top.equalTo(weakSelf.lbName.mas_top).offset(0);
         make.right.equalTo(weakSelf.imgvAvatar.mas_left).offset(-5);
     }];
     

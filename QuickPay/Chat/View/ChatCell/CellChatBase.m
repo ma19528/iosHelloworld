@@ -93,7 +93,8 @@ const float kCheckBoxWidth = 30;//勾选框宽高
         make.centerX.equalTo(weakSelf.contentView.mas_centerX);
         make.top.equalTo(weakSelf.contentView.mas_top).offset(5);
     }];
-    
+
+
     [self.lbName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.imgvAvatar.mas_top);
     }];

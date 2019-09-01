@@ -37,9 +37,9 @@
 }
 
 - (void)setupUI{
-    
+    // 泡泡对话框
     _imgvBubble = [UIImageView new];
-    UIImage *imgBubble = [UIImage imageNamed:@"chat_bubbleLeft"];
+    UIImage *imgBubble = [UIImage imageNamed:@"chat_bubbleRight"];//chat_bubbleLeft
     imgBubble = [imgBubble resizableImageWithCapInsets:UIEdgeInsetsMake(30, 30, 30, 15) resizingMode:UIImageResizingModeStretch];
     _imgvBubble.image = imgBubble;
     [self.contentView addSubview:_imgvBubble];
@@ -61,28 +61,28 @@
     
     _imgvIcon = [UIImageView new];
     [self.contentView addSubview:_imgvIcon];
-    
-    _lbFileName = [UILabel new];
-    _lbFileName.font = [UIFont systemFontOfSize:15.0];
-    _lbFileName.numberOfLines = 2;
-    _lbFileName.lineBreakMode = NSLineBreakByTruncatingMiddle;
-    _lbFileName.textColor = [UIColor blackColor];
-    [self.contentView addSubview:_lbFileName];
-    
-    _lbFileSize = [UILabel new];
-    _lbFileSize.font = [UIFont systemFontOfSize:11.0];
-    _lbFileSize.textColor = RGB16(0x7e7e7e);
-    [self.contentView addSubview:_lbFileSize];
-    
-    _lbStatus = [UILabel new];
-    _lbStatus.font = [UIFont systemFontOfSize:11.0];
-    _lbStatus.textColor = RGB16(0x707070);
-    _lbStatus.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_lbStatus];
-    
-    _progressView = [UIProgressView new];
-    _progressView.progressTintColor = kBlueColor;
-    [self.contentView addSubview:_progressView];
+//
+//    _lbFileName = [UILabel new];
+//    _lbFileName.font = [UIFont systemFontOfSize:15.0];
+//    _lbFileName.numberOfLines = 2;
+//    _lbFileName.lineBreakMode = NSLineBreakByTruncatingMiddle;
+//    _lbFileName.textColor = [UIColor blackColor];
+//    [self.contentView addSubview:_lbFileName];
+//
+//    _lbFileSize = [UILabel new];
+//    _lbFileSize.font = [UIFont systemFontOfSize:11.0];
+//    _lbFileSize.textColor = RGB16(0x7e7e7e);
+//    [self.contentView addSubview:_lbFileSize];
+//
+//    _lbStatus = [UILabel new];
+//    _lbStatus.font = [UIFont systemFontOfSize:11.0];
+//    _lbStatus.textColor = RGB16(0x707070);
+//    _lbStatus.textAlignment = NSTextAlignmentRight;
+//    [self.contentView addSubview:_lbStatus];
+//
+//    _progressView = [UIProgressView new];
+//    _progressView.progressTintColor = kBlueColor;
+//    [self.contentView addSubview:_progressView];
     
     [self layoutUI];
 }
@@ -94,16 +94,18 @@
     [self.lbName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.imgvAvatar.mas_right).offset(10);
     }];
+    [self.lbName setHidden:YES];
     
     [self.imgvAvatar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.btnCheckBox.mas_right).offset(5);
     }];
-    
+
+    // 后面所有的对话都不显示自己的名字。
     [_imgvBubble mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.imgvAvatar.mas_right).offset(5);
-        make.top.equalTo(weakSelf.lbName.mas_bottom).offset(5);
-        make.width.mas_equalTo(SCREEN_WIDTH - 133);
-        make.height.mas_equalTo(85);
+        make.top.equalTo(weakSelf.lbName.mas_top).offset(0); // 不需要lbName了，
+        make.width.mas_equalTo(SCREEN_WIDTH - 203);
+        make.height.mas_equalTo(70);
     }];
     
     [_btnTapScope mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,40 +114,42 @@
     }];
     
     [_imgvIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(68);
+        make.height.mas_equalTo(68);
+        make.width.mas_equalTo(148);
+
         make.centerY.equalTo(weakSelf.imgvBubble.mas_centerY);
         make.left.equalTo(weakSelf.imgvBubble).offset(15);
     }];
     
     
-    [_lbFileName setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisVertical];
-    [_lbFileName setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisVertical];
-    [_lbFileName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.imgvIcon.mas_right).offset(5);
-        make.top.equalTo(weakSelf.imgvIcon.mas_top);
-        make.right.equalTo(weakSelf.imgvBubble.mas_right).offset(-5);
-        make.bottom.mas_greaterThanOrEqualTo(weakSelf.lbFileSize.mas_top).priorityLow();
-    }];
-    
-    
-    [_lbFileSize setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisHorizontal];
-    [_lbFileSize setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisHorizontal];
-    [_lbFileSize mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.imgvIcon.mas_right).offset(5);
-        make.bottom.equalTo(weakSelf.imgvIcon.mas_bottom);
-        make.right.mas_lessThanOrEqualTo(weakSelf.lbStatus.mas_left);
-    }];
-    
-    [_lbStatus mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.imgvBubble.mas_right).offset(-5);
-        make.bottom.equalTo(weakSelf.imgvIcon.mas_bottom);
-    }];
-    
-    [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakSelf.imgvBubble.mas_bottom).offset(-3);
-        make.left.equalTo(weakSelf.imgvBubble).offset(15);
-        make.right.equalTo(weakSelf.imgvBubble).offset(-5);
-    }];
+//    [_lbFileName setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisVertical];
+//    [_lbFileName setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisVertical];
+//    [_lbFileName mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(weakSelf.imgvIcon.mas_right).offset(5);
+//        make.top.equalTo(weakSelf.imgvIcon.mas_top);
+//        make.right.equalTo(weakSelf.imgvBubble.mas_right).offset(-5);
+//        make.bottom.mas_greaterThanOrEqualTo(weakSelf.lbFileSize.mas_top).priorityLow();
+//    }];
+//
+//
+//    [_lbFileSize setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisHorizontal];
+//    [_lbFileSize setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisHorizontal];
+//    [_lbFileSize mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(weakSelf.imgvIcon.mas_right).offset(5);
+//        make.bottom.equalTo(weakSelf.imgvIcon.mas_bottom);
+//        make.right.mas_lessThanOrEqualTo(weakSelf.lbStatus.mas_left);
+//    }];
+//
+//    [_lbStatus mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(weakSelf.imgvBubble.mas_right).offset(-5);
+//        make.bottom.equalTo(weakSelf.imgvIcon.mas_bottom);
+//    }];
+//
+//    [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(weakSelf.imgvBubble.mas_bottom).offset(-3);
+//        make.left.equalTo(weakSelf.imgvBubble).offset(15);
+//        make.right.equalTo(weakSelf.imgvBubble).offset(-5);
+//    }];
     
     self.hyb_lastViewInCell = _imgvBubble;
     self.hyb_bottomOffsetToCell = 10;
@@ -155,7 +159,13 @@
     [super setupModel:model];
     
     self.lbName.text    = self.model.speakerName;
+    [self.lbName setHidden:YES];
     self.lbTime.text    = self.model.createTime;
+
+    // TODO.. 在这里可以判断是否是同一个sesion的对话，如果同一个session 则不需要显示时间。
+    [self.viewTimeBG setHidden:YES];
+    [self.viewTimeBG setHeight:0.0];
+
     [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
     
     NSString *msgContent = self.model.msgContent;
@@ -234,10 +244,10 @@
 
 #pragma mark - Action
 - (void)onBtnTapScope:(UIButton *)sender{
-    if (self.model.fileModel.status != FileStatus_HasDownLoaded) {
-        [self _downLoadFile];
-        return;
-    }
+//    if (self.model.fileModel.status != FileStatus_HasDownLoaded) {
+//        [self _downLoadFile];
+//        return;
+//    }
     
     if (_delegate && [_delegate respondsToSelector:@selector(onChatFile:inLeftCell:)]) {
         [_delegate onChatFile:self.model.fileModel inLeftCell:self];
