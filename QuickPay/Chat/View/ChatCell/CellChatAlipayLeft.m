@@ -50,12 +50,12 @@
     [_btnTapScope addTarget:self action:@selector(onBtnTapScope:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_btnTapScope];
     
-    WeakSelf
-    _btnTapScope.retweetFileBlock = ^(){
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(retweetFile:inLeftCell:)]) {
-            [weakSelf.delegate retweetFile:weakSelf.model.fileModel inLeftCell:weakSelf];
-        }
-    };
+//    WeakSelf
+//    _btnTapScope.retweetFileBlock = ^(){
+//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(retweetFile:inLeftCell:)]) {
+//            [weakSelf.delegate retweetFile:weakSelf.model.fileModel inLeftCell:weakSelf];
+//        }
+//    };
     
     
     
@@ -248,9 +248,9 @@
 //        [self _downLoadFile];
 //        return;
 //    }
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(onChatFile:inLeftCell:)]) {
-        [_delegate onChatFile:self.model.fileModel inLeftCell:self];
+   // onChatAlipay:(YHChatModel*)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell
+    if (_delegate && [_delegate respondsToSelector:@selector(onChatAlipay:inLeftCell:)]) {
+        [_delegate onChatAlipay:self.model inLeftCell:self];
     }
     
 }

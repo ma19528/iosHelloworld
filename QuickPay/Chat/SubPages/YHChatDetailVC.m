@@ -293,6 +293,13 @@
     }
 }
 
+#pragma mark - @protocol CellChatAlipayLeftDelegate
+
+- (void)onChatAlipay:(YHChatModel*)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
+    DDLog(@"alipay jump:%@", chatAlipay);
+}
+
+
 #pragma mark - @protocol CellChatFileLeftDelegate
 
 //点击文件

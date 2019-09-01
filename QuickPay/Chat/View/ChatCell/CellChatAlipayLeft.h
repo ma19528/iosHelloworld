@@ -11,10 +11,7 @@
 @class CellChatAlipayLeft;
 @protocol CellChatAlipayLeftDelegate <NSObject>
 
-- (void)onChatFile:(YHFileModel *)chatFile inLeftCell:(CellChatAlipayLeft *)leftCell;
-
-@optional
-- (void)retweetFile:(YHFileModel *)chatFile inLeftCell:(CellChatAlipayLeft *)leftCell;//转发文件
+- (void)onChatAlipay:(YHChatModel*)chatFile inLeftCell:(CellChatAlipayLeft *)leftCell;
 
 @end
 
