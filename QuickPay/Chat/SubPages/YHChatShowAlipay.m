@@ -6,7 +6,7 @@
 //  Copyright © 2017年 samuelandkevin. All rights reserved.
 //
 
-#import "YHChatDetailVC.h"
+#import "YHChatShowAlipay.h"
 #import "YHRefreshTableView.h"
 #import "YHChatHeader.h"
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
@@ -32,9 +32,8 @@
 #import "SqliteManager.h"
 #import "QuickPayNetConstants.h"
 #import "CellChatAlipayLeft.h"
-#import "YHChatShowAlipay.h"
 
-@interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
+@interface YHChatShowAlipay () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
         CellChatFileLeftDelegate, CellChatFileRightDelegate,CellChatAlipayLeftDelegate> {
 
 }
@@ -50,7 +49,7 @@
 
 @end
 
-@implementation YHChatDetailVC
+@implementation YHChatShowAlipay
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,69 +66,33 @@
         [btn setTitle:@"更多" forState:UIControlStateNormal];
     }];
 
+    self.navigationController.navigationBar.clipsToBounds == 0.0;
+    [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 
-    self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;
 
+    self.title = @"收款";
     [self initUI];
 
 
-    //模拟数据源
-    [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
-    //---TODO...从数据库拿数据。
-    // TODO。。。 sessionID 用 代理的id。。
-    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:@"67553" userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
-        if (success) {
-            //----
-            CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
-            for (YHChatModel *model in obj) {
-                [self.dataArray addObject:model];
-                UIColor *textColor = [UIColor blackColor];
-                UIColor *matchTextColor = UIColorHex(527ead);
-                UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
-                if (model.direction == 0) {
-                    textColor = [UIColor whiteColor];
-                    matchTextColor = [UIColor greenColor];
-                    matchTextHighlightBGColor = [UIColor grayColor];
-                }
-                YHChatTextLayout *layout = [[YHChatTextLayout alloc] init];
-                [layout layoutWithText:model.msgContent fontSize:(14 + addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
-                model.layout = layout;
-                [self.layouts addObject:layout];
-            }
 
-            if (self.dataArray.count) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView scrollToBottomAnimated:NO];
-                });
-
-            }
-        } else {
-            DDLog(@"查询数据库数据库失败，没获取到数据。:%@", obj);
-        }
-    }];
-
-
-    //设置WebScoket
-    //[[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
-    [[YHChatManager sharedInstance] connectQuickpay];
-
-
-    // 有收到网络的数据，及时去数据库拿数据进行更新。
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
-
-    // 测试要发送的消息的数据结构json
-    NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
-    NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
-    NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
-    NSString *alipy = [[QuickPayNetConstants sharedInstance] assembleSendAlipay:@"1234567890"];
-    NSString *wechat = [[QuickPayNetConstants sharedInstance] assembleSendWeChat:@"1234567890"];
-    NSString *bank = [[QuickPayNetConstants sharedInstance] assembleSendBank:@"1234567890"];
-    NSString *credit = [[QuickPayNetConstants sharedInstance] assembleSendCredit:@"1234567890"];
-    NSString *hub = [[QuickPayNetConstants sharedInstance] assembleSendHuaBie:@"1234567890"];
-    NSString *sendok = [[QuickPayNetConstants sharedInstance] assembleSendOK:@"1234567890"];
-    NSString *normakltext = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowod" agentID:@"1234567890"];
-    NSString *normakltext2 = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowoddd4444" agentID:@"1234567890"];
+//
+//    // 有收到网络的数据，及时去数据库拿数据进行更新。
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
+//
+//    // 测试要发送的消息的数据结构json
+//    NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
+//    NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
+//    NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
+//    NSString *alipy = [[QuickPayNetConstants sharedInstance] assembleSendAlipay:@"1234567890"];
+//    NSString *wechat = [[QuickPayNetConstants sharedInstance] assembleSendWeChat:@"1234567890"];
+//    NSString *bank = [[QuickPayNetConstants sharedInstance] assembleSendBank:@"1234567890"];
+//    NSString *credit = [[QuickPayNetConstants sharedInstance] assembleSendCredit:@"1234567890"];
+//    NSString *hub = [[QuickPayNetConstants sharedInstance] assembleSendHuaBie:@"1234567890"];
+//    NSString *sendok = [[QuickPayNetConstants sharedInstance] assembleSendOK:@"1234567890"];
+//    NSString *normakltext = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowod" agentID:@"1234567890"];
+//    NSString *normakltext2 = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowoddd4444" agentID:@"1234567890"];
 
 }
 
@@ -160,25 +123,24 @@
 
 - (void)initUI {
 
-
     self.navigationController.navigationBar.translucent = NO;
-    self.view.backgroundColor = RGBCOLOR(239, 236, 236);
+    self.view.backgroundColor = kBlueColor; //RGBCOLOR(239, 236, 236);
 
     //tableview
-    self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-    self.tableView.backgroundColor = RGBCOLOR(239, 236, 236);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+//    [self.view addSubview:self.tableView];
+//    self.tableView.backgroundColor = RGBCOLOR(239, 236, 236);
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//
+//    //注册Cell
+//    _chatHelper = [[YHChatHelper alloc] init];
+//    [_chatHelper registerCellClassWithTableView:self.tableView];
 
-    //注册Cell
-    _chatHelper = [[YHChatHelper alloc] init];
-    [_chatHelper registerCellClassWithTableView:self.tableView];
-
-    //表情键盘
-    YHExpressionKeyboard *keyboard = [[YHExpressionKeyboard alloc] initWithViewController:self aboveView:self.tableView];
-    _keyboard = keyboard;
+//    //表情键盘
+//    YHExpressionKeyboard *keyboard = [[YHExpressionKeyboard alloc] initWithViewController:self aboveView:self.tableView];
+//    _keyboard = keyboard;
 
 }
 
@@ -298,10 +260,6 @@
 
 - (void)onChatAlipay:(YHChatModel*)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
-    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatAlipay;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
 
 }
 
