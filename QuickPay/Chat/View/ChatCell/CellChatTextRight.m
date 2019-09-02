@@ -51,7 +51,7 @@
     //-5-AvatarWidth-10-15-5-10-AvatarWidth
     _lbContent.preferredMaxLayoutWidth = SCREEN_WIDTH - 133;
     CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
-    _lbContent.textColor = [UIColor whiteColor];
+    _lbContent.textColor = [UIColor blackColor];
     _lbContent.numberOfLines = 0;
     _lbContent.font = [UIFont systemFontOfSize:(20+addFontSize)];
     _lbContent.ignoreCommonProperties = YES;

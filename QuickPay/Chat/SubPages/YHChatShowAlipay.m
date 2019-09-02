@@ -68,8 +68,10 @@
 
     self.navigationController.navigationBar.clipsToBounds == 0.0;
     [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    //[[UINavigationBar appearance] setShadowImage:[self.navigationItem lineImageWithColor:[UIColor colorWithHexString:@"#fb9966"]]];
 
+    // [self.navigationController.navigationBar setShadowImage:[self.navigationController.navigationBar :[UIColor colorWithHexString:@"#fb9966"]]];
+    // [self.navigationController.navigationBar setShadowImage:[self.tabBar lineImageWithColor:[UIColor colorWithHexString:@"#fb9966"]]];
 
     self.title = @"收款";
     [self initUI];
@@ -124,7 +126,7 @@
 - (void)initUI {
 
     self.navigationController.navigationBar.translucent = NO;
-    self.view.backgroundColor = kBlueColor; //RGBCOLOR(239, 236, 236);
+    self.view.backgroundColor = RGB16(0x6ba5f7); //RGBCOLOR(239, 236, 236);
 
     //tableview
 //    self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];

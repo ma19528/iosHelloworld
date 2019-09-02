@@ -20,6 +20,8 @@
 @interface CellChatAlipayLeft()
 @property (nonatomic,strong) UIImageView  *imgvBubble;
 @property (nonatomic,strong) YHChatButton *btnTapScope;
+@property (nonatomic,strong) UIImageView  *imgvPayBg;
+
 @property (nonatomic,strong) UIImageView *imgvIcon;
 @property (nonatomic,strong) UILabel *lbFileName;
 @property (nonatomic,strong) UILabel *lbFileSize;
@@ -39,11 +41,17 @@
 - (void)setupUI{
     // 泡泡对话框
     _imgvBubble = [UIImageView new];
-    UIImage *imgBubble = [UIImage imageNamed:@"chat_bubbleRight"];//chat_bubbleLeft
+    UIImage *imgBubble = [UIImage imageNamed:@"chat_bubbleLeft"];//chat_bubbleLeft
     imgBubble = [imgBubble resizableImageWithCapInsets:UIEdgeInsetsMake(30, 30, 30, 15) resizingMode:UIImageResizingModeStretch];
     _imgvBubble.image = imgBubble;
     [self.contentView addSubview:_imgvBubble];
-    
+
+    // 支付显示图片背景
+    _imgvPayBg = [UIImageView new];
+    UIImage *imgPayBg = [UIImage imageNamed:@"chat_pay_bg"];//chat_bubbleLeft
+    //imgPayBg = [imgBubble resizableImageWithCapInsets:UIEdgeInsetsMake(30, 30, 30, 15) resizingMode:UIImageResizingModeStretch];
+    _imgvPayBg.image = imgPayBg;
+    [self.contentView addSubview:_imgvPayBg];
     
     _btnTapScope = [YHChatButton new];
     _btnTapScope.isReceiver = NO;
@@ -89,7 +97,16 @@
         make.center.equalTo(weakSelf.imgvBubble);
         make.size.equalTo(weakSelf.imgvBubble);
     }];
-    
+
+    [_imgvPayBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(68);
+        make.width.mas_equalTo(173); // 这个尺寸是根据图片的分辨率来的。
+
+        make.centerY.equalTo(weakSelf.imgvBubble.mas_centerY);
+        make.centerX.equalTo(weakSelf.imgvBubble.mas_centerX);
+        make.left.equalTo(weakSelf.imgvBubble); //.offset(1)
+    }];
+
     [_imgvIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(68);
         make.width.mas_equalTo(173); // 这个尺寸是根据图片的分辨率来的。

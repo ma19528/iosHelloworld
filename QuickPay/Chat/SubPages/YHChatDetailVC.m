@@ -87,7 +87,7 @@
                 UIColor *matchTextColor = UIColorHex(527ead);
                 UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
                 if (model.direction == 0) {
-                    textColor = [UIColor whiteColor];
+                    textColor = [UIColor blackColor];  //whiteColor
                     matchTextColor = [UIColor greenColor];
                     matchTextHighlightBGColor = [UIColor grayColor];
                 }
