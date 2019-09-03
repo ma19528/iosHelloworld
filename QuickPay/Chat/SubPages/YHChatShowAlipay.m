@@ -6,10 +6,10 @@
 //  Copyright © 2017年 samuelandkevin. All rights reserved.
 //
 
+#import <View+MASAdditions.h>
 #import "YHChatShowAlipay.h"
 #import "YHRefreshTableView.h"
 #import "YHChatHeader.h"
-#import "UITableViewCell+HYBMasonryAutoCellHeight.h"
 #import "YHChatModel.h"
 #import "YHExpressionKeyboard.h"
 #import "QuickPayConfigModel.h"
@@ -32,20 +32,22 @@
 #import "SqliteManager.h"
 #import "QuickPayNetConstants.h"
 #import "CellChatAlipayLeft.h"
+#import "MASConstraintMaker.h"
 
-@interface YHChatShowAlipay () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
-        CellChatFileLeftDelegate, CellChatFileRightDelegate,CellChatAlipayLeftDelegate> {
+
+
+@interface YHChatShowAlipay () {
 
 }
-@property(nonatomic, strong) YHRefreshTableView *tableView;
+
 @property(nonatomic, strong) NSMutableArray *dataArray;
 @property(nonatomic, strong) NSMutableArray *layouts;
-@property(nonatomic, strong) YHExpressionKeyboard *keyboard;
-@property(nonatomic, strong) YHVoiceHUD *imgvVoiceTips;
 
-@property(nonatomic, strong) YHChatHelper *chatHelper;
 
-@property(nonatomic, assign) BOOL showCheckBox;
+@property (nonatomic,strong) UIImageView *imgPayQrcodeBg;
+@property (nonatomic,strong) UIImageView *imgPayIcon;
+@property (nonatomic,strong) UIImageView *imgPaySubline;
+@property (nonatomic,strong) UILabel *lbTitle;
 
 @end
 
@@ -67,35 +69,15 @@
     }];
 
     self.navigationController.navigationBar.clipsToBounds == 0.0;
-    [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     //[[UINavigationBar appearance] setShadowImage:[self.navigationItem lineImageWithColor:[UIColor colorWithHexString:@"#fb9966"]]];
 
     // [self.navigationController.navigationBar setShadowImage:[self.navigationController.navigationBar :[UIColor colorWithHexString:@"#fb9966"]]];
     // [self.navigationController.navigationBar setShadowImage:[self.tabBar lineImageWithColor:[UIColor colorWithHexString:@"#fb9966"]]];
 
     self.title = @"收款";
-    [self initUI];
-
-
-
-//
-//    // 有收到网络的数据，及时去数据库拿数据进行更新。
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
-//
-//    // 测试要发送的消息的数据结构json
-//    NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
-//    NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
-//    NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
-//    NSString *alipy = [[QuickPayNetConstants sharedInstance] assembleSendAlipay:@"1234567890"];
-//    NSString *wechat = [[QuickPayNetConstants sharedInstance] assembleSendWeChat:@"1234567890"];
-//    NSString *bank = [[QuickPayNetConstants sharedInstance] assembleSendBank:@"1234567890"];
-//    NSString *credit = [[QuickPayNetConstants sharedInstance] assembleSendCredit:@"1234567890"];
-//    NSString *hub = [[QuickPayNetConstants sharedInstance] assembleSendHuaBie:@"1234567890"];
-//    NSString *sendok = [[QuickPayNetConstants sharedInstance] assembleSendOK:@"1234567890"];
-//    NSString *normakltext = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowod" agentID:@"1234567890"];
-//    NSString *normakltext2 = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowoddd4444" agentID:@"1234567890"];
-
+    [self setupUI];
+    [self layoutUI];
 }
 
 
@@ -113,541 +95,81 @@
     return _layouts;
 }
 
-- (YHVoiceHUD *)imgvVoiceTips {
-    if (!_imgvVoiceTips) {
-        _imgvVoiceTips = [[YHVoiceHUD alloc] initWithFrame:CGRectMake(0, 0, 155, 155)];
-        _imgvVoiceTips.center = CGPointMake(self.view.center.x, self.view.center.y - 64);
-        [self.view addSubview:_imgvVoiceTips];
-    }
-    return _imgvVoiceTips;
-}
 
 
-- (void)initUI {
+- (void)setupUI {
 
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.backgroundColor = RGB16(0x6ba5f7);
     self.view.backgroundColor = RGB16(0x6ba5f7); //RGBCOLOR(239, 236, 236);
 
-    //tableview
-//    self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-//    [self.view addSubview:self.tableView];
-//    self.tableView.backgroundColor = RGBCOLOR(239, 236, 236);
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//
-//    //注册Cell
-//    _chatHelper = [[YHChatHelper alloc] init];
-//    [_chatHelper registerCellClassWithTableView:self.tableView];
+    // 二维码背景
+    _imgPayQrcodeBg = [UIImageView new];
+    UIImage *imgBg = [UIImage imageNamed:@"pay_show_bg"];
+    imgBg = [imgBg resizableImageWithCapInsets:UIEdgeInsetsMake(30, 15, 30, 30) resizingMode:UIImageResizingModeStretch];
+    _imgPayQrcodeBg.image = imgBg;
+    [self.view addSubview:_imgPayQrcodeBg];
 
-//    //表情键盘
-//    YHExpressionKeyboard *keyboard = [[YHExpressionKeyboard alloc] initWithViewController:self aboveView:self.tableView];
-//    _keyboard = keyboard;
 
+    _imgPayIcon = [UIImageView new];
+    UIImage *imgIcon = [UIImage imageNamed:@"icon_alipay"];
+    _imgPayIcon.image = imgIcon;
+    [self.imgPayQrcodeBg addSubview:_imgPayIcon];
+
+
+    _imgPaySubline = [UIImageView new];
+    _imgPaySubline.image = [UIImage imageNamed:@"pay_subline"];
+    _imgPaySubline.alpha = 30;
+    [self.imgPayQrcodeBg addSubview:_imgPaySubline];
+
+
+    // 提示背景
+    _lbTitle = [UILabel new];
+    _lbTitle.font = [UIFont systemFontOfSize:16.0];
+    _lbTitle.numberOfLines = 1;
+    _lbTitle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTitle.textColor = [UIColor blackColor];
+    _lbTitle.text = @"支付宝账号转帐";
+    [self.imgPayQrcodeBg addSubview:_lbTitle];
 }
 
-
-#pragma mark - @protocol CellChatTextLeftDelegate
-
-- (void)tapLeftAvatar:(YHUserInfo *)userInfo {
-    DDLog(@"点击左边头像");
-}
-
-- (void)retweetMsg:(NSString *)msg inLeftCell:(CellChatTextLeft *)leftCell {
-    DDLog(@"转发左边消息:%@", msg);
-    DDLog(@"所在的行是:%ld", leftCell.indexPath.row);
-}
-
-- (void)onLinkInChatTextLeftCell:(CellChatTextLeft *)cell linkType:(int)linkType linkText:(NSString *)linkText {
-    if (linkType == 1) {
-        //点击URL
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL URLWithString:linkText]];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-#pragma mark - @protocol CellChatTextRightDelegate
-
-- (void)tapRightAvatar:(YHUserInfo *)userInfo {
-    DDLog(@"点击右边头像");
-}
-
-- (void)retweetMsg:(NSString *)msg inRightCell:(CellChatTextRight *)rightCell {
-    DDLog(@"转发右边消息:%@", msg);
-    DDLog(@"所在的行是:%ld", (long) rightCell.indexPath.row);
-}
-
-- (void)tapSendMsgFailImg {
-    DDLog(@"重发该消息?");
-    [HHUtils showAlertWithTitle:@"重发该消息?" message:nil okTitle:@"重发" cancelTitle:@"取消" inViewController:self dismiss:^(BOOL resultYes) {
-        if (resultYes) {
-            DDLog(@"点击重发");
-        }
-    }];
-}
-
-- (void)withDrawMsg:(NSString *)msg inRightCell:(CellChatTextRight *)rightCell {
-    DDLog(@"撤回消息:\n%@", msg);
-    if (rightCell.indexPath.row < self.dataArray.count) {
-        [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
-        [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
-- (void)onLinkInChatTextRightCell:(CellChatTextRight *)cell linkType:(int)linkType linkText:(NSString *)linkText {
-    if (linkType == 1) {
-        //点击URL
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL URLWithString:linkText]];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-#pragma mark - @protocol CellChatImageLeftDelegate
-
-- (void)retweetImage:(UIImage *)image inLeftCell:(CellChatImageLeft *)leftCell {
-    DDLog(@"转发图片：%@", image);
-}
-
-#pragma mark - @protocol CellChatImageRightDelegate
-
-- (void)retweetImage:(UIImage *)image inRightCell:(CellChatImageRight *)rightCell {
-    DDLog(@"转发图片：%@", image);
-}
-
-- (void)withDrawImage:(UIImage *)image inRightCell:(CellChatImageRight *)rightCell {
-    DDLog(@"撤回图片：%@", image);
-    if (rightCell.indexPath.row < self.dataArray.count) {
-        [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
-        [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
-    }
-
-}
-
-
-#pragma mark - @protocol CellChatVoiceLeftDelegate
-
-- (void)playInLeftCellWithVoicePath:(NSString *)voicePath {
-    DDLog(@"播放:%@", voicePath);
-
-}
-
-- (void)retweetVoice:(NSString *)voicePath inLeftCell:(CellChatVoiceLeft *)leftCell {
-    DDLog(@"转发语音:%@", voicePath);
-}
-
-#pragma mark - @protocol CellChatVoiceRightDelegate
-
-- (void)playInRightCellWithVoicePath:(NSString *)voicePath {
-    DDLog(@"播放:%@", voicePath);
-
-}
-
-//转发语音
-- (void)retweetVoice:(NSString *)voicePath inRightCell:(CellChatVoiceRight *)rightCell {
-    DDLog(@"转发语音:%@", voicePath);
-}
-
-//撤回语音
-- (void)withDrawVoice:(NSString *)voicePath inRightCell:(CellChatVoiceRight *)rightCell {
-    DDLog(@"撤回语音:%@", voicePath);
-    if (rightCell.indexPath.row < self.dataArray.count) {
-        [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
-        [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
-#pragma mark - @protocol CellChatAlipayLeftDelegate
-
-- (void)onChatAlipay:(YHChatModel*)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
-    DDLog(@"alipay jump:%@", chatAlipay);
-
-}
-
-
-#pragma mark - @protocol CellChatFileLeftDelegate
-
-//点击文件
-- (void)onChatFile:(YHFileModel *)chatFile inLeftCell:(CellChatFileLeft *)leftCell {
-    if (chatFile.filePathInLocal) {
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL fileURLWithPath:chatFile.filePathInLocal]];
-        vc.title = chatFile.fileName;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-
-}
-
-//转发文件
-- (void)retweetFile:(YHFileModel *)chatFile inLeftCell:(CellChatFileLeft *)leftCell {
-
-}
-
-#pragma mark - @protocol CellChatFileRightDelegate
-
-//点击文件
-- (void)onChatFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell {
-    if (chatFile.filePathInLocal) {
-        YHWebViewController *vc = [[YHWebViewController alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) url:[NSURL fileURLWithPath:chatFile.filePathInLocal]];
-        vc.title = chatFile.fileName;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-
-}
-
-//转发文件
-- (void)retweetFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell {
-
-}
-
-//撤回文件
-- (void)withDrawFile:(YHFileModel *)chatFile inRightCell:(CellChatFileRight *)rightCell {
-    if (rightCell.indexPath.row < self.dataArray.count) {
-        [self.dataArray removeObjectAtIndex:rightCell.indexPath.row];
-        [self.tableView deleteRowAtIndexPath:rightCell.indexPath withRowAnimation:UITableViewRowAnimationFade];
-    }
-
-}
-
-#pragma mark - @protocol CellChatBaseDelegate
-
-- (void)onCheckBoxAtIndexPath:(NSIndexPath *)indexPath model:(YHChatModel *)model {
-    DDLog(@"选择第%ld行的聊天记录", (long) indexPath.row);
-}
-
-
-#pragma mark - @protocol UIScrollViewDelegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [_keyboard endEditing];
-    [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
-}
-
-
-#pragma mark - @protocol UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (indexPath.row < self.dataArray.count) {
-        YHChatModel *model = self.dataArray[indexPath.row];
-        if (model.status == 1) {
-            //消息撤回
-            CellChatTips *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTips class])];
-            cell.model = model;
-            return cell;
-        } else {
-            if (model.msgType == YHMessageType_Image) {
-                if (model.direction == 0) {
-
-                    CellChatImageRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatImageRight class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-
-                } else {
-
-                    CellChatImageLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatImageLeft class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-
-                    return cell;
-                }
-
-            } else if (model.msgType == YHMessageType_Voice) {
-
-                if (model.direction == 0) {
-                    CellChatVoiceRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatVoiceRight class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                } else {
-                    CellChatVoiceLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatVoiceLeft class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                }
-
-            } else if (model.msgType == YHMessageType_Doc) {
-                if (model.direction == 0) {
-                    CellChatFileRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatFileRight class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                } else {
-                    CellChatFileLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatFileLeft class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                }
-
-            } else if (model.msgType == YHMessageType_GIF) {
-
-                if (model.direction == 0) {
-                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
-                    cell.baseDelegate = self;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                } else {
-                    CellChatGIFLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFLeft class])];
-                    cell.baseDelegate = self;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                }
-
-            }
-            else if (model.msgType == YHMessageType_ALIPAY) {
-
-                if (model.direction == 0) {
-                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
-                    //cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                } else {
-                    CellChatAlipayLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatAlipayLeft class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                }
-            }
-            else {
-                if (model.direction == 0) {
-                    CellChatTextRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextRight class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                } else {
-                    CellChatTextLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextLeft class])];
-                    cell.delegate = self;
-                    cell.baseDelegate = self;
-                    cell.indexPath = indexPath;
-                    cell.showCheckBox = _showCheckBox;
-                    [cell setupModel:model];
-                    return cell;
-                }
-            }
-
-        }
-
-
-    }
-    return [[UITableViewCell alloc] init];
-}
-
-#pragma mark - @protocol UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < self.dataArray.count) {
-        YHChatModel *model = self.dataArray[indexPath.row];
-        return [_chatHelper heightWithModel:model tableView:tableView];
-    }
-    return 44.0f;
-
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DDLog(@"选择第%ld行的聊天记录", (long) indexPath.row);
-    if (indexPath.row < self.dataArray.count) {
-        YHChatModel *model = self.dataArray[indexPath.row];
-        DDLog(@"选择第%ld行的聊天记录", (long) indexPath.row);
-    }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-
-}
-
-
-// 松手时已经静止,只会调用scrollViewDidEndDragging
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (decelerate == NO) { // scrollView已经完全静止
-        [self _handleAnimatedImageView];
-    }
-}
-
-// 松手时还在运动, 先调用scrollViewDidEndDragging,在调用scrollViewDidEndDecelerating
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    // scrollView已经完全静止
-    [self _handleAnimatedImageView];
-}
-
-- (void)_handleAnimatedImageView {
-    for (UITableViewCell *visiableCell in self.tableView.visibleCells) {
-        if ([visiableCell isKindOfClass:[CellChatGIFLeft class]]) {
-            [(CellChatGIFLeft *) visiableCell startAnimating];
-        } else if ([visiableCell isKindOfClass:[CellChatGIFRight class]]) {
-            [(CellChatGIFRight *) visiableCell startAnimating];
-        }
-    }
-}
-
-#pragma mark - Private
-
-- (NSString *)currentRecordFileName {
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
-    NSString *fileName = [NSString stringWithFormat:@"%ld", (long) timeInterval];
-    return fileName;
-}
-
-//显示录音时间太短Tips
-- (void)showShortRecordTips {
+- (void)layoutUI{
     WeakSelf
-    self.imgvVoiceTips.hidden = NO;
-    self.imgvVoiceTips.image = [UIImage imageNamed:@"voiceShort"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        weakSelf.imgvVoiceTips.hidden = YES;
-    });
-}
+    // 给黑色view添加约束
+    [_imgPayQrcodeBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        // 添加左、上边距约束
+        make.left.and.top.mas_equalTo(10);
+        // 添加右边距约束
+        make.right.mas_equalTo(-10);
+    }];
+
+    [_imgPayIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(28);
+        make.top.mas_equalTo(5);
+        make.right.equalTo(weakSelf.lbTitle.mas_left).offset(-5);
+
+    }];
 
 
-#pragma mark - @protocol YHExpressionKeyboardDelegate
+    [_lbTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        // 添加左、上边距约束
+        make.centerX.mas_equalTo(_imgPayQrcodeBg).offset(3);
+        // 添加右边距约束
+        make.top.mas_equalTo(10);
+    }];
 
-//发送-click keyboad sending button.
-- (void)didTapSendBtn:(NSString *)text {
-
-    if (text.length) {
-        YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
-        // TODO.... agentID 要写如对应的那个代理。
-        chatModel.agentId     = @"67553";
-        chatModel.agentAvatar = _model.sessionUserHead[0];
-        chatModel.agentName   = _model.sessionUserName;
-        [self.dataArray addObject:chatModel];
-
-        [self.tableView reloadData];
-        [self.tableView scrollToBottomAnimated:NO];
-    }
-
-    // TODO...这个shi本地测试。。。。
-    NSString *jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketdidReceiveMessageNote object:jsonStr];
-
-}
-
-- (void)didStartRecordingVoice {
-    WeakSelf
-    self.imgvVoiceTips.hidden = NO;
-    [[YHAudioRecorder shareInstanced] startRecordingWithFileName:[self currentRecordFileName] completion:^(NSError *error) {
-        if (error) {
-            if (error.code != 122) {
-                [HHUtils showAlertWithTitle:@"" message:error.localizedDescription okTitle:@"确定" cancelTitle:nil inViewController:self dismiss:^(BOOL resultYes) {
-
-                }];
-            }
-        }
-    }                                                      power:^(float progress) {
-        weakSelf.imgvVoiceTips.progress = progress;
+    [_imgPaySubline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.topMargin.equalTo(_imgPayIcon).offset(32);
+        make.leftMargin.and.rightMargin.mas_equalTo(1);
     }];
 }
 
-- (void)didStopRecordingVoice {
-    self.imgvVoiceTips.hidden = YES;
-    WeakSelf
-    [[YHAudioRecorder shareInstanced] stopRecordingWithCompletion:^(NSString *recordPath) {
-        if ([recordPath isEqualToString:shortRecord]) {
-            [weakSelf showShortRecordTips];
-        } else {
-            DDLog(@"record finish , file path is :\n%@", recordPath);
-            NSString *voiceMsg = [NSString stringWithFormat:@"voice[local://%@]", recordPath];
-            [weakSelf.dataArray addObject:[YHChatHelper creatMessage:voiceMsg msgType:YHMessageType_Voice toID:@"1"]];
-            [weakSelf.tableView reloadData];
-            [weakSelf.tableView scrollToBottomAnimated:NO];
-        }
-    }];
-}
-
-- (void)didDragInside:(BOOL)inside {
-    if (inside) {
-
-        [[YHAudioRecorder shareInstanced] resumeUpdateMeters];
-        self.imgvVoiceTips.image = [UIImage imageNamed:@"voice_1"];
-        self.imgvVoiceTips.hidden = NO;
-    } else {
-
-        [[YHAudioRecorder shareInstanced] pauseUpdateMeters];
-        self.imgvVoiceTips.image = [UIImage imageNamed:@"cancelVoice"];
-        self.imgvVoiceTips.hidden = NO;
-    }
-}
-
-- (void)didCancelRecordingVoice {
-    self.imgvVoiceTips.hidden = YES;
-    [[YHAudioRecorder shareInstanced] removeCurrentRecordFile];
-}
-
-// TODO... select system's photo选择相片，照相机。 然后上传。 这个要添加相应的代码。
-- (void)didSelectExtraItem:(NSString *)itemName {
-    if ([itemName isEqualToString:@"文件"]) {
-        YHDocumentVC *vc = [[YHDocumentVC alloc] init];
-        YHNavigationController *nav = [[YHNavigationController alloc] initWithRootViewController:vc];
-        [vc didSelectFilesComplete:^(NSArray<NSString *> *files) {
-            DDLog(@"准备发送文件。");
-        }];
-        [self.navigationController presentViewController:nav animated:YES completion:NULL];
-    } else if ([itemName isEqualToString:@"拍摄"]) {
-        DDLog(@"拍摄");
-        YHShootVC *vc = [[YHShootVC alloc] init];
-        [self.navigationController presentViewController:vc animated:YES completion:NULL];
-    } else if ([itemName isEqualToString:@"照片"]) {
-        DDLog(@"照片");
-        YHShootVC *vc = [[YHShootVC alloc] init];
-        [self.navigationController presentViewController:vc animated:YES completion:NULL];
-    }
-}
-
-#pragma mark - 网络请求
-
-- (void)uploadRecordFile:(NSString *)filePath {
-    //上传录音文件
-    [[YHUploadManager sharedInstance] uploadChatRecordWithPath:filePath complete:^(BOOL success, id obj) {
-        if (success) {
-            DDLog(@"上传成功,%@", obj);
-        } else {
-            DDLog(@"上传失败,%@", obj);
-        }
-    }                                                 progress:^(int64_t bytesWritten, int64_t totalBytesWritten) {
-        DDLog(@"bytesWritten:%lld -- totalBytesWritten:%lld", bytesWritten, totalBytesWritten);
-    }];
-
-}
 
 #pragma mark - Action
 
 - (void)onMore:(UIButton *)sender {
     sender.selected = !sender.selected;
-    _showCheckBox = sender.selected ? YES : NO;
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 #pragma mark -  Action
@@ -677,140 +199,5 @@
 }
 */
 
-#pragma mark - 收到消息通知
 
-- (void)SRWebSocketDidOpen {
-    NSLog(@"开启成功");
-    //在成功后需要做的操作。。。
-
-}
-
-- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
-    //收到服务端发送过来的消息
-    NSString *jsonStr = nil;
-
-
-    // 测试的时候用本地的数据
-// TODO>>> 重要重要重要
-    jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
-    // jsonStr = note.object; // TODO。。用网络服务器时候要打开打开。
-    NSLog(@"%@", jsonStr);
-
-    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-
-    NSNumber *resultCode = [jsonDic objectForKey:kKey_code];
-    NSString *resultMsg = [jsonDic objectForKey:kKey_message];
-    NSDictionary *resultDict = [jsonDic objectForKey:kKey_result];
-    NSString *msgID = [jsonDic objectForKey:kKey_id];
-
-    if (resultCode != nil && resultMsg != nil) {
-        // 从最外层开始解析。
-        if ([resultCode longValue] == kValueSucessCode && [resultMsg isEqualToString:kValueSucessMsg]) {
-            // 正确的消息解析。
-            NSLog(@"==========key:%@", resultCode);
-            [self processMsgEntry:resultDict];
-        } else {
-            // 错误消息解析。
-            NSLog(@"========= json 有错误");
-        }
-    } else {
-        // 第二层开始解析。
-    }
-
-
-    [self.tableView reloadData];
-    //[self.tableView scrollToBottomAnimated:YES];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
-
-}
-
-- (void)processMsgEntry:(NSDictionary *)dict {
-    NSString *emit = [dict objectForKey:kKey_emit];
-    if (emit == nil) {
-        // 有错误错误。
-        NSLog(@"==========emit == nil, json 有错误");
-    } else {
-        id dataDict = [dict objectForKey:kKey_data];
-        if ([emit isEqualToString:kValueEmit_off_single]) {
-            [self processOffSinleMsg:dataDict];
-        } else if ([emit isEqualToString:kValueEmit_pay_method]) {
-            [self processPayMethodMsg:dataDict];
-        } else if ([emit isEqualToString:kValueEmit_receive]) {
-            [self processReceivedMsg:dataDict];
-        } else if ([emit isEqualToString:kValueEmit_chat]) {
-            [self processChatMsg:dataDict];
-        }
-    }
-}
-
-- (void)processOffSinleMsg:(NSArray *)dict {
-    NSLog(@"==========processOffSinleMsg 开始");
-    int count = [dict count];
-    for (int i = 0; i < count; i++) {
-        NSDictionary *dataDict = [[dict[i] objectForKey:kKey_data] objectForKey:kKey_data];
-        if (dataDict != nil) {
-            [self processChatMsg:dataDict];
-        }
-    }
-    //NSDictionary *dataDict = [dict objectForKey:kKey_data];
-
-    NSLog(@"==========processOffSinleMsg end");
-}
-
-- (void)processPayMethodMsg:(NSDictionary *)dict {
-    NSLog(@"==========processPayMethodMsg 开始");
-}
-
-- (void)processReceivedMsg:(NSDictionary *)dict {
-    NSLog(@"==========processReceivedMsg 开始");
-}
-
-- (void)processChatMsg:(NSDictionary *)dict {
-    NSLog(@"==========processChatMsg 开始");
-    NSString *fromId = [dict objectForKey:kKey_formId];
-    NSString *avatar = [dict objectForKey:kKey_avatar];
-    NSNumber *msgType = [dict objectForKey:kKey_msgType];
-    NSString *nickName = [dict objectForKey:kKey_nickname];
-    NSNumber *sendTime = [dict objectForKey:kKey_sendTime];
-    id msgID = [dict objectForKey:kKey_msgId];       // 这个服务器怎么发过来是 number，要统一转换为NSString
-    // 解析msgBody的时候，要根据 msgType来进行解析， 不同的类型装进去的数据结构不一样。
-    NSDictionary *msgBody = [dict objectForKey:kKey_body];
-    NSLog(@"==========processChatMsg end");
-    //BOOL test = [msgID isKindOfClass:[NSString class]];
-    BOOL test1 = [msgID isKindOfClass:[NSNumber class]];
-    NSString *strMsgID = nil;
-    if (test1) {
-        strMsgID = [msgID stringValue];
-    } else {
-        strMsgID = msgID;
-    }
-
-    if ([msgType longValue] == TEXT) {
-        NSLog(@"==========msgBody 为 text 类型");
-    } else if ([msgType longValue] >= ALIPAY && [msgType longValue] <= PAYOK) {
-        NSLog(@"==========msgBody 为 支付 类型");
-    } else if ([msgType longValue] == IMAGE) {
-        NSLog(@"==========msgBody 为 图片 类型");
-    }
-
-    // 构造要显示的消息。
-
-
-    YHChatModel *chatModel = [YHChatHelper creatRecvMessage:@"gogo"
-                                                    msgType:YHMessageType_ALIPAY
-                                                    agentID:fromId
-                                                agentAvater:avatar
-                                                  agentName:nickName
-                                                      msgID:strMsgID
-                                                    msgTime:sendTime];
-
-    [self.dataArray addObject:chatModel];
-
-
-    // 历史消息存在数据库里面。
-    // TOODO。。。
-
-}
 @end

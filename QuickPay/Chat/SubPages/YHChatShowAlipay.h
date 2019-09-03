@@ -17,9 +17,5 @@
 @property (nonatomic,strong)QuickPayConfigModel *quickPayConfigModel;
 
 
-- (void)processMsgEntry:(NSDictionary *)dict;
-- (void)processOffSinleMsg:(NSDictionary *)dict;
-- (void)processPayMethodMsg:(NSDictionary *)dict;
-- (void)processReceivedMsg:(NSDictionary *)dict;
-- (void)processChatMsg:(NSDictionary *)dict ;
+
 @end
