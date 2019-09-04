@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YHChatListModel.h"
+#import "YHChatModel.h"
 
 @class QuickPayConfigModel;
 
 @interface YHChatShowAlipay : UIViewController
 
-@property (nonatomic,strong)YHChatListModel     *model;
+@property (nonatomic,strong) YHChatModel     *model;
 @property (nonatomic,strong)QuickPayConfigModel *quickPayConfigModel;
 
 
