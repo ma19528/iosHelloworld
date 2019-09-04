@@ -71,6 +71,14 @@ typedef enum  {
     LOCATION, //位置消息
 } SendMsgType;
 
+
+typedef enum  {
+    Show_All = 0,           // 所有
+    Show_Qrcode,            // 二维码
+    Show_Account,           // 账号
+    Show_Both               // 所有
+} DisplayType;
+
 //---------------------json 解析
 //---1
 #define kKey_code  @"code"

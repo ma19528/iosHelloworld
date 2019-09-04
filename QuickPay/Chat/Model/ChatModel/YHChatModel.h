@@ -13,6 +13,9 @@
 #import "YHFileModel.h"
 #import "YHGIFModel.h"
 
+@class YHPayInfoModel;
+@class YHPayInfoModel;
+
 #pragma mark - 聊天记录Model
 @interface YHChatModel : NSObject
 
@@ -32,11 +35,13 @@
 @property (nonatomic,assign) int status;           //消息状态（撤回：1,未撤回：0）
 @property (nonatomic,copy) NSString *msgId;        //消息ID
 
+@property (nonatomic, strong) YHPayInfoModel  *payInfoModel;
 
 /**add by quick pay***/
 @property (nonatomic,copy) NSString *agentId;   //代理Id
 @property (nonatomic,copy) NSURL *agentAvatar;  //代理头像
 @property (nonatomic,copy) NSString *agentName; //代理名字
+
 
 //--- 原来的字段。下面不做改动
 @property (nonatomic,copy) NSString *chatId;       //聊天记录Id

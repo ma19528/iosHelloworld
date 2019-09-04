@@ -8,6 +8,7 @@
 
 #import "YHChatModel.h"
 #import "NSObject+YHDBRuntime.h"
+#import "YHPayInfoModel.h"
 //#import "NSObject+YHDBRuntime.h"
 
 

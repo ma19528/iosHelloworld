@@ -11,7 +11,7 @@
 
 @class QuickPayConfigModel;
 
-@interface YHChatShowAlipay : UIViewController
+@interface YHChatShowWePay : UIViewController
 
 @property (nonatomic,strong) YHPayInfoModel     *model;
 @property (nonatomic,strong)QuickPayConfigModel *quickPayConfigModel;

@@ -299,7 +299,7 @@
 - (void)onChatAlipay:(YHChatModel*)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatAlipay;
+    vc.model = chatAlipay.payInfoModel;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
