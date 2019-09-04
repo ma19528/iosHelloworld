@@ -83,8 +83,8 @@
 
 @property(nonatomic, strong) UIImageView *imgQrCode;      // 二维码图片
 @property(nonatomic, strong) UIImageView *imgQrCodeIcon;  // 二维码支付类型的icon标志
-//@property(nonatomic, strong) UILabel *lbQcodeSaveQrcode;  // 保存
 @property(nonatomic, strong) UILabel *lbQcodeSaveQrcode;  // 保存
+//@property(nonatomic, strong) UIImageView *lbQcodeSaveQrcode;  // 保存
 
 
 /******-------------温馨提示---------------------------- © */
@@ -99,6 +99,9 @@
 @property(nonatomic, strong) UILabel *lbTipsContents4;  // 温馨提示的标题
 
 @property(nonatomic, assign) int displayType;
+
+
+@property (assign, nonatomic) NSInteger limitDownOnce;
 
 @end
 
@@ -171,6 +174,7 @@
 
     // 二维码背景
     _imgQcodePayBgType = [UIImageView new];
+    _imgQcodePayBgType.userInteractionEnabled = YES;
     UIImage *imgBg = [UIImage imageNamed:@"pay_show_bg"];
     imgBg = [imgBg resizableImageWithCapInsets:UIEdgeInsetsMake(30, 15, 30, 30) resizingMode:UIImageResizingModeStretch];
     _imgQcodePayBgType.image = imgBg;
@@ -205,35 +209,34 @@
 
 
     _imgQrCode = [UIImageView new];
+    //_imgQrCode.userInteractionEnabled = YES;
     _imgQrCode.image = [UIImage imageNamed:@"chat_img_defaultPhoto"];
     [self.imgQcodePayBgType addSubview:_imgQrCode];
+
 
     _imgQrCodeIcon = [UIImageView new];
     _imgQrCodeIcon.image = [UIImage imageNamed:@"icon_alipay"];
     [self.imgQrCode addSubview:_imgQrCodeIcon];
 
 
-    // 1. 创建一个点击事件，点击时触发labelClick方法
-    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClick)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
-    // 2. 将点击事件添加到label上
-    [label addGestureRecognizer:labelTapGestureRecognizer];
-    label.userInteractionEnabled = YES; // 可以理解为设置label可被点击
 
-
-    _lbQcodeSaveQrcode = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
-    //_lbQcodeSaveQrcode = [UILabel new];
+    //_lbQcodeSaveQrcode = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
+    _lbQcodeSaveQrcode = [UILabel new];
     _lbQcodeSaveQrcode.font = [UIFont systemFontOfSize:16.0];
     _lbQcodeSaveQrcode.numberOfLines = 1;
     _lbQcodeSaveQrcode.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbQcodeSaveQrcode.textColor = [UIColor blueColor];
     _lbQcodeSaveQrcode.text = @"保存图片";
 
-    UITapGestureRecognizer *tapSaveQrcode = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveQrcode2Photos)];
+
+//    _lbQcodeSaveQrcode = [UIImageView new];
+//    _lbQcodeSaveQrcode.image = [UIImage imageNamed:@"icon_save_image"];
     _lbQcodeSaveQrcode.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSaveQrcode = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveQrcode2Photos:)];
     [_lbQcodeSaveQrcode addGestureRecognizer:tapSaveQrcode];
 
-    [self.imgQrCode addSubview:_lbQcodeSaveQrcode];
+    [self.imgQcodePayBgType addSubview:_lbQcodeSaveQrcode];
+
 
 
 }
@@ -285,7 +288,8 @@
     }];
 
     [_lbQcodeSaveQrcode mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(_imgQrCode);
+        //make.width.height.mas_equalTo(60);
+        make.centerX.mas_equalTo(_lbQcodePayTipsPayType);
         make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(180);
     }];
 
@@ -790,15 +794,52 @@
 
 }
 
+
+
 #pragma mark - Action
-//:(UITapGestureRecognizer *)gesture
-- (void)saveQrcode2Photos {
+//
+// (UIGestureRecognizer *)aRec
+- (void)saveQrcode2Photos:(UITapGestureRecognizer *)gesture {
     NSLog(@"..");
     NSString *urlst = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";
-    NSURL *url = [NSURL URLWithString:urlst];
-    if (_model != nil && _model.downUrl != nil) {
 
-    }
+    NSURL *imageURL = [NSURL URLWithString:@"http://upload-images.jianshu.io/upload_images/259-7424a9a21a2cb81b.jpg"];
+    [self uploadImageAction:urlst];
+//    [[[SDWebImageManager sharedManager] imageDownloader] downloadImageWithURL:imageURL options:SDWebImageLowPriority progress:^<#(nullable SDWebImageDownloaderProgressBlock)progressBlock#>{
+//
+//    } completed:<#(nullable SDWebImageDownloaderCompletedBlock)completedBlock#>{
+//
+//    };]
+//    [[SDWebImageManager sharedManager] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//        // 下载进度block
+//    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//        // 下载完成block
+//    }]
+//    [[SDWebImageManager sharedManager] imageDownloader]downloadImageWithURL:imageURL options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//        //此处是下载过程中的回调 expectedSize:总大小   receivedSize:当前已下载大小
+//        NSLog(@"expectedSize:%.2fM", expectedSize/1024/1024.0);
+//    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//        //下载完成的回调
+//        // [self.imgQrCode setImage:image];
+//
+//        //保存SDWebImage下载的图片存到指定路径
+//        if  (finished) {
+//            //此处一定要延时之行才可以
+//            // [self performSelector:@selector(saveImageWithURL:) withObject: imageURL afterDelay:1];
+//        }
+//    }];
+//
+
+
+
+
+
+
+
+//    NSURL *url = [NSURL URLWithString:urlst];
+//    if (_model != nil && _model.downUrl != nil) {
+//
+//    }
     // NSURL *url = [NSURL URLWithString:_model.downUrl];
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     UIImage *img;
@@ -810,12 +851,36 @@
 //    }
 //    else
 //    {
-    //从网络下载图片
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    img = [UIImage imageWithData:data];
+//    //从网络下载图片
+//    NSData *data = [NSData dataWithContentsOfURL:imageURL];
+//    img = [UIImage imageWithData:data];
+////    }
+//    [self.imgBgTypeTips setImage:img];
+//    // 保存图片到相册中
+//    UIImageWriteToSavedPhotosAlbum(img, self, @selector(isSaveImageOk:didFinishSavingWithError:contextInfo:), nil);
+}
+
+
+//保存SDWebImage下载的图片存到指定路径
+- (void)saveImageWithURL:(NSURL *)imageURL {
+    //if ([_imageModel.thumbUrl rangeOfString:_imageModel.originalImageUrl].location!=NSNotFound) {
+        //根据下载URL获取图片在SDWebImage中存储对应的key
+        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
+
+        //根据key获取到对应图片的存储路径
+        NSString *imagePath = [[SDWebImageManager sharedManager].imageCache defaultCachePathForKey:key];
+
+        //根据路径直接获取NSData数据
+        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+        NSLog(@"imageData.length:%.2fM", imageData.length/1024/1024.0);
+    UIImage *img;
+    img = [UIImage imageWithData:imageData];
 //    }
     // 保存图片到相册中
     UIImageWriteToSavedPhotosAlbum(img, self, @selector(isSaveImageOk:didFinishSavingWithError:contextInfo:), nil);
+        //将NSData数据存储到指定路径
+       // [imageData writeToFile:_imageModel.originalImagePath atomically:YES];
+    //}
 }
 
 - (void)isSaveImageOk:(UIImage *)image didFinishSavingWithError:(NSError *)error
@@ -832,6 +897,39 @@
     }
 
 }
+
+
+
+// 下载图片
+- (void)uploadImageAction:(NSString *)imgPath {
+//    if (_limitDownOnce) {
+//        return;
+//    } else {
+//        _limitDownOnce = 1;
+//    }
+    UIImageView *tempIV = [UIImageView new];
+    [tempIV sd_setImageWithURL:[NSURL URLWithString:imgPath] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+            // 保存图片
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }
+    }];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    _limitDownOnce = 0;
+    NSString *alertString;
+    if (error) {
+        alertString = @"图片下载失败";
+    } else {
+        alertString = @"图片下载成功";
+    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:alertString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 - (void)onMore:(UIButton *)sender {
     sender.selected = !sender.selected;
