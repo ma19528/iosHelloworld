@@ -7,6 +7,7 @@
 //
 
 #import <View+MASAdditions.h>
+#import <UIImageView+WebCache.h>
 #import "YHChatShowAlipay.h"
 #import "YHRefreshTableView.h"
 #import "YHChatHeader.h"
@@ -33,6 +34,7 @@
 #import "QuickPayNetConstants.h"
 #import "CellChatAlipayLeft.h"
 #import "MASConstraintMaker.h"
+#import "SDImageCache.h"
 
 
 @interface YHChatShowAlipay () {
@@ -78,6 +80,25 @@
 @property(nonatomic, strong) UILabel *lbQcodeTitlePayType;
 @property(nonatomic, strong) UILabel *lbQcodePayTipsPayType;
 
+@property(nonatomic, strong) UIImageView *imgQrCode;      // 二维码图片
+@property(nonatomic, strong) UIImageView *imgQrCodeIcon;  // 二维码支付类型的icon标志
+@property(nonatomic, strong) UILabel *lbQcodeSaveQrcode;  // 保存
+
+
+/******-------------温馨提示---------------------------- © */
+@property(nonatomic, strong) UIImageView *imgTipsBgType;   // 不变
+@property(nonatomic, strong) UIImageView *imgTipsIconType;
+@property(nonatomic, strong) UILabel     *lbTipsTitle;  // 温馨提示的标题
+@property(nonatomic, strong) UIImageView *imgTipsSubline;  // 不变
+
+@property(nonatomic, strong) UILabel     *lbTipsContents1;  // 温馨提示的标题
+@property(nonatomic, strong) UILabel     *lbTipsContents2;  // 温馨提示的标题
+@property(nonatomic, strong) UILabel     *lbTipsContents3;  // 温馨提示的标题
+@property(nonatomic, strong) UILabel     *lbTipsContents4;  // 温馨提示的标题
+
+
+
+
 @end
 
 @implementation YHChatShowAlipay
@@ -111,6 +132,11 @@
 
     [self setupTypeQrcodeUI];
     [self layoutTypeQrcodeUI];
+
+    [self setupTipsUI];
+    [self layoutTipsUI];
+
+    [self setContents];
 
 }
 
@@ -303,7 +329,8 @@
 
     [_imgPaySubline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.topMargin.equalTo(_imgIconPayType).offset(32);
-        make.leftMargin.and.rightMargin.mas_equalTo(1);
+        make.leftMargin.mas_equalTo(1);
+        make.rightMargin.mas_equalTo(-1);
     }];
 
     [_lbPayTipsPayType mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -420,6 +447,23 @@
     [self.imgQcodePayBgType addSubview:_lbQcodePayTipsPayType];
 
 
+    _imgQrCode = [UIImageView new];
+    _imgQrCode.image = [UIImage imageNamed:@"chat_img_defaultPhoto"];
+    [self.imgQcodePayBgType addSubview:_imgQrCode];
+
+    _imgQrCodeIcon = [UIImageView new];
+    _imgQrCodeIcon.image = [UIImage imageNamed:@"icon_alipay"];
+    [self.imgQrCode addSubview:_imgQrCodeIcon];
+
+    _lbQcodeSaveQrcode = [UILabel new];
+    _lbQcodeSaveQrcode.font = [UIFont systemFontOfSize:16.0];
+    _lbQcodeSaveQrcode.numberOfLines = 1;
+    _lbQcodeSaveQrcode.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbQcodeSaveQrcode.textColor = [UIColor blueColor];
+    _lbQcodeSaveQrcode.text = @"保存图片";
+    [self.imgQrCode addSubview:_lbQcodeSaveQrcode];
+
+
 }
 
 - (void)layoutTypeQrcodeUI {
@@ -440,7 +484,6 @@
         make.right.equalTo(weakSelf.lbTitlePayType.mas_left).offset(-5);
     }];
 
-
     [_lbQcodeTitlePayType mas_makeConstraints:^(MASConstraintMaker *make) {
         // 添加左、上边距约束
         make.centerX.mas_equalTo(_imgQcodePayBgType).offset(3);
@@ -450,12 +493,167 @@
 
     [_imgQcodePaySubline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.topMargin.equalTo(_imgQcodeIconPayType).offset(32);
-        make.leftMargin.and.rightMargin.mas_equalTo(1);
+        make.leftMargin.mas_equalTo(1);
+        make.rightMargin.mas_equalTo(-1);
     }];
 
     [_lbQcodePayTipsPayType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_imgQcodePayBgType);
         make.top.mas_equalTo(_imgQcodePaySubline).offset(20);
+    }];
+
+    [_imgQrCode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(_imgQcodePayBgType);
+        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(20);
+        make.width.height.mas_equalTo(148);
+    }];
+
+    [_imgQrCodeIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.and.centerY.mas_equalTo(_imgQrCode);
+        make.width.height.mas_equalTo(28);
+    }];
+
+    [_lbQcodeSaveQrcode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(_imgQrCode);
+        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(180);
+    }];
+
+}
+
+
+- (void)setupTipsUI {
+    self.view.backgroundColor = RGB16(0x6ba5f7); //RGBCOLOR(239, 236, 236);
+
+    // 二维码背景
+    _imgTipsBgType = [UIImageView new];
+    UIImage *imgBg = [UIImage imageNamed:@"pay_show_bg"];
+    imgBg = [imgBg resizableImageWithCapInsets:UIEdgeInsetsMake(30, 15, 30, 30) resizingMode:UIImageResizingModeStretch];
+    _imgTipsBgType.image = imgBg;
+    [self.view addSubview:_imgTipsBgType];
+
+    _imgTipsIconType = [UIImageView new];
+    _imgTipsIconType.image = [UIImage imageNamed:@"icon_tips"];
+    [self.imgTipsBgType addSubview:_imgTipsIconType];
+
+
+    _lbTipsTitle = [UILabel new];
+    _lbTipsTitle.font = [UIFont systemFontOfSize:16.0];
+    _lbTipsTitle.numberOfLines = 1;
+    _lbTipsTitle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTipsTitle.textColor = [UIColor blackColor];
+    _lbTipsTitle.text = @"温馨提示";
+    [self.imgTipsBgType addSubview:_lbTipsTitle];
+
+    _imgTipsSubline = [UIImageView new];
+    _imgTipsSubline.image = [UIImage imageNamed:@"pay_subline"];
+    _imgTipsSubline.alpha = 30;
+    [self.imgTipsBgType addSubview:_imgTipsSubline];
+
+
+    _lbTipsContents1 = [UILabel new];
+    _lbTipsContents1.font = [UIFont systemFontOfSize:16.0];
+    _lbTipsContents1.numberOfLines = 1;
+    _lbTipsContents1.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTipsContents1.textColor = [UIColor blackColor];
+    _lbTipsContents1.text = @"支持各种银行，支付宝，微信的银行卡转账";
+    [self.imgTipsBgType addSubview:_lbTipsContents1];
+
+    _lbTipsContents2 = [UILabel new];
+    _lbTipsContents2.font = [UIFont systemFontOfSize:16.0];
+    _lbTipsContents2.numberOfLines = 2;
+    _lbTipsContents2.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTipsContents2.textColor = [UIColor blackColor];
+    _lbTipsContents2.text = @"支付宝转到银行卡功能路径：打开支付宝>转账>转到银行卡";
+    [self.imgTipsBgType addSubview:_lbTipsContents2];
+
+    _lbTipsContents3 = [UILabel new];
+    _lbTipsContents3.font = [UIFont systemFontOfSize:16.0];
+    _lbTipsContents3.numberOfLines = 2;
+    _lbTipsContents3.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTipsContents3.textColor = [UIColor blackColor];
+    _lbTipsContents3.text = @"微信转到银行卡功能路径：打开微信>右上角+号>收付款>转到银行卡";
+    [self.imgTipsBgType addSubview:_lbTipsContents3];
+
+
+    _lbTipsContents4 = [UILabel new];
+    _lbTipsContents4.font = [UIFont systemFontOfSize:16.0];
+    _lbTipsContents4.numberOfLines = 1;
+    _lbTipsContents4.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTipsContents4.textColor = [UIColor blackColor];
+    _lbTipsContents4.text = @"温馨提示";
+    [self.imgTipsBgType addSubview:_lbTipsContents4];
+
+
+}
+
+- (void)layoutTipsUI {
+
+    [self.imgQcodePayBgType setHidden:YES];
+
+    WeakSelf
+    [_imgTipsBgType mas_makeConstraints:^(MASConstraintMaker *make) {
+        // 添加左、上边距约束
+        make.left.and.top.mas_equalTo(10);
+        // 添加右边距约束
+        make.right.mas_equalTo(-10);
+        make.height.mas_equalTo(188);
+    }];
+
+    [_imgTipsIconType mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(28);
+        make.top.mas_equalTo(5);
+        make.right.equalTo(weakSelf.lbTipsTitle.mas_left).offset(-5);
+    }];
+
+    [_lbTipsTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        // 添加左、上边距约束
+        make.centerX.mas_equalTo(_imgTipsBgType).offset(3);
+        // 添加右边距约束
+        make.top.mas_equalTo(10);
+    }];
+
+    [_imgTipsSubline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.topMargin.equalTo(_imgTipsIconType).offset(32);
+        make.leftMargin.mas_equalTo(1);
+        make.rightMargin.mas_equalTo(-1);
+
+    }];
+
+
+    [_lbTipsContents1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.topMargin.equalTo(_imgTipsSubline).offset(15);
+        make.leftMargin.mas_equalTo(10);
+        make.rightMargin.mas_equalTo(-10);
+    }];
+
+    [_lbTipsContents2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.topMargin.equalTo(_lbTipsContents1).offset(32);
+        make.leftMargin.mas_equalTo(10);
+        make.rightMargin.mas_equalTo(-10);
+    }];
+
+    [_lbTipsContents3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.topMargin.equalTo(_lbTipsContents2).offset(46);
+        make.leftMargin.mas_equalTo(10);
+        make.rightMargin.mas_equalTo(-10);
+    }];
+
+    [_lbTipsContents4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.topMargin.equalTo(_lbTipsContents3).offset(46);
+        make.leftMargin.mas_equalTo(10);
+        make.rightMargin.mas_equalTo(-10);
+    }];
+
+    [_lbTipsContents4 setHidden:YES];
+}
+
+
+
+- (void) setContents {
+        [_imgQrCode sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"chat_img_defaultPhoto"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+
+//            [self updateImageCellHeightWith:image maxSize:CGSizeMake(200, 200)];
+
     }];
 }
 
