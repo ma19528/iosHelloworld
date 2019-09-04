@@ -83,6 +83,7 @@
 
 @property(nonatomic, strong) UIImageView *imgQrCode;      // 二维码图片
 @property(nonatomic, strong) UIImageView *imgQrCodeIcon;  // 二维码支付类型的icon标志
+//@property(nonatomic, strong) UILabel *lbQcodeSaveQrcode;  // 保存
 @property(nonatomic, strong) UILabel *lbQcodeSaveQrcode;  // 保存
 
 
@@ -161,7 +162,7 @@
     if (_model = nil) {
         _displayType = _model.displayType;
     }
-     _displayType = Show_Both;
+    _displayType = Show_Both;
     // _displayType = Show_Qrcode;
     // _displayType = Show_Account;
 }
@@ -211,12 +212,27 @@
     _imgQrCodeIcon.image = [UIImage imageNamed:@"icon_alipay"];
     [self.imgQrCode addSubview:_imgQrCodeIcon];
 
-    _lbQcodeSaveQrcode = [UILabel new];
+
+    // 1. 创建一个点击事件，点击时触发labelClick方法
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClick)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
+    // 2. 将点击事件添加到label上
+    [label addGestureRecognizer:labelTapGestureRecognizer];
+    label.userInteractionEnabled = YES; // 可以理解为设置label可被点击
+
+
+    _lbQcodeSaveQrcode = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
+    //_lbQcodeSaveQrcode = [UILabel new];
     _lbQcodeSaveQrcode.font = [UIFont systemFontOfSize:16.0];
     _lbQcodeSaveQrcode.numberOfLines = 1;
     _lbQcodeSaveQrcode.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbQcodeSaveQrcode.textColor = [UIColor blueColor];
     _lbQcodeSaveQrcode.text = @"保存图片";
+
+    UITapGestureRecognizer *tapSaveQrcode = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveQrcode2Photos)];
+    _lbQcodeSaveQrcode.userInteractionEnabled = YES;
+    [_lbQcodeSaveQrcode addGestureRecognizer:tapSaveQrcode];
+
     [self.imgQrCode addSubview:_lbQcodeSaveQrcode];
 
 
@@ -687,7 +703,7 @@
 
     if (_displayType == Show_Qrcode) {
         _lbTipsContents1.text = @"*如有充值问题，请咨询专员*",
-        _lbTipsContents2.text = @"为避免扫码失败，使用支付宝扫码之前，请关闭wifi，用手机流量来扫码支付";
+                _lbTipsContents2.text = @"为避免扫码失败，使用支付宝扫码之前，请关闭wifi，用手机流量来扫码支付";
         [_lbTipsContents3 setHidden:YES];
         [_lbTipsContents4 setHidden:YES];
     } else if (_displayType == Show_Account) {
@@ -734,11 +750,15 @@
 
     NSString *urlst = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";
     NSURL *url = [NSURL URLWithString:urlst];
-    [_imgQrCode sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"chat_img_defaultPhoto"] completed:^(UIImage *_Nullable image, NSError *_Nullable error, SDImageCacheType cacheType, NSURL *_Nullable imageURL) {
+    [_imgQrCode sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"chat_img_defaultPhoto"]
+                         completed:^(UIImage *_Nullable image,
+                                 NSError *_Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL *_Nullable imageURL) {
 
 //            [self updateImageCellHeightWith:image maxSize:CGSizeMake(200, 200)];
 
-    }];
+                         }];
 }
 
 /******
@@ -768,11 +788,50 @@
     WeakSelf
 
 
-
-
 }
 
 #pragma mark - Action
+//:(UITapGestureRecognizer *)gesture
+- (void)saveQrcode2Photos {
+    NSLog(@"..");
+    NSString *urlst = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";
+    NSURL *url = [NSURL URLWithString:urlst];
+    if (_model != nil && _model.downUrl != nil) {
+
+    }
+    // NSURL *url = [NSURL URLWithString:_model.downUrl];
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    UIImage *img;
+    // 每次都要从网上最新下载，防止缓存造成问题。
+//    if ([manager diskImageExistsForURL:url completion:<#(nullable SDWebImageCheckCacheCompletionBlock)completionBlock#>]:url])
+//    {
+//        img =  [[manager imageCache] imageFromDiskCacheForKey:url.absoluteString];
+//
+//    }
+//    else
+//    {
+    //从网络下载图片
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    img = [UIImage imageWithData:data];
+//    }
+    // 保存图片到相册中
+    UIImageWriteToSavedPhotosAlbum(img, self, @selector(isSaveImageOk:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)isSaveImageOk:(UIImage *)image didFinishSavingWithError:(NSError *)error
+          contextInfo:(void *)contextInfo {
+    // Was there an error?
+    if (error != NULL) {
+        // Show error message…
+        DDLog(@"%s is dealloc", __func__);
+
+    } else  // No errors
+    {
+        // Show message image successfully saved
+        DDLog(@"%s save image ok", __func__);
+    }
+
+}
 
 - (void)onMore:(UIButton *)sender {
     sender.selected = !sender.selected;
