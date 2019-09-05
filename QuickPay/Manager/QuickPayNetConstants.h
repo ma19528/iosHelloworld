@@ -48,6 +48,13 @@
 #define kPayOKKey       @"6"
 #define kImageKey       @"7"
 
+#define keybordPayAlipay   @"支付宝"  //@"用支付宝充值"
+#define keybordPayWeChat   @"微信"  //@"用微信充值"
+#define keybordPayBankCard @"银行卡"  //@"用银行卡充值"
+#define keybordPayCredit   @"信用卡"  //@"用信用卡充值"
+#define keybordPayHuabie   @"花呗"  //@"用花呗充值"
+#define keybordPayOK       @"我已经充好了"
+
 #define kPayAlipay   @"用支付宝充值"
 #define kPayWeChat   @"用微信充值"
 #define kPayBankCard @"用银行卡充值"

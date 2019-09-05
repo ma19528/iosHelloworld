@@ -110,7 +110,8 @@
 @end
 
 
-@interface YHExpressionKeyboard()<YYTextKeyboardObserver,YHExpressionInputViewDelegate,UITextViewDelegate,YHExpressionAddViewDelegate>{
+@interface YHExpressionKeyboard()<YYTextKeyboardObserver,YHExpressionInputViewDelegate,
+                                    UITextViewDelegate,YHExpressionAddViewDelegate>{
     BOOL    _toolbarButtonTap; //toolbarBtn被点击
     CGFloat _height_oneRowText;//输入框每一行文字高度
     CGFloat _height_Toolbar;   //当前Toolbar高度
@@ -136,6 +137,8 @@
 @property (nonatomic, strong) UIButton *toolbarExtraButton;//“+”
 @property (nonatomic, strong) UIView   *toolbarBackground;
 
+
+@property(nonatomic, strong) UIScrollView   *payScrollView;
 @property(nonatomic, strong) UILabel *lbAlipay;
 @property(nonatomic, strong) UILabel *lbWechat;
 @property(nonatomic, strong) UILabel *lbBank;
@@ -263,18 +266,61 @@
         make.right.equalTo(weakSelf.toolbarExtraButton.mas_left);
         make.bottom.equalTo(weakSelf.topToolBar).offset(-8);
     }];
-    
-    
+
     [_toolbarExtraButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(kToolbarBtnH);
         make.right.equalTo(weakSelf.topToolBar.mas_right);
         make.bottom.equalTo(weakSelf.topToolBar).offset(-8);
     }];
 
+    [_payScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.topToolBar);
+        make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        make.width.mas_equalTo(900);
+        make.height.mas_equalTo(kTopPayLabelH +5);
+    }];
 
     [_lbAlipay mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.topToolBar).offset(5);
-        make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        make.left.equalTo(weakSelf.payScrollView).offset(5);
+        make.top.equalTo(weakSelf.payScrollView).offset(1);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
+        //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+    }];
+
+    [_lbWechat mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.lbAlipay).offset(60);
+        make.top.equalTo(weakSelf.payScrollView).offset(1);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
+        //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+    }];
+
+    [_lbBank mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.lbWechat).offset(45);
+        make.top.equalTo(weakSelf.payScrollView).offset(1);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
+        //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+    }];
+    [_lbCredit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.lbBank).offset(60);
+        make.top.equalTo(weakSelf.payScrollView).offset(1);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
+        //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+    }];
+    [_lbHuabie mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.lbCredit).offset(60);
+        make.top.equalTo(weakSelf.payScrollView).offset(1);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
+        //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+    }];
+    [_lbPayOK mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.lbHuabie).offset(45);
+        make.top.equalTo(weakSelf.payScrollView).offset(1);
         //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
         //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
         //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
@@ -285,7 +331,7 @@
         make.left.equalTo(weakSelf.topToolBar).offset(5);
         make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
 
-        make.top.equalTo(weakSelf.lbAlipay).offset(kTopPayLabelH);
+        make.top.equalTo(weakSelf.payScrollView).offset(kTopPayLabelH);
         make.bottom.equalTo(weakSelf.topToolBar).offset(-kTextVTopMargin);
 
     }];
@@ -297,8 +343,7 @@
         make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
     }];
     [_toolbarPresstoSpeakButton setHidden:YES];
-    
-    
+
     [_botContainer mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(kBotContainerH);
         make.left.right.equalTo(weakSelf);
@@ -320,23 +365,13 @@
 
 - (void)_initUI{
 
-//    @property(nonatomic, strong) UILabel *lbAlipay;
-//    @property(nonatomic, strong) UILabel *lbWechat;
-//    @property(nonatomic, strong) UILabel *lbBank;
-//    @property(nonatomic, strong) UILabel *lbCredit;
-//    @property(nonatomic, strong) UILabel *lbHuabie;
-//    @property(nonatomic, strong) UILabel *lbPayOK;
-
-
-
-
-
-
     //顶部工具栏
     UIView *topToolBar = [UIView new];
     topToolBar.backgroundColor = [UIColor whiteColor];
+    topToolBar.userInteractionEnabled = YES;
     [self addSubview:topToolBar];
     _topToolBar = topToolBar;
+    _topToolBar.userInteractionEnabled = YES;
     
     
     //顶部线
@@ -351,16 +386,94 @@
     [topToolBar addSubview:topToolBarBG];
     _toolbarBackground = topToolBarBG;
 
+    _payScrollView = [UIScrollView new];
+    _payScrollView.showsVerticalScrollIndicator = NO;
+    _payScrollView.showsHorizontalScrollIndicator = NO;
+    _payScrollView.contentSize =  CGSizeMake(800, 0);
+    _payScrollView.userInteractionEnabled = YES;
+    [self.topToolBar addSubview:_payScrollView];
+
     _lbAlipay = [UILabel new];
     _lbAlipay.font = [UIFont systemFontOfSize:16.0];
     _lbAlipay.numberOfLines = 1;
     _lbAlipay.lineBreakMode = NSLineBreakByTruncatingMiddle;
-    _lbAlipay.textColor = [UIColor blackColor];
-    _lbAlipay.text = kPayAlipay;
-    _lbAlipay.layer.backgroundColor = [UIColor grayColor].CGColor;
+    _lbAlipay.textColor = [UIColor blueColor];
+    _lbAlipay.text = keybordPayAlipay;
+    _lbAlipay.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     _lbAlipay.layer.cornerRadius = 5;
-    [self.topToolBar addSubview:_lbAlipay];
+    _lbAlipay.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSendAlipay = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendAlipay)];
+    [_lbAlipay addGestureRecognizer:tapSendAlipay];
 
+    [self.payScrollView addSubview:_lbAlipay];
+
+    _lbWechat = [UILabel new];
+    _lbWechat.font = [UIFont systemFontOfSize:16.0];
+    _lbWechat.numberOfLines = 1;
+    _lbWechat.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbWechat.textColor = [UIColor blueColor];
+    _lbWechat.text = keybordPayWeChat;
+    _lbWechat.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    _lbWechat.layer.cornerRadius = 5;
+    _lbWechat.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSendWechat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendWechat)];
+    [_lbWechat addGestureRecognizer:tapSendWechat];
+
+    [self.payScrollView addSubview:_lbWechat];
+
+    _lbBank = [UILabel new];
+    _lbBank.font = [UIFont systemFontOfSize:16.0];
+    _lbBank.numberOfLines = 1;
+    _lbBank.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbBank.textColor = [UIColor blueColor];
+    _lbBank.text = keybordPayBankCard;
+    _lbBank.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    _lbBank.layer.cornerRadius = 5;
+    _lbBank.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSendBank = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendBank)];
+    [_lbBank addGestureRecognizer:tapSendBank];
+    [self.payScrollView addSubview:_lbBank];
+
+    _lbCredit = [UILabel new];
+    _lbCredit.font = [UIFont systemFontOfSize:16.0];
+    _lbCredit.numberOfLines = 1;
+    _lbCredit.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbCredit.textColor = [UIColor blueColor];
+    _lbCredit.text = keybordPayCredit;
+    _lbCredit.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    _lbCredit.layer.cornerRadius = 5;
+    _lbCredit.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSendCredit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendCredit)];
+    [_lbCredit addGestureRecognizer:tapSendCredit];
+
+    [self.payScrollView addSubview:_lbCredit];
+
+    _lbHuabie = [UILabel new];
+    _lbHuabie.font = [UIFont systemFontOfSize:16.0];
+    _lbHuabie.numberOfLines = 1;
+    _lbHuabie.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbHuabie.textColor = [UIColor blueColor];
+    _lbHuabie.text = keybordPayHuabie;
+    _lbHuabie.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    _lbHuabie.layer.cornerRadius = 5;
+    _lbHuabie.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSendHuabie = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendHuabie)];
+    [_lbHuabie addGestureRecognizer:tapSendHuabie];
+    [self.payScrollView addSubview:_lbHuabie];
+
+    _lbPayOK = [UILabel new];
+    _lbPayOK.font = [UIFont systemFontOfSize:16.0];
+    _lbPayOK.numberOfLines = 1;
+    _lbPayOK.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbPayOK.textColor = [UIColor blueColor];
+    _lbPayOK.text = keybordPayOK;
+    _lbPayOK.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    _lbPayOK.layer.cornerRadius = 5;
+    _lbPayOK.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapSendPayOK = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendPayOK)];
+    [_lbPayOK addGestureRecognizer:tapSendPayOK];
+
+    [self.payScrollView addSubview:_lbPayOK];
     
     //拍照按钮
     _toolbarVioceButton = [self _creatToolbarButton];
@@ -582,7 +695,7 @@
     
 }
 
-- (void)didTapSendBtn{
+- (void)didTapSendBtn {
     DDLog(@"点击发送,发送文本是：\n%@",_textView.text);
     if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
         [_delegate didTapSendBtn:_textView.text];
@@ -591,6 +704,48 @@
     //清空输入内容
     self.textView.text = @"";
     [self _textViewChangeText];
+}
+
+- (void)sendAlipay {
+    DDLog(@"点击 发送 wo要支付宝充值");
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
+        [_delegate didTapSendBtn:kPayAlipay];
+    }
+}
+
+- (void)sendWechat {
+    DDLog(@"点击 sendWechat");
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
+        [_delegate didTapSendBtn:kPayWeChat];
+    }
+}
+
+- (void)sendBank {
+    DDLog(@"点击 sendBank");
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
+        [_delegate didTapSendBtn:kPayBankCard];
+    }
+}
+
+- (void)sendCredit {
+    DDLog(@"点击 sendCredit");
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
+        [_delegate didTapSendBtn:kPayCredit];
+    }
+}
+
+- (void)sendHuabie {
+    DDLog(@"点击 sendHuabie");
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
+        [_delegate didTapSendBtn:kPayHuabie];
+    }
+}
+
+- (void)sendPayOK {
+    DDLog(@"点击 sendPayOK");
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapSendBtn:)]) {
+        [_delegate didTapSendBtn:kPayOK];
+    }
 }
 
 #pragma mark - @protocol YHExpressionAddViewDelegate
