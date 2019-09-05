@@ -10,7 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "YHBrowserImageView.h"
 #import "YHActionSheet.h"
- 
+
+#import "SDWebImageManager.h"
 //  ============在这里方便配置样式相关设置===========
 
 //                      ||

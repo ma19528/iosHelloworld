@@ -29,6 +29,8 @@
 	<string>QuickPay需要访问您的相机</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>QuickPay需要访问您的麦克风</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>QuickPay需要访问您的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>QuickPay需要访问您的相册</string>
 	<key>UILaunchStoryboardName</key>

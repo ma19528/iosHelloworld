@@ -38,7 +38,7 @@
 #import "YHPayInfoModel.h"
 
 
-@interface YHChatShowAlipay () {
+@interface YHChatShowAlipay () <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 
 }
 
@@ -101,7 +101,7 @@
 @property(nonatomic, assign) int displayType;
 
 
-@property (assign, nonatomic) NSInteger limitDownOnce;
+@property(assign, nonatomic) NSInteger limitDownOnce;
 
 @end
 
@@ -236,7 +236,6 @@
     [_lbQcodeSaveQrcode addGestureRecognizer:tapSaveQrcode];
 
     [self.imgQcodePayBgType addSubview:_lbQcodeSaveQrcode];
-
 
 
 }
@@ -795,91 +794,38 @@
 }
 
 
-
 #pragma mark - Action
-//
-// (UIGestureRecognizer *)aRec
+
+// TODO>... zhongyao重要，重要重要，怎么把网络图片保存在相册。。
 - (void)saveQrcode2Photos:(UITapGestureRecognizer *)gesture {
     NSLog(@"..");
     NSString *urlst = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";
 
     NSURL *imageURL = [NSURL URLWithString:@"http://upload-images.jianshu.io/upload_images/259-7424a9a21a2cb81b.jpg"];
     [self uploadImageAction:urlst];
-//    [[[SDWebImageManager sharedManager] imageDownloader] downloadImageWithURL:imageURL options:SDWebImageLowPriority progress:^<#(nullable SDWebImageDownloaderProgressBlock)progressBlock#>{
-//
-//    } completed:<#(nullable SDWebImageDownloaderCompletedBlock)completedBlock#>{
-//
-//    };]
-//    [[SDWebImageManager sharedManager] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//        // 下载进度block
-//    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//        // 下载完成block
-//    }]
-//    [[SDWebImageManager sharedManager] imageDownloader]downloadImageWithURL:imageURL options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//        //此处是下载过程中的回调 expectedSize:总大小   receivedSize:当前已下载大小
-//        NSLog(@"expectedSize:%.2fM", expectedSize/1024/1024.0);
-//    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//        //下载完成的回调
-//        // [self.imgQrCode setImage:image];
-//
-//        //保存SDWebImage下载的图片存到指定路径
-//        if  (finished) {
-//            //此处一定要延时之行才可以
-//            // [self performSelector:@selector(saveImageWithURL:) withObject: imageURL afterDelay:1];
-//        }
-//    }];
-//
 
-
-
-
-
-
-
-//    NSURL *url = [NSURL URLWithString:urlst];
-//    if (_model != nil && _model.downUrl != nil) {
-//
-//    }
-    // NSURL *url = [NSURL URLWithString:_model.downUrl];
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    UIImage *img;
-    // 每次都要从网上最新下载，防止缓存造成问题。
-//    if ([manager diskImageExistsForURL:url completion:<#(nullable SDWebImageCheckCacheCompletionBlock)completionBlock#>]:url])
-//    {
-//        img =  [[manager imageCache] imageFromDiskCacheForKey:url.absoluteString];
-//
-//    }
-//    else
-//    {
-//    //从网络下载图片
-//    NSData *data = [NSData dataWithContentsOfURL:imageURL];
-//    img = [UIImage imageWithData:data];
-////    }
-//    [self.imgBgTypeTips setImage:img];
-//    // 保存图片到相册中
-//    UIImageWriteToSavedPhotosAlbum(img, self, @selector(isSaveImageOk:didFinishSavingWithError:contextInfo:), nil);
 }
 
 
 //保存SDWebImage下载的图片存到指定路径
 - (void)saveImageWithURL:(NSURL *)imageURL {
     //if ([_imageModel.thumbUrl rangeOfString:_imageModel.originalImageUrl].location!=NSNotFound) {
-        //根据下载URL获取图片在SDWebImage中存储对应的key
-        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
+    //根据下载URL获取图片在SDWebImage中存储对应的key
+    NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
 
-        //根据key获取到对应图片的存储路径
-        NSString *imagePath = [[SDWebImageManager sharedManager].imageCache defaultCachePathForKey:key];
+    //根据key获取到对应图片的存储路径
+    NSString *imagePath = [[SDWebImageManager sharedManager].imageCache defaultCachePathForKey:key];
 
-        //根据路径直接获取NSData数据
-        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
-        NSLog(@"imageData.length:%.2fM", imageData.length/1024/1024.0);
+    //根据路径直接获取NSData数据
+    NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+    NSLog(@"imageData.length:%.2fM", imageData.length / 1024 / 1024.0);
     UIImage *img;
     img = [UIImage imageWithData:imageData];
 //    }
     // 保存图片到相册中
     UIImageWriteToSavedPhotosAlbum(img, self, @selector(isSaveImageOk:didFinishSavingWithError:contextInfo:), nil);
-        //将NSData数据存储到指定路径
-       // [imageData writeToFile:_imageModel.originalImagePath atomically:YES];
+    //将NSData数据存储到指定路径
+    // [imageData writeToFile:_imageModel.originalImagePath atomically:YES];
     //}
 }
 
@@ -899,7 +845,6 @@
 }
 
 
-
 // 下载图片
 - (void)uploadImageAction:(NSString *)imgPath {
 //    if (_limitDownOnce) {
@@ -907,6 +852,15 @@
 //    } else {
 //        _limitDownOnce = 1;
 //    }
+// 每次都要进行清除缓存，以保证下载的是最新的图片。
+    [[SDWebImageManager sharedManager].imageCache clearDiskOnCompletion:nil];
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+
+//    //根据下载URL获取图片在SDWebImage中存储对应的key
+//    NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:imgPath];
+//
+//    //根据key获取到对应图片的存储路径
+//    NSString *imagePath = [[SDWebImageManager sharedManager].imageCache defaultCachePathForKey:key];
     UIImageView *tempIV = [UIImageView new];
     [tempIV sd_setImageWithURL:[NSURL URLWithString:imgPath] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {

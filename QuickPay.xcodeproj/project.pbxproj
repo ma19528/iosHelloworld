@@ -24,6 +24,7 @@
 		58603EB85BDCD766F59C597D /* response_received.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603F011BE82C102703A230 /* response_received.json */; };
 		58603EDA682F540CCA511DC5 /* response_offSingle.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860302E5B2F0C1654B8678A /* response_offSingle.json */; };
 		58603F2E87D034F3865D1D6A /* QuickPayConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603869CD3C267475D26037 /* QuickPayConfigModel.m */; };
+		840E06A92320E641004045F0 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840E06A82320E641004045F0 /* Photos.framework */; };
 		84F6D59922F329E100FA10B4 /* ChatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6D59722F329E100FA10B4 /* ChatInfo.m */; };
 		AC002DA21E63AE5600EE2851 /* YHGroupIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DA11E63AE5600EE2851 /* YHGroupIconView.m */; };
 		AC002DB41E63BBF100EE2851 /* YHChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DA81E63BBF100EE2851 /* YHChatListModel.m */; };
@@ -150,6 +151,7 @@
 		5C5EA0762A3D65A285B0C43B /* Pods-QuickPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig"; sourceTree = "<group>"; };
 		762089047A00BECC39D4D733 /* Pods_QuickPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8015156D9238E30B7B818700 /* Pods-QuickPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.debug.xcconfig"; sourceTree = "<group>"; };
+		840E06A82320E641004045F0 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		84F6D59722F329E100FA10B4 /* ChatInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInfo.m; sourceTree = "<group>"; };
 		84F6D59822F329E100FA10B4 /* ChatInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInfo.h; sourceTree = "<group>"; };
 		AC002DA01E63AE5600EE2851 /* YHGroupIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHGroupIconView.h; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840E06A92320E641004045F0 /* Photos.framework in Frameworks */,
 				BCF3E9AD1E59E3A400FA30A2 /* UIKit.framework in Frameworks */,
 				AC9246571E6E8EFC0032FD3D /* libopencore-amrnb.a in Frameworks */,
 				AC9246581E6E8EFC0032FD3D /* libopencore-amrwb.a in Frameworks */,
@@ -372,6 +375,7 @@
 		6D8F64815E9D9733894D1D86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				840E06A82320E641004045F0 /* Photos.framework */,
 				BCF3E9AC1E59E3A400FA30A2 /* UIKit.framework */,
 				762089047A00BECC39D4D733 /* Pods_QuickPay.framework */,
 			);
