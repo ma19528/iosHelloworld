@@ -37,17 +37,17 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AFNetworking
-  - FMDB
-  - HYBMasonryAutoCellHeight
-  - Masonry
-  - MJRefresh
-  - QTEventBus
+  - AFNetworking (~> 3.1.0)
+  - FMDB (~> 2.6.2)
+  - HYBMasonryAutoCellHeight (~> 2.0.1)
+  - Masonry (~> 0.6.4)
+  - MJRefresh (~> 3.1.12)
+  - QTEventBus (~> 0.4.0)
   - QTEventBus/AppModule
   - QTEventBus/UIKit
-  - SDWebImage
-  - SocketRocket
-  - YYKit
+  - SDWebImage (~> 4.0.0)
+  - SocketRocket (~> 0.5.1)
+  - YYKit (~> 1.0.9)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 79ff89acf247c5eb6a26913916ee8ecbccaa38c5
+PODFILE CHECKSUM: e9b2ce3388d4d69b93d03e3d2a87e65f2825fedb
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.7.5
