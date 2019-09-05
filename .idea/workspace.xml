@@ -25,45 +25,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3631bf4f-513d-4eda-aa1a-b5db778a1922" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSData+ImageContentType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSData+ImageContentType.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSData+ImageContentType.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSData+ImageContentType.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSImage+WebCache.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSImage+WebCache.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSImage+WebCache.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/NSImage+WebCache.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCache.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCacheConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCacheConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCacheConfig.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDImageCacheConfig.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageCompat.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageCompat.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageCompat.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageCompat.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDecoder.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDecoder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDecoder.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDecoder.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloader.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageDownloaderOperation.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageManager.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageOperation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImageOperation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/SDWebImagePrefetcher.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIButton+WebCache.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIButton+WebCache.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIButton+WebCache.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIButton+WebCache.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImage+MultiFormat.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+HighlightedWebCache.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIImageView+WebCache.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCache.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCache.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCache.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCache.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCacheOperation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCacheOperation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCacheOperation.m" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SDWebImage/SDWebImage/UIView+WebCacheOperation.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/UICustoms/YHPhotoBrowser/YHPhotoBrowserView.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/UICustoms/YHPhotoBrowser/YHPhotoBrowserView.m" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +127,7 @@
       <workItem from="1567263280738" duration="8069000" />
       <workItem from="1567492417240" duration="48900000" />
       <workItem from="1567653711785" duration="1958000" />
-      <workItem from="1567655991575" duration="4571000" />
+      <workItem from="1567655991575" duration="5756000" />
     </task>
     <servers />
   </component>
@@ -455,38 +417,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>841</line>
-          <option name="timeStamp" value="306" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>836</line>
-          <option name="timeStamp" value="307" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>834</line>
-          <option name="timeStamp" value="317" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>804</line>
-          <option name="timeStamp" value="321" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>867</line>
+          <line>831</line>
           <option name="timeStamp" value="326" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>875</line>
+          <line>839</line>
           <option name="timeStamp" value="327" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
-          <line>873</line>
+          <line>837</line>
           <option name="timeStamp" value="328" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
+          <line>825</line>
+          <option name="timeStamp" value="329" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
+          <line>829</line>
+          <option name="timeStamp" value="330" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m</url>
+          <line>828</line>
+          <option name="timeStamp" value="332" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
