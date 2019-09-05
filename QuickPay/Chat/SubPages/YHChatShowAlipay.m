@@ -304,6 +304,7 @@
 
 
     _imgIconPayType = [UIImageView new];
+    self.imgPayBgTypeAccount.userInteractionEnabled = YES;
     //_imgIconPayType.image = [UIImage imageNamed:@"icon_alipay"];
     [self.imgPayBgTypeAccount addSubview:_imgIconPayType];
 
@@ -344,7 +345,6 @@
     _lbPayAccountsContens.lineBreakMode = NSLineBreakByWordWrapping;
     _lbPayAccountsContens.textAlignment = NSTextAlignmentCenter;
     _lbPayAccountsContens.textColor = [UIColor blackColor];
-//    _lbPayAccountsT.text = @"支付宝账号";
 //    _lbPayAccountsContens.text = @"1234567890123456@qq.com";
     [self.imgPayBgTypeAccount addSubview:_lbPayAccountsContens];
 
@@ -354,6 +354,11 @@
     _lbPayAccountsCopy.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbPayAccountsCopy.textColor = [UIColor blueColor];
     _lbPayAccountsCopy.text = @"复制";
+
+    _lbPayAccountsCopy.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapCopyAccount = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyAccounts:)];
+    [_lbPayAccountsCopy addGestureRecognizer:tapCopyAccount];
+
     [self.imgPayBgTypeAccount addSubview:_lbPayAccountsCopy];
 
     // 支付宝名
@@ -381,6 +386,10 @@
     _lbPayFirstNameCopy.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbPayFirstNameCopy.textColor = [UIColor blueColor];
     _lbPayFirstNameCopy.text = @"复制";
+    _lbPayFirstNameCopy.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapCopyFirstName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyFirstName:)];
+    [_lbPayFirstNameCopy addGestureRecognizer:tapCopyFirstName];
+
     [self.imgPayBgTypeAccount addSubview:_lbPayFirstNameCopy];
 
     // 支付宝姓
@@ -407,6 +416,10 @@
     _lbPayLastNameCopy.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbPayLastNameCopy.textColor = [UIColor blueColor];
     _lbPayLastNameCopy.text = @"复制";
+    _lbPayLastNameCopy.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapCopyLastName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyLastName:)];
+    [_lbPayLastNameCopy addGestureRecognizer:tapCopyLastName];
+
     [self.imgPayBgTypeAccount addSubview:_lbPayLastNameCopy];
 
     // 支付宝全名
@@ -433,6 +446,11 @@
     _lbPayFullNameCopy.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbPayFullNameCopy.textColor = [UIColor blueColor];
     _lbPayFullNameCopy.text = @"复制";
+
+    _lbPayFullNameCopy.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapCopyFullName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyFullName:)];
+    [_lbPayFullNameCopy addGestureRecognizer:tapCopyFullName];
+
     [self.imgPayBgTypeAccount addSubview:_lbPayFullNameCopy];
 
 }
@@ -583,7 +601,7 @@
     _lbTipsContents1.numberOfLines = 2;
     _lbTipsContents1.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbTipsContents1.textColor = [UIColor blackColor];
-//
+//  _lbTipsContents1.text = @"支持各种银行，支付宝，微信的银行卡转账";
     [self.imgBgTypeTips addSubview:_lbTipsContents1];
 
     _lbTipsContents2 = [UILabel new];
@@ -591,9 +609,7 @@
     _lbTipsContents2.numberOfLines = 2;
     _lbTipsContents2.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbTipsContents2.textColor = [UIColor blackColor];
-//    _lbTipsContents1.text = @"支持各种银行，支付宝，微信的银行卡转账";
 //    _lbTipsContents2.text = @"支付宝转到银行卡功能路径：打开支付宝>转账>转到银行卡";
-//    _lbTipsContents3.text = @"微信转到银行卡功能路径：打开微信>右上角+号>收付款>转到银行卡";
     [self.imgBgTypeTips addSubview:_lbTipsContents2];
 
     _lbTipsContents3 = [UILabel new];
@@ -796,6 +812,38 @@
 
 #pragma mark - Action
 
+- (void)copyAccounts:(UITapGestureRecognizer *)gesture {
+    NSLog(@"copyAccounts.......");
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.lbPayAccountsContens.text;
+    [self tipsCopyOk];
+}
+
+- (void)copyFirstName:(UITapGestureRecognizer *)gesture {
+    NSLog(@"copyFirstName.......");
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.lbPayFirstNameContens.text;
+    [self tipsCopyOk];
+}
+- (void)copyLastName:(UITapGestureRecognizer *)gesture {
+    NSLog(@"copyLastName.......");
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.lbPayLastNameContens.text;
+    [self tipsCopyOk];
+}
+- (void)copyFullName:(UITapGestureRecognizer *)gesture {
+    NSLog(@"copyFullName.......");
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.lbPayFullNameContens.text;
+    [self tipsCopyOk];
+}
+
+- (void) tipsCopyOk {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已拷贝到系统粘贴板" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 // TODO>... zhongyao重要，重要重要，怎么把网络图片保存在相册。。
 - (void)saveQrcode2Photos:(UITapGestureRecognizer *)gesture {
     NSLog(@"saveQrcode2Photos.......");
