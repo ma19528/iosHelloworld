@@ -111,21 +111,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    self.navigationController.navigationBar.translucent = NO;
-
-    //设置导航栏
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
-
-
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"人工协助" style:(UIBarButtonItemStylePlain) target:self action:@selector(onBack:)];
-    // 字体颜色
-    [rightBtn setTintColor:[UIColor whiteColor]];
-    // 字体大小
-    [rightBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14], NSFontAttributeName,nil] forState:(UIControlStateNormal)];
-    self.navigationItem.rightBarButtonItem = rightBtn;
-
    // self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"人工协助" target:self selector:@selector(onBack:)];
-
 
 //    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
 //        btn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -133,17 +119,7 @@
 //        [btn setTitle:@"人工协助" forState:UIControlStateNormal];
 //    }];
 
-    self.navigationController.navigationBar.clipsToBounds == 0.0;
-    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    //[[UINavigationBar appearance] setShadowImage:[self.navigationItem lineImageWithColor:[UIColor colorWithHexString:@"#fb9966"]]];
 
-    // [self.navigationController.navigationBar setShadowImage:[self.navigationController.navigationBar :[UIColor colorWithHexString:@"#fb9966"]]];
-    // [self.navigationController.navigationBar setShadowImage:[self.tabBar lineImageWithColor:[UIColor colorWithHexString:@"#fb9966"]]];
-
-
-
-
-    self.title = @"收款";
     [self setupNavigationBar];
 
     [self processModel];
@@ -166,6 +142,11 @@
 
 - (void)setupNavigationBar {
     UIColor          *kAlipayColor = RGB16(0x478bf6);
+    UIColor          *kBankColor   = RGB16(0xe9b428);
+    UIColor          *kCreditColor = RGB16(0xef9331);
+    UIColor          *kHuabieColor = RGB16(0x6ba5f7);
+    UIColor          *kWechatColor = RGB16(0x14ae58);
+
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.backgroundColor = kAlipayColor;
     self.navigationController.navigationBar.barTintColor    = kAlipayColor;
@@ -174,7 +155,23 @@
     self.view.backgroundColor = kAlipayColor;
     //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"alipay_bg"]
     //                                                   forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.translucent = NO;
 
+    //设置导航栏
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
+
+
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"人工协助" style:(UIBarButtonItemStylePlain) target:self action:@selector(onBack:)];
+    // 字体颜色
+    [rightBtn setTintColor:[UIColor whiteColor]];
+    // 字体大小
+    [rightBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14], NSFontAttributeName,nil] forState:(UIControlStateNormal)];
+    self.navigationItem.rightBarButtonItem = rightBtn;
+
+    self.navigationController.navigationBar.clipsToBounds == 0.0;
+    //[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+
+    self.title = @"收款";
 }
 
 

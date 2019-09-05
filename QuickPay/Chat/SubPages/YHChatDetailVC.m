@@ -61,11 +61,11 @@
     //设置导航栏
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
 
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitle:@"取消" forState:UIControlStateSelected];
-        [btn setTitle:@"更多" forState:UIControlStateNormal];
-    }];
+//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
+//        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+//        [btn setTitle:@"取消" forState:UIControlStateSelected];
+//        [btn setTitle:@"更多" forState:UIControlStateNormal];
+//    }];
 
 
     self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;

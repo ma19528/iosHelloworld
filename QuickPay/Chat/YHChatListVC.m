@@ -27,6 +27,10 @@
     // Do any additional setup after loading the view.
     self.title = @"信息";
     self.navigationController.navigationBar.translucent = NO;
+
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"chat_pay_bg"]
+//                                                       forBarMetrics:UIBarMetricsDefault];
+
     [self initUI];
 
     //模拟数据源
