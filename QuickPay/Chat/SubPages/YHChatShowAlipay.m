@@ -116,11 +116,22 @@
     //设置导航栏
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
 
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitle:@"取消" forState:UIControlStateSelected];
-        [btn setTitle:@"人工协助" forState:UIControlStateNormal];
-    }];
+
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"人工协助" style:(UIBarButtonItemStylePlain) target:self action:@selector(onBack:)];
+    // 字体颜色
+    [rightBtn setTintColor:[UIColor whiteColor]];
+    // 字体大小
+    [rightBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14], NSFontAttributeName,nil] forState:(UIControlStateNormal)];
+    self.navigationItem.rightBarButtonItem = rightBtn;
+
+   // self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"人工协助" target:self selector:@selector(onBack:)];
+
+
+//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
+//        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+//        //[btn setTitle:@"取消" forState:UIControlStateSelected];
+//        [btn setTitle:@"人工协助" forState:UIControlStateNormal];
+//    }];
 
     self.navigationController.navigationBar.clipsToBounds == 0.0;
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -154,8 +165,15 @@
 
 
 - (void)setupNavigationBar {
+    UIColor          *kAlipayColor = RGB16(0x478bf6);
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.backgroundColor = RGB16(0x6ba5f7);
+    self.navigationController.navigationBar.backgroundColor = kAlipayColor;
+    self.navigationController.navigationBar.barTintColor    = kAlipayColor;
+    // 去掉状态栏一像素的横线
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.view.backgroundColor = kAlipayColor;
+    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"alipay_bg"]
+    //                                                   forBarMetrics:UIBarMetricsDefault];
 
 }
 
@@ -697,7 +715,6 @@
 * 根据不同的 支付类型 设置不同的内容
 * ****/
 - (void)setContents {
-    self.view.backgroundColor = RGB16(0x6ba5f7);
 
     _imgQcodeIconPayType.image = [UIImage imageNamed:@"icon_alipay"]; // 二维码标题的icon。
     _imgIconPayType.image = [UIImage imageNamed:@"icon_alipay"];

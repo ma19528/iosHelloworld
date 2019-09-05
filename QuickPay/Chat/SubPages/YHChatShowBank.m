@@ -709,7 +709,8 @@
 #pragma mark - Action
 
 - (void)onMore:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    [self.navigationController popViewControllerAnimated:YES];
+    // sender.selected = !sender.selected;
     //[self.tableView reloadData];
 }
 
