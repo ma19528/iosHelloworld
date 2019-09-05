@@ -12,6 +12,7 @@
 #import "Masonry.h"
 #import "YHExpressionInputView.h"
 #import "YHExpressionAddView.h"
+#import "QuickPayNetConstants.h"
 
 #define kNaviBarH       64   //导航栏高度
 #define kTopToolbarH    50   //顶部工具栏高度
@@ -19,6 +20,7 @@
 #define kBotContainerH  216  //底部表情高度
 #define DURTAION  0.25f      //键盘显示/收起动画时间
 #define kTextVTopMargin 8
+#define kTopPayLabelH    25   //顶部 支付label 的高度
 
 
 @interface YHExpressionTextView : UITextView
@@ -134,6 +136,13 @@
 @property (nonatomic, strong) UIButton *toolbarExtraButton;//“+”
 @property (nonatomic, strong) UIView   *toolbarBackground;
 
+@property(nonatomic, strong) UILabel *lbAlipay;
+@property(nonatomic, strong) UILabel *lbWechat;
+@property(nonatomic, strong) UILabel *lbBank;
+@property(nonatomic, strong) UILabel *lbCredit;
+@property(nonatomic, strong) UILabel *lbHuabie;
+@property(nonatomic, strong) UILabel *lbPayOK;
+
 //BottomContainer
 @property (nonatomic, strong) UIView *botContainer;
 @property (nonatomic, strong) YHExpressionInputView *inputV;
@@ -214,7 +223,7 @@
 }
 
 #pragma mark - filePrivate
-- (void)_addNotifations{
+- (void)_addNotifations {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardHidden:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardShow:) name:UIKeyboardWillShowNotification object:nil];
 }
@@ -226,13 +235,13 @@
 
 - (void)_layoutUI{
     WeakSelf
-    [_topToolBar setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisVertical];
-    [_topToolBar setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisVertical];
+    [_topToolBar setContentHuggingPriority:389 forAxis:UILayoutConstraintAxisVertical];
+    [_topToolBar setContentCompressionResistancePriority:889 forAxis:UILayoutConstraintAxisVertical];
     
     [_topToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(weakSelf);
         make.bottom.equalTo(weakSelf.botContainer.mas_top);
-        make.height.mas_equalTo(kTopToolbarH);
+        make.height.mas_equalTo(kTopToolbarH + kTopPayLabelH);
     }];
     
     [_toolbarBackground mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -261,15 +270,24 @@
         make.right.equalTo(weakSelf.topToolBar.mas_right);
         make.bottom.equalTo(weakSelf.topToolBar).offset(-8);
     }];
-    
-    
-    
+
+
+    [_lbAlipay mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.topToolBar).offset(5);
+        make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
+        //make.bottom.equalTo(weakSelf.textView).offset(-kTextVTopMargin);
+        //make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+    }];
+
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         // make.left.equalTo(weakSelf.toolbarVioceButton.mas_right).offset(5);
         make.left.equalTo(weakSelf.topToolBar).offset(5);
-        make.top.equalTo(weakSelf.topToolBar).offset(kTextVTopMargin);
-        make.bottom.equalTo(weakSelf.topToolBar).offset(-kTextVTopMargin);
         make.right.equalTo(weakSelf.toolbarEmoticonButton.mas_left).offset(-5);
+
+        make.top.equalTo(weakSelf.lbAlipay).offset(kTopPayLabelH);
+        make.bottom.equalTo(weakSelf.topToolBar).offset(-kTextVTopMargin);
+
     }];
     
     [_toolbarPresstoSpeakButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -301,7 +319,19 @@
 
 
 - (void)_initUI{
-    
+
+//    @property(nonatomic, strong) UILabel *lbAlipay;
+//    @property(nonatomic, strong) UILabel *lbWechat;
+//    @property(nonatomic, strong) UILabel *lbBank;
+//    @property(nonatomic, strong) UILabel *lbCredit;
+//    @property(nonatomic, strong) UILabel *lbHuabie;
+//    @property(nonatomic, strong) UILabel *lbPayOK;
+
+
+
+
+
+
     //顶部工具栏
     UIView *topToolBar = [UIView new];
     topToolBar.backgroundColor = [UIColor whiteColor];
@@ -320,7 +350,17 @@
     topToolBarBG.backgroundColor = UIColorHex(F9F9F9);
     [topToolBar addSubview:topToolBarBG];
     _toolbarBackground = topToolBarBG;
-    
+
+    _lbAlipay = [UILabel new];
+    _lbAlipay.font = [UIFont systemFontOfSize:16.0];
+    _lbAlipay.numberOfLines = 1;
+    _lbAlipay.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbAlipay.textColor = [UIColor blackColor];
+    _lbAlipay.text = kPayAlipay;
+    _lbAlipay.layer.backgroundColor = [UIColor grayColor].CGColor;
+    _lbAlipay.layer.cornerRadius = 5;
+    [self.topToolBar addSubview:_lbAlipay];
+
     
     //拍照按钮
     _toolbarVioceButton = [self _creatToolbarButton];
@@ -358,14 +398,14 @@
     _textView.layer.borderColor = [UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1.0].CGColor;
     _textView.showsVerticalScrollIndicator = YES;
     _textView.alwaysBounceVertical = NO;
-    _textView.font = [UIFont systemFontOfSize:14];
+    _textView.font = [UIFont systemFontOfSize:16];
     _textView.returnKeyType = UIReturnKeySend;
     _textView.delegate = self;
     
     [_topToolBar addSubview:_textView];
     
     _height_oneRowText = [_textView.layoutManager usedRectForTextContainer:_textView.textContainer].size.height;
-    _height_Toolbar    = kTopToolbarH;
+    _height_Toolbar    = kTopToolbarH + kTopPayLabelH;
 }
 
 - (void)_initToolbarPresstoSpeakButton{
@@ -497,16 +537,16 @@
     textH = textH>rows_h?rows_h:textH;
     
     //输入框高度
-    CGFloat h_inputV = kTopToolbarH - 2*kTextVTopMargin;
+    CGFloat h_inputV = kTopToolbarH + kTopPayLabelH + 20 - 2*kTextVTopMargin;
     
     if (textH < h_inputV) {
         [_topToolBar mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(kTopToolbarH);
+            make.height.mas_equalTo(kTopToolbarH + kTopPayLabelH); //+ kTopPayLabelH - 20
         }];
-        _height_Toolbar = kTopToolbarH;
+        _height_Toolbar = kTopToolbarH + kTopPayLabelH - 20;
     }else{
         //工具栏高度
-        CGFloat toolbarH = ceil(textH) + 2*kTextVTopMargin ;
+        CGFloat toolbarH = ceil(textH) + 2*kTextVTopMargin + kTopPayLabelH;
         [_topToolBar mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(toolbarH);
         }];

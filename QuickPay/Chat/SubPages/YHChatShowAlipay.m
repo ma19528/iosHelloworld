@@ -234,6 +234,13 @@
     [self.imgQrCode addSubview:_imgQrCodeIcon];
 
 
+//    UILabel *tagLabel = [UILabel new];
+//    tagLabel.text = @"减";
+//    tagLabel.textColor = [UIColor whiteColor];
+//    tagLabel.font = [UIFont systemFontOfSize:12];
+//    tagLabel.layer.backgroundColor = [UIColor greenColor].CGColor;
+//    tagLabel.layer.cornerRadius = 2;
+
 
     //_lbQcodeSaveQrcode = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 100)];
     _lbQcodeSaveQrcode = [UILabel new];
@@ -241,6 +248,9 @@
     _lbQcodeSaveQrcode.numberOfLines = 1;
     _lbQcodeSaveQrcode.lineBreakMode = NSLineBreakByTruncatingMiddle;
     _lbQcodeSaveQrcode.textColor = [UIColor blueColor];
+
+//    _lbQcodeSaveQrcode.layer.backgroundColor = [UIColor greenColor].CGColor;
+//    _lbQcodeSaveQrcode.layer.cornerRadius = 5;
     _lbQcodeSaveQrcode.text = @"保存图片";
 
 
