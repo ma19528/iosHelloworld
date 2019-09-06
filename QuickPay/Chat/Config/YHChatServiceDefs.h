@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger,YHMessageType){
     YHMessageType_CREDIT,
     YHMessageType_BANK,
     YHMessageType_HUABIE,
-
+    YHMessageType_PAYOK,
     YHMessageType_Image,                 // 图片
     YHMessageType_Voice,                 // 短录音
     YHMessageType_Doc,                   // 文档

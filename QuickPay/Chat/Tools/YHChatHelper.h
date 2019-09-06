@@ -15,7 +15,9 @@
 
 //从本地创建一条消息
 + (YHChatModel *)creatMessage:(NSString *)msg msgType:(YHMessageType)msgType  toID:(NSString *)toID;
-+ (YHChatModel *)creatRecvMessage:(NSString *)msg msgType:(YHMessageType)msgType
++ (YHChatModel *)creatRecvMessage:(NSString *)msg
+                          msgType:(YHMessageType)msgType
+                          msgBody:(NSString *)msgBody
                           agentID:(NSString *)agentID
                       agentAvater:(NSString *)agentAvater
                         agentName:(NSString *)agentName

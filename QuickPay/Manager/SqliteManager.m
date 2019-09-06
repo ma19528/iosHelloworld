@@ -371,32 +371,39 @@
 }
 
 //插入一条聊天信息
-- (void)createOneChat:(NSString *)sessionID chatModel:(YHChatModel *)chatModel complete:(void (^)(BOOL success, id obj))complete {
+- (void)createOneChat:(NSString *)sessionID
+            chatModel:(YHChatModel *)chatModel
+             complete:(void (^)(BOOL success, id obj))complete {
 
     CreatTable *model = [self _setupDBqueueWithType:DBChatType_Private sessionID:sessionID];
     FMDatabaseQueue *queue = model.queue;
 
     NSString *tableName = tableNameChatLog(sessionID);
 
-//    [queue inDatabase:^(FMDatabase *db) {
-//        /** 存储:会自动调用insert或者update，不需要担心重复插入数据 */
-//        [db yh_saveDataWithTable:tableName model:chatModel userInfo:nil otherSQL:nil option:^(BOOL save) {
-//            if (!save) {
-//                complete(save, @"更新某条数据失败");
-//            } else {
-//                complete(save, nil);
-//            }
-//        }];
-//
-//    }];
-    NSMutableArray * chatList = [[NSMutableArray alloc]init];
-    [chatList addObject:chatModel];
-            //(NSArray <YHChatModel *> *)chatLogList
-    [self updateChatLogWithType:chatModel.chatType sessionID:sessionID chatLogList:chatList complete:complete];
+    [queue inDatabase:^(FMDatabase *db) {
+        /** 存储:会自动调用insert或者update，不需要担心重复插入数据 */
+        [db yh_saveDataWithTable:tableName model:chatModel userInfo:nil otherSQL:nil option:^(BOOL save) {
+            if (!save) {
+                complete(save, @"更新某条数据失败");
+            } else {
+                //complete(save, @"%" );
+                DDLog(@"----更新某条数据成功d:---", __LINE__);
+                complete(save, nil);
+            }
+        }];
+
+    }];
+//    NSMutableArray *chatList = [[NSMutableArray alloc] init];
+//    [chatList addObject:chatModel];
+//    //(NSArray <YHChatModel *> *)chatLogList
+//    [self updateChatLogWithType:chatModel.chatType sessionID:sessionID chatLogList:chatList complete:complete];
 }
 
 //更新多条聊天信息
-- (void)updateChatLogWithType:(DBChatType)type sessionID:(NSString *)sessionID chatLogList:(NSArray <YHChatModel *> *)chatLogList complete:(void (^)(BOOL success, id obj))complete {
+- (void)updateChatLogWithType:(DBChatType)type
+                    sessionID:(NSString *)sessionID
+                  chatLogList:(NSArray <YHChatModel *> *)chatLogList
+                     complete:(void (^)(BOOL success, id obj))complete {
 
     CreatTable *model = [self _setupDBqueueWithType:type sessionID:sessionID];
     FMDatabaseQueue *queue = model.queue;
@@ -426,7 +433,11 @@
 }
 
 //更新某条聊天信息
-- (void)updateOneChatLogWithType:(DBChatType)type sessionID:(NSString *)sessionID aChatLog:(YHChatModel *)aChatLog updateItems:(NSArray <NSString *> *)updateItems complete:(void (^)(BOOL success, id obj))complete {
+- (void)updateOneChatLogWithType:(DBChatType)type
+                       sessionID:(NSString *)sessionID
+                        aChatLog:(YHChatModel *)aChatLog
+                     updateItems:(NSArray <NSString *> *)updateItems
+                        complete:(void (^)(BOOL success, id obj))complete {
 
     CreatTable *model = [self _setupDBqueueWithType:type sessionID:sessionID];
     FMDatabaseQueue *queue = model.queue;

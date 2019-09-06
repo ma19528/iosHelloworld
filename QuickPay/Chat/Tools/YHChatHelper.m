@@ -65,7 +65,9 @@
     return model;
 }
 
-+ (YHChatModel *)creatRecvMessage:(NSString *)msg msgType:(YHMessageType)msgType
++ (YHChatModel *)creatRecvMessage:(NSString *)msg
+                          msgType:(YHMessageType)msgType
+                          msgBody:(NSString *)msgBody
                           agentID:(NSString *)agentID
                           agentAvater:(NSString *)agentAvater
                           agentName:(NSString *)agentName
@@ -76,7 +78,7 @@
     model.direction     = 1;
     model.msgType       = msgType;
     model.chatType      = msgType;
-
+    model.msgBodyJson   = msgBody;
     model.speakerId     = agentID; //MYUID
     // TODO...现在写死做测试放开
     agentAvater = @"https://static.oschina.net/uploads/space/2015/0629/170157_rxDh_1767531.png";

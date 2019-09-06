@@ -307,7 +307,7 @@
 - (void)onChatAlipay:(YHChatModel *)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatAlipay.payInfoModel;
+    //vc.model = chatAlipay.payInfoModel;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -315,7 +315,7 @@
 - (void)onChatWeChat:(YHChatModel *)chatAlipay inLeftCell:(CellChatWeChatLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatAlipay.payInfoModel;
+    //vc.model = chatAlipay.payInfoModel;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -323,14 +323,14 @@
 - (void)onChatCredit:(YHChatModel *)chatFile inLeftCell:(CellChatCreditLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatFile);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatFile.payInfoModel;
+    //vc.model = chatFile.payInfoModel;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)onChatBank:(YHChatModel *)chatAlipay inLeftCell:(CellChatBankLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatAlipay.payInfoModel;
+    //vc.model = chatAlipay.payInfoModel;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -338,7 +338,7 @@
 - (void)onChatHuabie:(YHChatModel *)chatAlipay inLeftCell:(CellChatHuabieLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    vc.model = chatAlipay.payInfoModel;
+    //vc.model = chatAlipay.payInfoModel;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -847,7 +847,7 @@
 
     // 测试的时候用本地的数据
 // TODO>>> 重要重要重要
-    jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:0 error:nil];
+    jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     // jsonStr = note.object; // TODO。。用网络服务器时候要打开打开。
     NSLog(@"%@", jsonStr);
 
@@ -931,7 +931,9 @@
     NSNumber *sendTime = [dict objectForKey:kKey_sendTime];
     id msgID = [dict objectForKey:kKey_msgId]; // 这个服务器怎么发过来是 number，要统一转换为NSString
     // 解析msgBody的时候，要根据 msgType来进行解析， 不同的类型装进去的数据结构不一样。
-    NSDictionary *msgBody = [dict objectForKey:kKey_body];
+    NSDictionary *msgBodyDict = [dict objectForKey:kKey_body];
+    NSString *strBody = [self convertToJsonData:msgBodyDict];
+
     NSLog(@"==========processChatMsg end");
     //BOOL test = [msgID isKindOfClass:[NSString class]];
     BOOL test1 = [msgID isKindOfClass:[NSNumber class]];
@@ -942,19 +944,23 @@
         strMsgID = msgID;
     }
 
+    NSString *strMessageText = [NSString new];
     if ([msgType longValue] == TEXT) {
         NSLog(@"==========msgBody 为 text 类型");
+        strMessageText = [msgBodyDict objectForKey:kKey_message];
     } else if ([msgType longValue] >= ALIPAY && [msgType longValue] <= PAYOK) {
         NSLog(@"==========msgBody 为 支付 类型");
     } else if ([msgType longValue] == IMAGE) {
         NSLog(@"==========msgBody 为 图片 类型");
+        strMessageText = [msgBodyDict objectForKey:kKey_message];
     }
 
     // 构造要显示的消息。
 
 
-    YHChatModel *chatModel = [YHChatHelper creatRecvMessage:@"gogo"
-                                                    msgType:YHMessageType_HUABIE
+    YHChatModel *chatModel = [YHChatHelper creatRecvMessage:strMessageText
+                                                    msgType:[msgType longValue]
+                                                     msgBody:strBody
                                                     agentID:fromId
                                                 agentAvater:avatar
                                                   agentName:nickName
@@ -963,9 +969,44 @@
 
     [self.dataArray addObject:chatModel];
 
-
     // 历史消息存在数据库里面。
     // TOODO。。。
+    //关联聊天到数据库
+    [[SqliteManager sharedInstance] createOneChat:chatModel.agentId chatModel:chatModel complete:^(BOOL success, id obj) {
+        if (success) {
+            DDLog(@"下载文件关联到数据库成功:%@",obj);
+        }else{
+            DDLog(@"下载文件关联到数据库失败:%@",obj);
+        }
+    }];
 
 }
+
+- (NSString *)convertToJsonData:(NSDictionary *)dict
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString;
+
+    if (!jsonData) {
+        NSLog(@"%@",error);
+    } else {
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+
+    NSRange range = {0,jsonString.length};
+
+    //去掉字符串中的空格
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+
+    NSRange range2 = {0,mutStr.length};
+
+    //去掉字符串中的换行符
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+
+    return mutStr;
+}
+
 @end
