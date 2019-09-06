@@ -16,11 +16,13 @@
 #import "HHUtils.h"
 #import "SqliteManager.h"
 #import "YHChatButton.h"
+#import "QuickPayNetConstants.h"
 
 @interface CellChatAlipayLeft()
 @property (nonatomic,strong) UIImageView  *imgvBubble;
 @property (nonatomic,strong) YHChatButton *btnTapScope;
 @property (nonatomic,strong) UIImageView  *imgvPayBg;
+@property (nonatomic,strong) UILabel *lbTipsPay;
 
 @property (nonatomic,strong) UIImageView *imgvIcon;
 @property (nonatomic,strong) UILabel *lbFileName;
@@ -46,13 +48,25 @@
     _imgvBubble.image = imgBubble;
     [self.contentView addSubview:_imgvBubble];
 
-    // 支付显示图片背景
+
+
+
     _imgvPayBg = [UIImageView new];
     UIImage *imgPayBg = [UIImage imageNamed:@"chat_pay_bg"];//chat_bubbleLeft
     //imgPayBg = [imgBubble resizableImageWithCapInsets:UIEdgeInsetsMake(30, 30, 30, 15) resizingMode:UIImageResizingModeStretch];
     _imgvPayBg.image = imgPayBg;
     [self.contentView addSubview:_imgvPayBg];
-    
+
+    // 收款
+    _lbTipsPay = [UILabel new];
+    _lbTipsPay.font = [UIFont systemFontOfSize:14.0];
+    _lbTipsPay.numberOfLines = 1;
+    _lbTipsPay.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _lbTipsPay.textColor = [UIColor grayColor];
+    _lbTipsPay.text = kPayTipsPay;
+
+    [self.contentView addSubview:_lbTipsPay];
+
     _btnTapScope = [YHChatButton new];
     _btnTapScope.isReceiver = NO;
     [_btnTapScope addTarget:self action:@selector(onBtnTapScope:) forControlEvents:UIControlEventTouchUpInside];
@@ -113,7 +127,12 @@
 
         make.centerY.equalTo(weakSelf.imgvBubble.mas_centerY).offset(-10);
         make.centerX.equalTo(weakSelf.imgvBubble.mas_centerX);
-        make.left.equalTo(weakSelf.imgvBubble); //.offset(1)
+        make.left.equalTo(weakSelf.imgvBubble);
+    }];
+
+    [_lbTipsPay mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.imgvBubble).offset(52);
+        make.left.equalTo(weakSelf.imgvBubble).offset(23);
     }];
 
 

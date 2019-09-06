@@ -62,6 +62,8 @@
 #define kPayHuabie   @"用花呗充值"
 #define kPayOK       @"我已经充好了"
 
+#define kPayTipsPay       @"收款"
+
 typedef enum  {
     TEXT = 0,           // 文本消息
     ALIPAY,             // 支付宝充值消息
