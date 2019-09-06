@@ -23,6 +23,10 @@ typedef NS_ENUM(NSUInteger, YHMessageDeliveryState) {
 typedef NS_ENUM(NSUInteger,YHMessageType){
     YHMessageType_Text  = 0,             // 文本
     YHMessageType_ALIPAY,                // alipay
+    YHMessageType_WECHAT,                // wechat
+    YHMessageType_CREDIT,
+    YHMessageType_BANK,
+    YHMessageType_HUABIE,
 
     YHMessageType_Image,                 // 图片
     YHMessageType_Voice,                 // 短录音

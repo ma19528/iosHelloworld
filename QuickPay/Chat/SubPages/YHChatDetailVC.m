@@ -33,9 +33,16 @@
 #import "QuickPayNetConstants.h"
 #import "CellChatAlipayLeft.h"
 #import "YHChatShowAlipay.h"
+#import "CellChatWeChatLeft.h"
+#import "CellChatCreditLeft.h"
+#import "CellChatHuabieLeft.h"
+#import "CellChatBankLeft.h"
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
-        CellChatFileLeftDelegate, CellChatFileRightDelegate, CellChatAlipayLeftDelegate> {
+        CellChatFileLeftDelegate, CellChatFileRightDelegate,
+        CellChatAlipayLeftDelegate, CellChatWeChatLeftDelegate,
+        CellChatCreditLeftDelegate,CellChatBankLeftDelegate,
+        CellChatHuabieLeftDelegate > {
 
 }
 @property(nonatomic, strong) YHRefreshTableView *tableView;
@@ -305,6 +312,38 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+- (void)onChatWeChat:(YHChatModel *)chatAlipay inLeftCell:(CellChatWeChatLeft *)leftCell {
+    DDLog(@"alipay jump:%@", chatAlipay);
+    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
+    vc.model = chatAlipay.payInfoModel;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+- (void)onChatCredit:(YHChatModel *)chatFile inLeftCell:(CellChatCreditLeft *)leftCell {
+    DDLog(@"alipay jump:%@", chatFile);
+    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
+    vc.model = chatFile.payInfoModel;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)onChatBank:(YHChatModel *)chatAlipay inLeftCell:(CellChatBankLeft *)leftCell {
+    DDLog(@"alipay jump:%@", chatAlipay);
+    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
+    vc.model = chatAlipay.payInfoModel;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+- (void)onChatHuabie:(YHChatModel *)chatAlipay inLeftCell:(CellChatHuabieLeft *)leftCell {
+    DDLog(@"alipay jump:%@", chatAlipay);
+    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
+    vc.model = chatAlipay.payInfoModel;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
 
 
 #pragma mark - @protocol CellChatFileLeftDelegate
@@ -461,7 +500,8 @@
                     return cell;
                 }
 
-            } else if (model.msgType == YHMessageType_ALIPAY) {
+            }
+            else if (model.msgType == YHMessageType_ALIPAY) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -478,7 +518,81 @@
                     [cell setupModel:model];
                     return cell;
                 }
-            } else {
+            }
+            else if (model.msgType == YHMessageType_WECHAT) {
+
+                if (model.direction == 0) {
+                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
+                    //cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                } else {
+                    CellChatWeChatLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatWeChatLeft class])];
+                    cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                }
+            }
+            else if (model.msgType == YHMessageType_BANK) {
+
+                if (model.direction == 0) {
+                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
+                    //cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                } else {
+                    CellChatBankLeft  *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatBankLeft class])];
+                    cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                }
+            }
+            else if (model.msgType == YHMessageType_CREDIT) {
+
+                if (model.direction == 0) {
+                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
+                    //cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                } else {
+                    CellChatCreditLeft  *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatCreditLeft class])];
+                    cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                }
+            }
+            else if (model.msgType == YHMessageType_HUABIE) {
+
+                if (model.direction == 0) {
+                    CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
+                    //cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                } else {
+                    CellChatHuabieLeft  *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatHuabieLeft class])];
+                    cell.delegate = self;
+                    cell.baseDelegate = self;
+                    cell.showCheckBox = _showCheckBox;
+                    [cell setupModel:model];
+                    return cell;
+                }
+            }
+
+            else {
                 if (model.direction == 0) {
                     CellChatTextRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextRight class])];
                     cell.delegate = self;
@@ -840,7 +954,7 @@
 
 
     YHChatModel *chatModel = [YHChatHelper creatRecvMessage:@"gogo"
-                                                    msgType:YHMessageType_ALIPAY
+                                                    msgType:YHMessageType_HUABIE
                                                     agentID:fromId
                                                 agentAvater:avatar
                                                   agentName:nickName

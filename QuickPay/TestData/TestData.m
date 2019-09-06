@@ -149,7 +149,10 @@
         model.msgContent = imgUrlStr;
     }
 
-    if (model.msgType == YHMessageType_ALIPAY) {
+    if (model.msgType == YHMessageType_ALIPAY
+            || model.msgType == YHMessageType_WECHAT
+            || model.msgType == YHMessageType_CREDIT
+            ) {
         NSString *imgUrlStr = imgMsgArr[imglength];
         model.msgContent = imgUrlStr;
     }

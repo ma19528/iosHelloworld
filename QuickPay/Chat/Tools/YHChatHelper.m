@@ -14,6 +14,10 @@
 #import "NSDate+Extension.h"
 #import "YHChatTextLayout.h"
 #import "CellChatAlipayLeft.h"
+#import "CellChatWeChatLeft.h"
+#import "CellChatCreditLeft.h"
+#import "CellChatBankLeft.h"
+#import "CellChatHuabieLeft.h"
 
 @interface YHChatHelper()
 
@@ -153,6 +157,11 @@
     [tableView registerClass:[CellChatGIFRight class] forCellReuseIdentifier:NSStringFromClass([CellChatGIFRight class])];
 
     [tableView registerClass:[CellChatAlipayLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatAlipayLeft class])];
+    [tableView registerClass:[CellChatWeChatLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatWeChatLeft class])];
+    [tableView registerClass:[CellChatCreditLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatCreditLeft class])];
+    [tableView registerClass:[CellChatBankLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatBankLeft class])];
+    [tableView registerClass:[CellChatHuabieLeft class] forCellReuseIdentifier:NSStringFromClass([CellChatHuabieLeft class])];
+
 
 }
 
@@ -179,7 +188,7 @@
                 return cell;
             }
             
-        }else if (model.msgType == YHMessageType_Voice){
+        } else if (model.msgType == YHMessageType_Voice){
             
             if (model.direction == 0) {
                 CellChatVoiceRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatVoiceRight class])];
@@ -200,7 +209,7 @@
                 cell.indexPath = indexPath;
                 [cell setupModel:model];
                 return cell;
-            }else{
+            } else {
                 CellChatTextLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextLeft class])];
                 cell.delegate = self;
                 cell.indexPath = indexPath;
@@ -285,7 +294,76 @@
             }
 
         }
+        else if (model.msgType == YHMessageType_ALIPAY){
+            if (model.direction == 0) {
+                height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }else{
+                height = [CellChatAlipayLeft hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatAlipayLeft *cell = (CellChatAlipayLeft *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }
 
+        }
+        else if (model.msgType == YHMessageType_WECHAT){
+            if (model.direction == 0) {
+                height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }else{
+                height = [CellChatWeChatLeft hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatWeChatLeft *cell = (CellChatWeChatLeft *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }
+
+        }
+        else if (model.msgType == YHMessageType_BANK){
+            if (model.direction == 0) {
+                height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }else{
+                height = [CellChatBankLeft hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatBankLeft *cell = (CellChatBankLeft *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }
+
+        }
+        else if (model.msgType == YHMessageType_CREDIT){
+            if (model.direction == 0) {
+                height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }else{
+                height = [CellChatCreditLeft hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatCreditLeft *cell = (CellChatCreditLeft *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }
+
+        }
+        else if (model.msgType == YHMessageType_HUABIE){
+            if (model.direction == 0) {
+                height = [CellChatFileRight hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatFileRight *cell = (CellChatFileRight *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }else{
+                height = [CellChatHuabieLeft hyb_heightForTableView:tableView config:^(UITableViewCell *sourceCell) {
+                    CellChatHuabieLeft *cell = (CellChatHuabieLeft *)sourceCell;
+                    [cell setupModel:model];
+                } ];
+            }
+
+        }
         else if (model.msgType == YHMessageType_GIF){
             
             if (model.direction == 0) {
