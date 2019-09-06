@@ -391,6 +391,7 @@
     _payScrollView.showsHorizontalScrollIndicator = NO;
     _payScrollView.contentSize =  CGSizeMake(800, 0);
     _payScrollView.userInteractionEnabled = YES;
+    _payScrollView.delaysContentTouches = NO;
     [self.topToolBar addSubview:_payScrollView];
 
     _lbAlipay = [UILabel new];

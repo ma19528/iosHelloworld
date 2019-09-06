@@ -35,7 +35,7 @@
 #import "YHChatShowAlipay.h"
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
-        CellChatFileLeftDelegate, CellChatFileRightDelegate,CellChatAlipayLeftDelegate> {
+        CellChatFileLeftDelegate, CellChatFileRightDelegate, CellChatAlipayLeftDelegate> {
 
 }
 @property(nonatomic, strong) YHRefreshTableView *tableView;
@@ -99,7 +99,8 @@
 
             if (self.dataArray.count) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView scrollToBottomAnimated:NO];
+                    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count] - 1 inSection:0]
+                                          atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                 });
 
             }
@@ -296,7 +297,7 @@
 
 #pragma mark - @protocol CellChatAlipayLeftDelegate
 
-- (void)onChatAlipay:(YHChatModel*)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
+- (void)onChatAlipay:(YHChatModel *)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
     vc.model = chatAlipay.payInfoModel;
@@ -460,8 +461,7 @@
                     return cell;
                 }
 
-            }
-            else if (model.msgType == YHMessageType_ALIPAY) {
+            } else if (model.msgType == YHMessageType_ALIPAY) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -478,8 +478,7 @@
                     [cell setupModel:model];
                     return cell;
                 }
-            }
-            else {
+            } else {
                 if (model.direction == 0) {
                     CellChatTextRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextRight class])];
                     cell.delegate = self;
@@ -576,17 +575,19 @@
 
 //发送-click keyboad sending button.
 - (void)didTapSendBtn:(NSString *)text {
-
+    DDLog(@"构造发送消息%@", text);
     if (text.length) {
         YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
         // TODO.... agentID 要写如对应的那个代理。
-        chatModel.agentId     = @"67553";
+        chatModel.agentId = @"67553";
         chatModel.agentAvatar = _model.sessionUserHead[0];
-        chatModel.agentName   = _model.sessionUserName;
+        chatModel.agentName = _model.sessionUserName;
         [self.dataArray addObject:chatModel];
 
         [self.tableView reloadData];
-        [self.tableView scrollToBottomAnimated:NO];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count] - 1 inSection:0]
+                              atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
     }
 
     // TODO...这个shi本地测试。。。。
