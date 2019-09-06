@@ -171,7 +171,12 @@
     _lbContent.textLayout = model.layout.textLayout;
     self.lbName.text    = self.model.speakerName;
     self.lbTime.text    = self.model.createTime;
-    [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
+    // self.imgvAvatar.image = [UIImage imageNamed:@"default_header"];
+    if (self.model.speakerAvatar != nil) {
+        [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
+    } else {
+        self.imgvAvatar.image = [UIImage imageNamed:@"default_header"];
+    }
 
     //关联聊天到数据库
     [[SqliteManager sharedInstance] createOneChat:model.agentId chatModel:model complete:^(BOOL success, id obj) {

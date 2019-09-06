@@ -24,9 +24,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3631bf4f-513d-4eda-aa1a-b5db778a1922" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/chat_pay_bg.imageset/chat_bg1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/chat_pay_bg.imageset/chat_bg2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/default_header.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/default_header.imageset/default_agent_header-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/default_header.imageset/default_agent_header.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header10.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header10.imageset/head10-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header10.imageset/head10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header11.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header11.imageset/head11-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header11.imageset/head11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header12.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header12.imageset/head12-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header12.imageset/head12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header4.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header4.imageset/head4-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header4.imageset/head4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header5.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header5.imageset/head5-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header5.imageset/head5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header6.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header6.imageset/head6-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header6.imageset/head6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header7.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header7.imageset/head7-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header7.imageset/head7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header8.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header8.imageset/head8-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header8.imageset/head8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header9.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header9.imageset/head9-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/header9.imageset/head9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/heder3.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/heder3.imageset/head3-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/heder3.imageset/head3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/pay_label.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/pay_label.imageset/use_pay_bg1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/pay_label.imageset/use_pay_bg2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Image-2.imageset.textClipping" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/Image-2.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/Image-3.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/Image-4.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/Image-5.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/chat_pay_bg.imageset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/chat_pay_bg.imageset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/chat_pay_bg.imageset/pay_dilog_bg-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Assets.xcassets/Chat/chat_pay_bg.imageset/pay_dilog_bg.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ExpressionKeyboard/YHExpressionKeyboard.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ExpressionKeyboard/YHExpressionKeyboard.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatAlipayLeft.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatAlipayLeft.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatTextRight.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatTextRight.m" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +104,11 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1OtrfQpVu0qk5IZic62GNQFV0ez" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="QuickPay" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -129,7 +179,7 @@
       <workItem from="1567492417240" duration="48900000" />
       <workItem from="1567653711785" duration="1958000" />
       <workItem from="1567655991575" duration="9269000" />
-      <workItem from="1567672877396" duration="19225000" />
+      <workItem from="1567672877396" duration="25493000" />
     </task>
     <servers />
   </component>
@@ -148,6 +198,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

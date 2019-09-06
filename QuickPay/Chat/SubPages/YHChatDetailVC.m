@@ -815,7 +815,7 @@
     NSNumber *msgType = [dict objectForKey:kKey_msgType];
     NSString *nickName = [dict objectForKey:kKey_nickname];
     NSNumber *sendTime = [dict objectForKey:kKey_sendTime];
-    id msgID = [dict objectForKey:kKey_msgId];       // 这个服务器怎么发过来是 number，要统一转换为NSString
+    id msgID = [dict objectForKey:kKey_msgId]; // 这个服务器怎么发过来是 number，要统一转换为NSString
     // 解析msgBody的时候，要根据 msgType来进行解析， 不同的类型装进去的数据结构不一样。
     NSDictionary *msgBody = [dict objectForKey:kKey_body];
     NSLog(@"==========processChatMsg end");

@@ -111,7 +111,7 @@
         make.height.mas_equalTo(68);
         make.width.mas_equalTo(173); // 这个尺寸是根据图片的分辨率来的。
 
-        make.centerY.equalTo(weakSelf.imgvBubble.mas_centerY);
+        make.centerY.equalTo(weakSelf.imgvBubble.mas_centerY).offset(-10);
         make.centerX.equalTo(weakSelf.imgvBubble.mas_centerX);
         make.left.equalTo(weakSelf.imgvBubble); //.offset(1)
     }];
