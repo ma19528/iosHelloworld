@@ -242,12 +242,17 @@
     }
     
     NSString *model_primaryKey = [primaryKey copy];
-    __block NSString *initSql = [NSString stringWithFormat:@"update '%@' set ",tableName];;
+    __block NSString *initSql = [NSString stringWithFormat:@"update '%@' set ",tableName];
+
     if ([[model class] yh_primaryKey]) {
         model_primaryKey = [[model class] yh_primaryKey];
-    }else{
+    }
+    else {
         model_primaryKey = YHDB_PrimaryKey;
     }
+//    else if ([model_primaryKey isEqualToString:@"agentId"]) {
+//    }
+
     NSString *sql2 = [NSString stringWithFormat:@" where %@ = '%@' ;",primaryKey,[model valueForKey:model_primaryKey]];
     //非保存字段数组
     NSArray *arrProDonotSave = [[model class] yh_propertyDonotSave];

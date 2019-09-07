@@ -64,7 +64,7 @@
     // Do any additional setup after loading the view.
 
     self.navigationController.navigationBar.translucent = NO;
-
+    // self.navigationController.navigationBar.barTintColor    = kBlueColor;
     //设置导航栏
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
 
@@ -81,26 +81,26 @@
 
 
     //模拟数据源
-    [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
+    // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
     // TODO。。。 sessionID 用 代理的id。。
     [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:@"67553" userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
             //----
             CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
-            for (YHChatModel *model in obj) {
-                [self.dataArray addObject:model];
+            for (YHChatModel *chatModel in obj) {
+                [self.dataArray addObject:chatModel];
                 UIColor *textColor = [UIColor blackColor];
                 UIColor *matchTextColor = UIColorHex(527ead);
                 UIColor *matchTextHighlightBGColor = UIColorHex(bfdffe);
-                if (model.direction == 0) {
+                if (chatModel.direction == 0) {
                     textColor = [UIColor blackColor];  //whiteColor
                     matchTextColor = [UIColor greenColor];
                     matchTextHighlightBGColor = [UIColor grayColor];
                 }
                 YHChatTextLayout *layout = [[YHChatTextLayout alloc] init];
-                [layout layoutWithText:model.msgContent fontSize:(14 + addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
-                model.layout = layout;
+                [layout layoutWithText:chatModel.msgContent fontSize:(14 + addFontSize) textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
+                chatModel.layout = layout;
                 [self.layouts addObject:layout];
             }
 
@@ -970,16 +970,31 @@
     [self.dataArray addObject:chatModel];
 
     // 历史消息存在数据库里面。
-    // TOODO。。。
-    //关联聊天到数据库
     [[SqliteManager sharedInstance] createOneChat:chatModel.agentId chatModel:chatModel complete:^(BOOL success, id obj) {
         if (success) {
-            DDLog(@"下载文件关联到数据库成功:%@",obj);
+            DDLog(@"createOneChat sucess:%@",obj);
         }else{
-            DDLog(@"下载文件关联到数据库失败:%@",obj);
+            DDLog(@"createOneChat fail 数据库:%@",obj);
         }
     }];
 
+    YHChatListModel *listModel = [YHChatHelper creatChatListMessage:strMessageText
+                                                    msgType:[msgType longValue]
+                                                    msgBody:strBody
+                                                    agentID:fromId
+                                                agentAvater:avatar
+                                                  agentName:nickName
+                                                      msgID:strMsgID
+                                                    msgTime:sendTime];
+
+
+    [[SqliteManager sharedInstance] createOneChatList:KChatList chaListtModel:listModel complete:^(BOOL success, id obj) {
+        if (success) {
+            DDLog(@"createOneChatList sucess:%@",obj);
+        }else{
+            DDLog(@"createOneChatList 到数据库失败:%@",obj);
+        }
+    }];
 }
 
 - (NSString *)convertToJsonData:(NSDictionary *)dict

@@ -1,30 +1,31 @@
 //
-//  CellChatList.m
+//  CellChatPayList.m
 //  samuelandkevin github:https://github.com/samuelandkevin/YHChat
 //
 //  Created by samuelandkevin on 17/2/20.
 //  Copyright © 2017年 samuelandkevin. All rights reserved.
 //
 
-#import "CellChatList.h"
+#import "CellChatPayList.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Masonry/Masonry.h>
 #import "YHChatListModel.h"
 #import "YHGroupIconView.h"
+#import "YHChatModel.h"
 
-@interface CellChatList()
+@interface CellChatPayList()
 
 @property (nonatomic,strong) UILabel *lbTime;
 @property (nonatomic,strong) UILabel *lbName;
 @property (nonatomic,strong) UIImageView *imgvAvatar;
-@property (nonatomic,strong) UILabel *lbContent;
+@property (nonatomic,strong) UILabel    *lbContent;
 @property (nonatomic,strong) UILabel *lbNewMsg;
 @property (nonatomic,strong) UIView  *viewBotLine;
 @property (nonatomic,strong) YHGroupIconView *imgvGroupIcon;
 @end
 
 
-@implementation CellChatList
+@implementation CellChatPayList
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -99,8 +100,7 @@
 
 - (void)layoutUI{
     __weak typeof(self) weakSelf = self;
-    
-    
+
     [_imgvAvatar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(44);
         make.top.equalTo(weakSelf.contentView).offset(10);
@@ -160,21 +160,21 @@
 }
 
 #pragma mark - Setter
-- (void)setModel:(YHChatListModel *)model{
+- (void)setModel:(YHChatModel *)model{
     _model = model;
     _lbName.text = _model.agentName;
     
-    _lbContent.text = _model.lastContent;
-    _lbTime.text    = _model.lastCreatTime;
-    if (_model.isGroupChat) {
-        _imgvGroupIcon.picUrlArray = _model.sessionUserHead;
-        _imgvGroupIcon.hidden = NO;
-        _imgvAvatar.hidden = YES;
-    }else{
+    _lbContent.text = _model.content;
+    _lbTime.text    = _model.createTime;
+//    if (_model.isGroupChat) {
+//        _imgvGroupIcon.picUrlArray = _model.sessionUserHead;
+//        _imgvGroupIcon.hidden = NO;
+//        _imgvAvatar.hidden = YES;
+//    }else{
         [_imgvAvatar sd_setImageWithURL:_model.agentAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
         _imgvAvatar.hidden = NO;
         _imgvGroupIcon.hidden = YES;
-    }
+//    }
     
     
 }

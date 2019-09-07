@@ -13,6 +13,8 @@
 #import "FMDatabase+YHDatabase.h"
 #import "YHSqilteConfig.h"
 
+@class YHChatListModel;
+
 //建表
 @interface CreatTable : NSObject
 
@@ -27,8 +29,9 @@
 
 
 typedef NS_ENUM(int,DBChatType){
-    DBChatType_Group = 101, //群聊
-    DBChatType_Private      //单聊
+    DBChatType_Group = 101,  //群聊
+    DBChatType_Private,      //单聊
+    DBChatType_ChatList          // 聊天列表
 };
 
 
@@ -46,6 +49,12 @@ typedef NS_ENUM(int,DBChatType){
 
 #pragma mark - 聊天
 - (void)createOneChat:(NSString *)sessionID chatModel:(YHChatModel *)chatModel complete:(void (^)(BOOL success, id obj))complete;
+// 聊天列表
+- (void)createOneChatList:(NSString *)sessionID
+                chaListtModel:(YHChatListModel *)chatModel
+                 complete:(void (^)(BOOL success, id obj))complete;
+- (void)queryChatListTableWithType:(DBChatType)type sessionID:(NSString *)sessionID userInfo:(NSDictionary *)userInfo
+                     fuzzyUserInfo:(NSDictionary *)fuzzyUserInfo complete:(void (^)(BOOL success, id obj))complete;
 
 /*
  *  更新ChatLog表多条信息

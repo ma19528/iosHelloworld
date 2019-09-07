@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 
 @class YHChatModel;
+@class YHChatListModel;
+
 @interface YHChatHelper : NSObject
 
 //从本地创建一条消息
@@ -24,6 +26,14 @@
                             msgID:(NSString *)msgID
                           msgTime:(NSString *)msgTime;
 
++ (YHChatListModel *)creatChatListMessage:(NSString *)msg
+                                  msgType:(YHMessageType)msgType
+                                  msgBody:(NSString *)msgBody
+                                  agentID:(NSString *)agentID
+                              agentAvater:(NSString *)agentAvater
+                                agentName:(NSString *)agentName
+                                    msgID:(NSString *)msgID
+                                  msgTime:(NSString *)msgTime;
 //注册Cell
 - (void)registerCellClassWithTableView:(__weak UITableView *)tableView;
 

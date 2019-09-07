@@ -56,6 +56,8 @@ static inline NSString *tableNameLogin(NSString *userID){
 //单聊目录
 #define PriChatLogDir [YHChatLogDir stringByAppendingPathComponent:@"PriChat"]
 
+#define KChatList @"ChatList"
+
 //语音目录
 #define ChatRecordDir [YHChatLogDir stringByAppendingPathComponent:@"RecordChat"]
 

@@ -7,7 +7,19 @@
 //
 
 #import "YHChatListModel.h"
+#import "NSObject+YHDBRuntime.h"
 
 @implementation YHChatListModel
+#pragma mark - 数据库操作
++ (NSString *)yh_primaryKey{
+    return @"agentId";
+}
 
++ (NSDictionary *)yh_replacedKeyFromPropertyName{
+    return @{@"agentId":YHDB_PrimaryKey};
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+
+}
 @end

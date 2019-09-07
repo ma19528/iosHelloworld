@@ -9,6 +9,7 @@
 #import <FMDB/FMDatabaseQueue.h>
 #import "SqliteManager.h"
 #import "NetManager.h"
+#import "YHChatListModel.h"
 
 
 @implementation CreatTable
@@ -265,6 +266,7 @@
                     dir = GroupChatLogDir;
                     break;
                 case DBChatType_Private:
+                case DBChatType_ChatList:
                     dir = PriChatLogDir;
                     break;
                 default:
@@ -295,7 +297,9 @@
             dir = GroupChatLogDir;
         }
             break;
-        case DBChatType_Private: {
+        case DBChatType_Private:
+        case DBChatType_ChatList:
+            {
             dir = PriChatLogDir;
         }
 
@@ -331,7 +335,13 @@
 
         //存SQL语句
         NSString *tableName = tableNameChatLog(sessionID);
-        NSString *creatTableSql = [YHChatModel yh_sqlForCreatTable:tableName primaryKey:@"id"];
+        NSString *creatTableSql =nil;
+        if (type == DBChatType_ChatList) {
+            creatTableSql = [YHChatListModel yh_sqlForCreatTable:tableName primaryKey:@"id"];
+        } else {
+            creatTableSql = [YHChatModel yh_sqlForCreatTable:tableName primaryKey:@"id"];
+        }
+
         if (creatTableSql) {
             model.sqlCreatTable = @[creatTableSql];
         }
@@ -368,6 +378,45 @@
 
     }];
     return model;
+}
+
+//插入一条聊天信息到聊天列表
+- (void)createOneChatList:(NSString *)sessionID
+            chaListtModel:(YHChatListModel *)chatModel
+                 complete:(void (^)(BOOL success, id obj))complete {
+
+    CreatTable *model = [self _setupDBqueueWithType:DBChatType_ChatList sessionID:sessionID];
+    FMDatabaseQueue *queue = model.queue;
+
+    NSString *tableName = tableNameChatLog(sessionID);
+
+    [queue inDatabase:^(FMDatabase *db) {
+        /** 存储:会自动调用insert或者update，不需要担心重复插入数据 */
+        [db yh_saveDataWithTable:tableName model:chatModel primaryKey:@"agentId" userInfo:nil otherSQL:nil option:^(BOOL save) {
+            if (!save) {
+                complete(save, @"更新某条数据失败");
+            } else {
+                //complete(save, @"%" );
+                DDLog(@"----更新某条数据成功d:---", __LINE__);
+                complete(save, nil);
+            }
+        }];
+
+    }];
+
+}
+
+//查询Chat List表
+- (void)queryChatListTableWithType:(DBChatType)type sessionID:(NSString *)sessionID userInfo:(NSDictionary *)userInfo fuzzyUserInfo:(NSDictionary *)fuzzyUserInfo complete:(void (^)(BOOL success, id obj))complete {
+
+    CreatTable *model = [self _setupDBqueueWithType:type sessionID:sessionID];
+    FMDatabaseQueue *queue = model.queue;
+
+    [queue inDatabase:^(FMDatabase *db) {
+        [db yh_excuteDatasWithTable:tableNameChatLog(sessionID) model:[YHChatListModel new] primaryKey:@"agentId" userInfo:userInfo fuzzyUserInfo:fuzzyUserInfo otherSQL:nil option:^(NSMutableArray *models) {
+            complete(YES, models);
+        }];
+    }];
 }
 
 //插入一条聊天信息
@@ -604,8 +653,6 @@
 
 #pragma mark - 聊天文件
 //更新聊天文件
-
-
 
 #pragma mark - filePrivate
 

@@ -45,6 +45,15 @@
     return retArr;
 }
 
++ (NSArray <YHChatModel *>*)randomGenerateChatListPayModel:(int)totalCount{
+
+    NSMutableArray *retArr = [NSMutableArray arrayWithCapacity:totalCount];
+    for (int i=0; i<totalCount; i++) {
+        YHChatModel *model = [self _creatOneChatModelWithTotalCount:totalCount];
+        [retArr addObject:model];
+    }
+    return retArr;
+}
 
 
 

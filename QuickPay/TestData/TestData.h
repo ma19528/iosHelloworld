@@ -29,4 +29,5 @@
  */
 + (NSArray <YHChatListModel *>*)randomGenerateChatListModel:(int)totalCount;
 
++ (NSArray <YHChatModel *>*)randomGenerateChatListPayModel:(int)totalCount;
 @end

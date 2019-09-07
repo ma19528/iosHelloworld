@@ -18,6 +18,7 @@
 #import "CellChatCreditLeft.h"
 #import "CellChatBankLeft.h"
 #import "CellChatHuabieLeft.h"
+#import "YHChatListModel.h"
 
 @interface YHChatHelper()
 
@@ -122,7 +123,6 @@
 //
 //    NSString *timeSp = [NSString stringWithFormat:@"%d", (long)[localeDate timeIntervalSince1970]];
 
-
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
     NSTimeInterval time =  [msgTime doubleValue]/1000;
@@ -135,6 +135,49 @@
     model.createTime  = strData;//  [date getNowDate];
     return model;
 }
+
++ (YHChatListModel *)creatChatListMessage:(NSString *)msg
+                          msgType:(YHMessageType)msgType
+                          msgBody:(NSString *)msgBody
+                          agentID:(NSString *)agentID
+                      agentAvater:(NSString *)agentAvater
+                        agentName:(NSString *)agentName
+                            msgID:(NSString *)msgID
+                          msgTime:(NSString *)msgTime
+{
+    YHChatListModel *model  = [YHChatListModel new];
+    model.isGroupChat = 0;
+    model.lastContent = msg;
+    model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
+    model.lastContent = msg;
+    model.msgType       = msgType;
+
+    // TODO...现在写死做测试放开
+    agentAvater = @"https://static.oschina.net/uploads/space/2015/0629/170157_rxDh_1767531.png";
+
+    model.agentId = agentID;
+    model.agentAvatar = [NSURL URLWithString:agentAvater]; ;
+    model.agentName = agentName;
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
+    NSTimeInterval time =  [msgTime doubleValue]/1000;
+    NSString *strData = [NSString stringWithFormat:@"%@",
+                                                   [formatter stringFromDate: [NSDate dateWithTimeIntervalSince1970:time]]];
+
+
+    NSDate *date = [[NSDate alloc] init ];
+    NSString *dat = [date getNowDate];
+    model.lastCreatTime  = strData;//  [date getNowDate];
+
+    model.status = 0;
+    model.updateTime = @"2019-2-27 13:38";
+    model.creatTime = @"2017-2-27 13:38";
+//    model.lastCreatTime = @"2018-2-27 9:38";
+
+    return model;
+}
+
 
 // current message time
 + (int)currentMsgTime
