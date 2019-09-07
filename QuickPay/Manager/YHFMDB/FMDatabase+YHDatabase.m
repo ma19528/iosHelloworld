@@ -35,7 +35,9 @@
 
 #pragma mark -- 有PrimaryKey
 - (void)yh_exsitInDatabaseWithTable:(NSString *)table model:(id )model primaryKey:(NSString *)primaryKey userInfo:(NSDictionary *)userInfo otherSQL:(NSDictionary *)otherSQL option:(YHExistExcuteOption )option{
-    if (!primaryKey) primaryKey = YHDB_PrimaryKey;
+    if (!primaryKey) {
+        primaryKey = YHDB_PrimaryKey;
+    }
     
     id primary_keyValue = nil;
     if ([[model class] yh_primaryKey]) {

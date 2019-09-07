@@ -17,6 +17,7 @@
 
 + (NSDictionary *)yh_replacedKeyFromPropertyName{
     return @{@"agentId":YHDB_PrimaryKey};
+    //return @{@"id":@"agentId"};
 }
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{

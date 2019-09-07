@@ -392,11 +392,10 @@
 
     [queue inDatabase:^(FMDatabase *db) {
         /** 存储:会自动调用insert或者update，不需要担心重复插入数据 */
-        [db yh_saveDataWithTable:tableName model:chatModel primaryKey:@"agentId" userInfo:nil otherSQL:nil option:^(BOOL save) {
+        [db yh_saveDataWithTable:tableName model:chatModel userInfo:nil otherSQL:nil option:^(BOOL save) {
             if (!save) {
                 complete(save, @"更新某条数据失败");
             } else {
-                //complete(save, @"%" );
                 DDLog(@"----更新某条数据成功d:---", __LINE__);
                 complete(save, nil);
             }
@@ -413,7 +412,8 @@
     FMDatabaseQueue *queue = model.queue;
 
     [queue inDatabase:^(FMDatabase *db) {
-        [db yh_excuteDatasWithTable:tableNameChatLog(sessionID) model:[YHChatListModel new] primaryKey:@"agentId" userInfo:userInfo fuzzyUserInfo:fuzzyUserInfo otherSQL:nil option:^(NSMutableArray *models) {
+        //primaryKey:@"agentId"
+        [db yh_excuteDatasWithTable:tableNameChatLog(sessionID) model:[YHChatListModel new]  userInfo:userInfo fuzzyUserInfo:fuzzyUserInfo otherSQL:nil option:^(NSMutableArray *models) {
             complete(YES, models);
         }];
     }];

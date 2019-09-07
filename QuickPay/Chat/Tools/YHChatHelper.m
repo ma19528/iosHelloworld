@@ -155,6 +155,7 @@
     // TODO...现在写死做测试放开
     agentAvater = @"https://static.oschina.net/uploads/space/2015/0629/170157_rxDh_1767531.png";
 
+    model.userId = agentID;
     model.agentId = agentID;
     model.agentAvatar = [NSURL URLWithString:agentAvater]; ;
     model.agentName = agentName;

@@ -74,8 +74,11 @@
 //        [btn setTitle:@"更多" forState:UIControlStateNormal];
 //    }];
 
-
-    self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;
+    if (self.model.agentName != nil) {
+        self.title =self.model.agentName;
+    } else {
+        self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;
+    }
 
     [self initUI];
 
@@ -84,7 +87,7 @@
     // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
     // TODO。。。 sessionID 用 代理的id。。
-    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:@"67553" userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
+    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:self.model.agentId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
             //----
             CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
@@ -694,8 +697,20 @@
         YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
         // TODO.... agentID 要写如对应的那个代理。
         chatModel.agentId = @"67553";
-        chatModel.agentAvatar = _model.sessionUserHead[0];
-        chatModel.agentName = _model.sessionUserName;
+        if (_model.agentAvatar == nil ) {
+            if (_model.sessionUserHead != nil) {
+                chatModel.agentAvatar = _model.sessionUserHead[0];
+            }
+        } else {
+            chatModel.agentAvatar = _model.agentAvatar;
+        }
+
+        if (_model.agentName != nil) {
+            chatModel.agentName = _model.agentName;
+        } else if (_model.sessionUserName != nil) {
+            chatModel.agentName = _model.sessionUserName;
+        }
+
         [self.dataArray addObject:chatModel];
 
         [self.tableView reloadData];
