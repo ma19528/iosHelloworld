@@ -48,12 +48,6 @@
                     [self.tableView reloadData];
                 });
             }
-//            if (self.dataArray.count) {
-////                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////                    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count] - 1 inSection:0]
-////                                          atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-////                });
-//            }
         } else {
             DDLog(@"查询数据库数据库失败，没获取到数据。:%@", obj);
         }
@@ -141,10 +135,17 @@
 //点击删除
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     //在这里实现删除操作
-    
+    YHChatListModel *listModel = [self.dataArray objectAtIndex:indexPath.row];
     //删除数据，和删除动画
-    //[self.myDataArr removeObjectAtIndex:deleteRow];
-    //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:deleteRow inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+    [self.dataArray removeObjectAtIndex:indexPath.row];
+    [[SqliteManager sharedInstance] deleteOneChatListWithType:DBChatType_ChatList sessionID:KChatList agentId:listModel.agentId complete:^(BOOL success, id obj) {
+        if (success) {
+            DDLog(@" 删除成功成功:%@ ", obj);
+        } else {
+            DDLog(@"删除失败。:%@", obj);
+        }
+    }];
+    [self.tableView reloadData];
 }
 
 
@@ -152,7 +153,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     return 60.0f;
 }
 

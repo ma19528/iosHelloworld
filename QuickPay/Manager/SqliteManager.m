@@ -419,6 +419,28 @@
     }];
 }
 
+//Chat List表 根据 agenId 删除一条记录
+- (void)deleteOneChatListWithType:(DBChatType)type sessionID:(NSString *)sessionID agentId:(NSString *)agentId complete:(void (^)(BOOL success, id obj))complete {
+
+    if (!agentId) {
+        complete(NO, @"msgID is nil");
+        return;
+    }
+
+    CreatTable *cmodel = [self _setupDBqueueWithType:type sessionID:sessionID];
+    FMDatabaseQueue *queue = cmodel.queue;
+    YHChatListModel *model = [YHChatListModel new];
+    model.agentId = agentId;
+
+    [queue inDatabase:^(FMDatabase *db) {
+        [db yh_deleteDataWithTable:tableNameChatLog(sessionID) model:model userInfo:nil otherSQL:nil option:^(BOOL del) {
+            complete(del, nil);
+        }
+        ];
+    }];
+}
+
+
 //插入一条聊天信息
 - (void)createOneChat:(NSString *)sessionID
             chatModel:(YHChatModel *)chatModel

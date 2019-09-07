@@ -56,6 +56,9 @@ typedef NS_ENUM(int,DBChatType){
 - (void)queryChatListTableWithType:(DBChatType)type sessionID:(NSString *)sessionID userInfo:(NSDictionary *)userInfo
                      fuzzyUserInfo:(NSDictionary *)fuzzyUserInfo complete:(void (^)(BOOL success, id obj))complete;
 
+- (void)deleteOneChatListWithType:(DBChatType)type sessionID:(NSString *)sessionID agentId:(NSString *)agentId
+                        complete:(void (^)(BOOL success, id obj))complete;
+
 /*
  *  更新ChatLog表多条信息
  */
