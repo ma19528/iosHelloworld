@@ -29,9 +29,8 @@
     // Do any additional setup after loading the view.
     self.title = @"信息";
     self.navigationController.navigationBar.translucent = NO;
-
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
-//                                                       forBarMetrics:UIBarMetricsDefault];
+    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
+    //                                                       forBarMetrics:UIBarMetricsDefault];
     // self.navigationController.navigationBar.barTintColor    = kGrayColor;
     [self initUI];
 
