@@ -787,14 +787,46 @@
         [self.navigationController presentViewController:nav animated:YES completion:NULL];
     } else if ([itemName isEqualToString:@"拍摄"]) {
         DDLog(@"拍摄");
-        YHShootVC *vc = [[YHShootVC alloc] init];
-        [self.navigationController presentViewController:vc animated:YES completion:NULL];
+//        YHShootVC *vc = [[YHShootVC alloc] init];
+//        [self.navigationController presentViewController:vc animated:YES completion:NULL];
+
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+
+        [self presentViewController:imagePickerController animated:YES completion:^{
+
+        }];
+
     } else if ([itemName isEqualToString:@"照片"]) {
         DDLog(@"照片");
-        YHShootVC *vc = [[YHShootVC alloc] init];
-        [self.navigationController presentViewController:vc animated:YES completion:NULL];
+        //YHShootVC *vc = [[YHShootVC alloc] init];
+        //[self.navigationController presentViewController:vc animated:YES completion:NULL];
+
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+        [self presentViewController:imagePickerController animated:YES completion:^{
+
+        }];
     }
 }
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{
+
+    }];
+
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //self.headImage.image = image;
+}
+
+
 
 #pragma mark - 网络请求
 
