@@ -123,7 +123,6 @@
         }
     }];
 
-
     //设置WebScoket
     //[[YHChatManager sharedInstance] connectToUserID:@"99f16547-637c-4d84-8a55-ef24031977dd" isGroupChat:NO];
     [[YHChatManager sharedInstance] connectQuickpay];
@@ -687,7 +686,6 @@
     });
 }
 
-
 #pragma mark - @protocol YHExpressionKeyboardDelegate
 
 //发送-click keyboad sending button.
@@ -787,19 +785,11 @@
         [self.navigationController presentViewController:nav animated:YES completion:NULL];
     } else if ([itemName isEqualToString:@"拍摄"]) {
         DDLog(@"拍摄");
-//        YHShootVC *vc = [[YHShootVC alloc] init];
-//        [self.navigationController presentViewController:vc animated:YES completion:NULL];
+        //        YHShootVC *vc = [[YHShootVC alloc] init];
+        //        [self.navigationController presentViewController:vc animated:YES completion:NULL];
 
-//        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-//        imagePickerController.delegate = self;
-//        imagePickerController.allowsEditing = YES;
-//        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-//
-//        [self presentViewController:imagePickerController animated:YES completion:^{
-//
-//        }];
 
-// 直接调用相机
+        // 直接调用相机
         ZLCustomCamera *camera = [[ZLCustomCamera alloc] init];
 
         camera.allowTakePhoto = YES;
@@ -830,15 +820,14 @@
     }
 }
 
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:YES completion:^{
-        DDLog(@"选择成功");
-    }];
-
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    //self.headImage.image = image;
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    [picker dismissViewControllerAnimated:YES completion:^{
+//        DDLog(@"选择成功");
+//    }];
+//
+//    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//    //self.headImage.image = image;
+//}
 
 
 #pragma mark - 网络请求

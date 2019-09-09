@@ -69,7 +69,9 @@
                              @"accessToken":MYTOKEN
                              };
 
-    [self _uploadFileInQueue:self.uploadAudioQueue filePath:recordPath requestUrl:requestUrl fileNameInServer:@"file" maxConcurrentCount:kUploadAudioMAXCount mimeType:@"audio/wav" params:params complete:^(BOOL success, id obj){
+    [self _uploadFileInQueue:self.uploadAudioQueue filePath:recordPath requestUrl:requestUrl
+            fileNameInServer:@"file" maxConcurrentCount:kUploadAudioMAXCount
+                    mimeType:@"audio/wav" params:params complete:^(BOOL success, id obj){
         if (success) {
             id dictData  = obj[@"data"];
             if(![dictData isKindOfClass:[NSDictionary class]]){
@@ -128,7 +130,13 @@
 
 #pragma mark - Private
 
-- (void)_uploadFileInQueue:(NSMutableArray *)uploadQueue filePath:(NSString *)filePath requestUrl:(NSString *)requestUrl fileNameInServer:(NSString *)fileNameInServer maxConcurrentCount:(int)maxConcurrentCount mimeType:(NSString *)mimeType params:(NSDictionary *)params complete:(void (^)(BOOL success,id obj))complete progress:(void(^)(int64_t bytesWritten, int64_t totalBytesWritten))progress{
+- (void)_uploadFileInQueue:(NSMutableArray *)uploadQueue filePath:(NSString *)filePath
+                requestUrl:(NSString *)requestUrl
+          fileNameInServer:(NSString *)fileNameInServer
+        maxConcurrentCount:(int)maxConcurrentCount
+                  mimeType:(NSString *)mimeType params:(NSDictionary *)params
+                  complete:(void (^)(BOOL success,id obj))complete
+                  progress:(void(^)(int64_t bytesWritten, int64_t totalBytesWritten))progress{
     
     
     //filePath

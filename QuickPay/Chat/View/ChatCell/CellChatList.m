@@ -177,10 +177,9 @@
         _imgvGroupIcon.hidden = NO;
         _imgvAvatar.hidden = YES;
     } else {
-        [_imgvAvatar sd_setImageWithURL:_model.agentAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
+        [_imgvAvatar sd_setImageWithURL:_model.agentAvatar placeholderImage:[UIImage imageNamed:@"default_header"]];
         _imgvAvatar.hidden = NO;
         _imgvGroupIcon.hidden = YES;
-
     }
 
 

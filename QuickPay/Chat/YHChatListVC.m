@@ -36,6 +36,18 @@
 
     //模拟数据源
     [self.dataArray addObjectsFromArray:[TestData randomGenerateChatListModel:3]];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+     NSLog(@"执行刷新数据了");
+    [self loadData];
+}
+
+- (void) loadData {
+    // TODO... 暂不清除数据，上线要放开。
+    // [self.dataArray removeAllObjects];
     [[SqliteManager sharedInstance] queryChatListTableWithType:DBChatType_ChatList sessionID:KChatList userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
             CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
@@ -57,8 +69,8 @@
             [self.tableView reloadData];
         });
     }
-
 }
+
 
 - (NSMutableArray *)dataArray{
     if (!_dataArray) {

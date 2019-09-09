@@ -124,7 +124,8 @@
 //    NSString *timeSp = [NSString stringWithFormat:@"%d", (long)[localeDate timeIntervalSince1970]];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
+    //2019-2-27 13:38
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSTimeInterval time =  [msgTime doubleValue]/1000;
     NSString *strData = [NSString stringWithFormat:@"%@",
             [formatter stringFromDate: [NSDate dateWithTimeIntervalSince1970:time]]];
@@ -161,7 +162,8 @@
     model.agentName = agentName;
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //[formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
     NSTimeInterval time =  [msgTime doubleValue]/1000;
     NSString *strData = [NSString stringWithFormat:@"%@",
                                                    [formatter stringFromDate: [NSDate dateWithTimeIntervalSince1970:time]]];
