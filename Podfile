@@ -13,5 +13,6 @@ target 'QuickPay' do
     pod 'QTEventBus/AppModule'
     pod 'QTEventBus/UIKit'
 
+    pod 'ZLPhotoBrowser', '~> 3.0.0'
 end
 

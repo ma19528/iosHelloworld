@@ -6,6 +6,9 @@
 //  Copyright © 2017年 samuelandkevin. All rights reserved.
 //
 
+#import <ZLPhotoBrowser/ZLPhotoBrowser.h>
+#import <ZLPhotoBrowser/ZLCustomCamera.h>
+
 #import "YHChatDetailVC.h"
 #import "YHRefreshTableView.h"
 #import "YHChatHeader.h"
@@ -38,11 +41,12 @@
 #import "CellChatHuabieLeft.h"
 #import "CellChatBankLeft.h"
 
+
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
         CellChatFileLeftDelegate, CellChatFileRightDelegate,
         CellChatAlipayLeftDelegate, CellChatWeChatLeftDelegate,
-        CellChatCreditLeftDelegate,CellChatBankLeftDelegate,
-        CellChatHuabieLeftDelegate > {
+        CellChatCreditLeftDelegate, CellChatBankLeftDelegate,
+        CellChatHuabieLeftDelegate> {
 
 }
 @property(nonatomic, strong) YHRefreshTableView *tableView;
@@ -75,7 +79,7 @@
 //    }];
 
     if (self.model.agentName != nil) {
-        self.title =self.model.agentName;
+        self.title = self.model.agentName;
     } else {
         self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;
     }
@@ -315,6 +319,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
 - (void)onChatWeChat:(YHChatModel *)chatAlipay inLeftCell:(CellChatWeChatLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
@@ -323,6 +328,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
 - (void)onChatCredit:(YHChatModel *)chatFile inLeftCell:(CellChatCreditLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatFile);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
@@ -330,6 +336,7 @@
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)onChatBank:(YHChatModel *)chatAlipay inLeftCell:(CellChatBankLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
@@ -338,6 +345,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
 - (void)onChatHuabie:(YHChatModel *)chatAlipay inLeftCell:(CellChatHuabieLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
@@ -346,7 +354,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
-
 
 
 #pragma mark - @protocol CellChatFileLeftDelegate
@@ -503,8 +510,7 @@
                     return cell;
                 }
 
-            }
-            else if (model.msgType == YHMessageType_ALIPAY) {
+            } else if (model.msgType == YHMessageType_ALIPAY) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -521,8 +527,7 @@
                     [cell setupModel:model];
                     return cell;
                 }
-            }
-            else if (model.msgType == YHMessageType_WECHAT) {
+            } else if (model.msgType == YHMessageType_WECHAT) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -539,8 +544,7 @@
                     [cell setupModel:model];
                     return cell;
                 }
-            }
-            else if (model.msgType == YHMessageType_BANK) {
+            } else if (model.msgType == YHMessageType_BANK) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -550,15 +554,14 @@
                     [cell setupModel:model];
                     return cell;
                 } else {
-                    CellChatBankLeft  *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatBankLeft class])];
+                    CellChatBankLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatBankLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
                 }
-            }
-            else if (model.msgType == YHMessageType_CREDIT) {
+            } else if (model.msgType == YHMessageType_CREDIT) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -568,15 +571,14 @@
                     [cell setupModel:model];
                     return cell;
                 } else {
-                    CellChatCreditLeft  *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatCreditLeft class])];
+                    CellChatCreditLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatCreditLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
                 }
-            }
-            else if (model.msgType == YHMessageType_HUABIE) {
+            } else if (model.msgType == YHMessageType_HUABIE) {
 
                 if (model.direction == 0) {
                     CellChatGIFRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatGIFRight class])];
@@ -586,16 +588,14 @@
                     [cell setupModel:model];
                     return cell;
                 } else {
-                    CellChatHuabieLeft  *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatHuabieLeft class])];
+                    CellChatHuabieLeft *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatHuabieLeft class])];
                     cell.delegate = self;
                     cell.baseDelegate = self;
                     cell.showCheckBox = _showCheckBox;
                     [cell setupModel:model];
                     return cell;
                 }
-            }
-
-            else {
+            } else {
                 if (model.direction == 0) {
                     CellChatTextRight *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatTextRight class])];
                     cell.delegate = self;
@@ -697,7 +697,7 @@
         YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
         // TODO.... agentID 要写如对应的那个代理。
         chatModel.agentId = @"67553";
-        if (_model.agentAvatar == nil ) {
+        if (_model.agentAvatar == nil) {
             if (_model.sessionUserHead != nil) {
                 chatModel.agentAvatar = _model.sessionUserHead[0];
             }
@@ -790,42 +790,55 @@
 //        YHShootVC *vc = [[YHShootVC alloc] init];
 //        [self.navigationController presentViewController:vc animated:YES completion:NULL];
 
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+//        imagePickerController.delegate = self;
+//        imagePickerController.allowsEditing = YES;
+//        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+//
+//        [self presentViewController:imagePickerController animated:YES completion:^{
+//
+//        }];
 
-        [self presentViewController:imagePickerController animated:YES completion:^{
+// 直接调用相机
+        ZLCustomCamera *camera = [[ZLCustomCamera alloc] init];
 
-        }];
+        camera.allowTakePhoto = YES;
+        camera.allowRecordVideo = NO;
+        camera.doneBlock = ^(UIImage *image, NSURL *videoUrl) {
+            // 自己需要在这个地方进行图片或者视频的保存
+            DDLog(@"paoz");
+        };
+
+        [self showDetailViewController:camera sender:nil];
 
     } else if ([itemName isEqualToString:@"照片"]) {
         DDLog(@"照片");
-        //YHShootVC *vc = [[YHShootVC alloc] init];
-        //[self.navigationController presentViewController:vc animated:YES completion:NULL];
-
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-
-        [self presentViewController:imagePickerController animated:YES completion:^{
-
+        ZLPhotoActionSheet *ac = [[ZLPhotoActionSheet alloc] init];
+        // 相册参数配置，configuration有默认值，可直接使用并对其属性进行修改
+        ac.configuration.maxSelectCount = 3;
+        ac.configuration.maxPreviewCount = 10;
+        ac.sender = self;
+        // 选择回调
+        [ac setSelectImageBlock:^(NSArray<UIImage *> *_Nonnull images, NSArray<PHAsset *> *_Nonnull assets, BOOL isOriginal) {
+            //your codes
+            DDLog(@"选择成功");
         }];
+
+        // 调用相册
+        [ac showPreviewAnimated:YES];
+
     }
 }
 
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:^{
-
+        DDLog(@"选择成功");
     }];
 
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     //self.headImage.image = image;
 }
-
 
 
 #pragma mark - 网络请求
@@ -1007,7 +1020,7 @@
 
     YHChatModel *chatModel = [YHChatHelper creatRecvMessage:strMessageText
                                                     msgType:[msgType longValue]
-                                                     msgBody:strBody
+                                                    msgBody:strBody
                                                     agentID:fromId
                                                 agentAvater:avatar
                                                   agentName:nickName
@@ -1019,51 +1032,50 @@
     // 历史消息存在数据库里面。
     [[SqliteManager sharedInstance] createOneChat:chatModel.agentId chatModel:chatModel complete:^(BOOL success, id obj) {
         if (success) {
-            DDLog(@"createOneChat sucess:%@",obj);
-        }else{
-            DDLog(@"createOneChat fail 数据库:%@",obj);
+            DDLog(@"createOneChat sucess:%@", obj);
+        } else {
+            DDLog(@"createOneChat fail 数据库:%@", obj);
         }
     }];
 
     YHChatListModel *listModel = [YHChatHelper creatChatListMessage:strMessageText
-                                                    msgType:[msgType longValue]
-                                                    msgBody:strBody
-                                                    agentID:fromId
-                                                agentAvater:avatar
-                                                  agentName:nickName
-                                                      msgID:strMsgID
-                                                    msgTime:sendTime];
+                                                            msgType:[msgType longValue]
+                                                            msgBody:strBody
+                                                            agentID:fromId
+                                                        agentAvater:avatar
+                                                          agentName:nickName
+                                                              msgID:strMsgID
+                                                            msgTime:sendTime];
 
 
     [[SqliteManager sharedInstance] createOneChatList:KChatList chaListtModel:listModel complete:^(BOOL success, id obj) {
         if (success) {
-            DDLog(@"createOneChatList sucess:%@",obj);
-        }else{
-            DDLog(@"createOneChatList 到数据库失败:%@",obj);
+            DDLog(@"createOneChatList sucess:%@", obj);
+        } else {
+            DDLog(@"createOneChatList 到数据库失败:%@", obj);
         }
     }];
 }
 
-- (NSString *)convertToJsonData:(NSDictionary *)dict
-{
+- (NSString *)convertToJsonData:(NSDictionary *)dict {
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString;
 
     if (!jsonData) {
-        NSLog(@"%@",error);
+        NSLog(@"%@", error);
     } else {
-        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     }
 
     NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
 
-    NSRange range = {0,jsonString.length};
+    NSRange range = {0, jsonString.length};
 
     //去掉字符串中的空格
     [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
 
-    NSRange range2 = {0,mutStr.length};
+    NSRange range2 = {0, mutStr.length};
 
     //去掉字符串中的换行符
     [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
