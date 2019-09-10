@@ -10,6 +10,7 @@
 #import "YHRefreshTableView.h"
 #import "YHChatDetailVC.h"
 #import "CellChatList.h"
+#import "QuickPayConfigModel.h"
 #import "UIImage+Extension.h"
 #import "TestData.h"
 #import "QuickPayNetConstants.h"

@@ -14,7 +14,6 @@
 #import "YHGIFModel.h"
 
 @class YHPayInfoModel;
-@class YHPayInfoModel;
 
 #pragma mark - 聊天记录Model
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YHChatListVC : UIViewController
+@class QuickPayConfigModel;
 
+@interface YHChatListVC : UIViewController
+    @property(nonatomic, strong)  QuickPayConfigModel*  cofigModel;
 @end

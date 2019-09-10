@@ -103,6 +103,7 @@
 
 @property(assign, nonatomic) NSInteger limitDownOnce;
 
+@property(nonatomic, strong) YHPayInfoModel *payInfoModel;
 @end
 
 @implementation YHChatShowAlipay
@@ -177,10 +178,28 @@
 
 - (void)processModel {
     // TODO..在这处理要显示的数据model
-    if (_model = nil) {
-        _displayType = _model.displayType;
+    //    if (_model = nil) {
+    //        _displayType = _model.displayType;
+    //    }
+    if (_msgBody == nil) {
+        NSLog(@"_msgBody nil.......");
+        return;
     }
-    _displayType = Show_Both;
+    NSData *jsonData = [_msgBody dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    _payInfoModel = [YHPayInfoModel new];
+    _payInfoModel.displayType = [[jsonDic objectForKey:kKey_displayType] intValue];
+    _payInfoModel.accounts = [jsonDic objectForKey:kKey_accounts];
+    _payInfoModel.downUrl = [jsonDic objectForKey:kKey_downUrl];
+    _payInfoModel.firstName = [jsonDic objectForKey:kKey_firstName];
+    _payInfoModel.lastName = [jsonDic objectForKey:kKey_lastName];
+    _payInfoModel.payQrcodeUrl = [jsonDic objectForKey:kKey_payQrcodeUrl];
+    _payInfoModel.accountAddr = [jsonDic objectForKey:kKey_accountAddr];
+    _payInfoModel.accountSubAddr = [jsonDic objectForKey:kKey_accountSubAddr];
+    _payInfoModel.extra = [jsonDic objectForKey:kKey_extra];
+    //_payInfoModel. = [YHPayInfoModel yy_modelWithJSON: ];
+
+    _displayType = _payInfoModel.displayType;
     // _displayType = Show_Qrcode;
     // _displayType = Show_Account;
 }
@@ -733,16 +752,16 @@
     _lbPayTipsPayType.text = @"复制支付宝账号，支付宝[转账]付钱";
 
     _lbPayAccountsT.text = @"支付宝账号";
-    _lbPayAccountsContens.text = @"12345678901234567@qq.com";
-    _lbPayFirstNameT.text = @"支付宝姓";
-    _lbPayFirstNameContens.text = @"李";
+    _lbPayAccountsContens.text = _payInfoModel.accounts;
 
     _lbPayFirstNameT.text = @"支付宝姓";
-    _lbPayFirstNameContens.text = @"李";
+    _lbPayFirstNameContens.text = _payInfoModel.firstName;
+
     _lbPayLastNameT.text = @"支付宝名";
-    _lbPayLastNameContens.text = @"大鹏";
+    _lbPayLastNameContens.text = _payInfoModel.lastName;
+
     _lbPayFullNameT.text = @"支付宝姓名";
-    _lbPayFullNameContens.text = @"李大鹏";
+    _lbPayFullNameContens.text = [_payInfoModel.firstName stringByAppendingString: _payInfoModel.lastName] ;
 
     if (_displayType == Show_Qrcode) {
         _lbTipsContents1.text = @"*如有充值问题，请咨询专员*",
@@ -757,8 +776,6 @@
     } else {
         [_imgBgTypeTips setHidden:YES]; // 整个背景隐藏
     }
-
-
 
 
     // 顺序是和协议定义的类型数据一样的排列
@@ -791,7 +808,8 @@
     NSArray *arrayWechatTips = @[@"*微信充值会收取手续费，详情请咨询专员*",
             @"为避免扫码失败，使用微信扫码之前，请关闭wifi，用手机流量来扫码支付"];
 
-    NSString *urlst = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";
+    // 二维码图片
+    NSString *urlst = _payInfoModel.payQrcodeUrl; // @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";
     NSURL *url = [NSURL URLWithString:urlst];
     [_imgQrCode sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"chat_img_defaultPhoto"]
                          completed:^(UIImage *_Nullable image,

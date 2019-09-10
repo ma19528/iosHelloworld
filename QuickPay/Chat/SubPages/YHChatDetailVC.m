@@ -40,6 +40,7 @@
 #import "CellChatCreditLeft.h"
 #import "CellChatHuabieLeft.h"
 #import "CellChatBankLeft.h"
+#import "YHChatShowWePay.h"
 
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
@@ -313,7 +314,7 @@
 - (void)onChatAlipay:(YHChatModel *)chatAlipay inLeftCell:(CellChatAlipayLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    //vc.model = chatAlipay.payInfoModel;
+    vc.msgBody = chatAlipay.msgBodyJson;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -321,8 +322,8 @@
 
 - (void)onChatWeChat:(YHChatModel *)chatAlipay inLeftCell:(CellChatWeChatLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
-    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    //vc.model = chatAlipay.payInfoModel;
+    YHChatShowWePay *vc = [[YHChatShowWePay alloc] init];
+    vc.msgBody = chatAlipay.msgBodyJson;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -899,6 +900,7 @@
     jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     // jsonStr = note.object; // TODO。。用网络服务器时候要打开打开。
     NSLog(@"%@", jsonStr);
+
 
     NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];

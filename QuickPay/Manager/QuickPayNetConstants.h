@@ -64,7 +64,7 @@
 
 #define kPayTipsPay       @"收款"
 
-typedef enum  {
+typedef enum {
     TEXT = 0,           // 文本消息
     ALIPAY,             // 支付宝充值消息
     WEPAY,              // 微信充值消息
@@ -81,7 +81,7 @@ typedef enum  {
 } SendMsgType;
 
 
-typedef enum  {
+typedef enum {
     Show_All = 0,           // 所有
     Show_Qrcode,            // 二维码
     Show_Account,           // 账号
@@ -116,15 +116,17 @@ typedef enum  {
 #define kKey_avatar      @"avatar"
 #define kKey_body        @"body"
 #define kKey_message     @"message"
+
 // 3 --- 支付信息
-#define kKey_accounts     @"accounts"        // 账号
-#define kKey_accounts     @"firstName"       // 姓
-#define kKey_accounts     @"lastName"        // 名
-#define kKey_accounts     @"payQrcodeUrl"    // 二维码地址
-#define kKey_accounts     @"displayType"      // 显示方式
-#define kKey_accounts     @"extra"            // 额外数据。提示。
-#define kKey_accounts     @"accountAddr"      // 开户行主地址
-#define kKey_accounts     @"accountSubAddr"   // 开户行次地址
+#define kKey_accounts      @"accounts"        // 账号
+#define kKey_firstName     @"firstName"       // 姓
+#define kKey_lastName      @"lastName"        // 名
+#define kKey_payQrcodeUrl    @"payQrcodeUrl"    // 二维码地址
+#define kKey_displayType     @"displayType"      // 显示方式
+#define kKey_extra           @"extra"            // 额外数据。提示。
+#define kKey_accountAddr     @"accountAddr"      // 开户行主地址
+#define kKey_accountSubAddr  @"accountSubAddr"   // 开户行次地址
+#define kKey_downUrl         @"downUrl"   // 二维码下载地址
 
 #define kValueEmit_off_single @"off_single"   // 离线消息
 #define kValueEmit_pay_method @"pay_method"   // 支持支付类型
@@ -137,43 +139,50 @@ typedef enum  {
 @interface QuickPayNetConstants : NSObject
 
 
-+ (QuickPayNetConstants*)sharedInstance;
++ (QuickPayNetConstants *)sharedInstance;
 
 // 组装 Chat init 请求
 - (NSString *)assembleReqChatInit:(NSString *)token;
 
 // 组装 离线消息 off msg 请求
 - (NSString *)assembleReqOffMsg:(NSString *)agentID;
+
 // 组装 支持的支付类型 chat pay 请求
 - (NSString *)assembleReqChatPay:(NSString *)agentID;
 
 // 组装 我想支付包充值 请求
 - (NSString *)assembleSendAlipay:(NSString *)agentID;
-- (NSString *)assembleSendWeChat:(NSString *)agentID;
-- (NSString *)assembleSendBank:(NSString *)agentID;
-- (NSString *)assembleSendCredit:(NSString *)agentID;
-- (NSString *)assembleSendHuaBie:(NSString *)agentID;
-- (NSString *)assembleSendOK:(NSString *)agentID;
 
+- (NSString *)assembleSendWeChat:(NSString *)agentID;
+
+- (NSString *)assembleSendBank:(NSString *)agentID;
+
+- (NSString *)assembleSendCredit:(NSString *)agentID;
+
+- (NSString *)assembleSendHuaBie:(NSString *)agentID;
+
+- (NSString *)assembleSendOK:(NSString *)agentID;
 
 
 // 构造功能性的请求，如离线消息，支付类型类型。
 - (NSString *)assembleReqFuncMsg:(NSString *)reqMethod agentID:(NSString *)agentID;
+
 // 构造聊天性的请求，如文本聊天聊天，发送图片，发送我想进行支付包微信充值等。类型。
 - (NSString *)assembleSendMsg:(NSString *)reqMethod
                      myAvatar:(NSString *)avatar
                    myNickname:(NSString *)nickname
                        msg_id:(NSString *)msg_id
-                  sendMsgType:(SendMsgType) content_type
+                  sendMsgType:(SendMsgType)content_type
                   sendContent:(NSString *)content
                       from_id:(NSString *)from_id
                         to_id:(NSString *)to_id
                     send_time:(NSString *)send_time;
+
 - (NSString *)assembleSendPay:(SendMsgType)content_type agentID:(NSString *)agentID;
+
 - (NSString *)assembleSendNormalText:(NSString *)content agentID:(NSString *)agentID;
 
-- (NSString *) getSendMsgType:(SendMsgType)msgType;
-
+- (NSString *)getSendMsgType:(SendMsgType)msgType;
 
 
 @end

@@ -13,8 +13,10 @@
 
 @interface YHChatShowWePay : UIViewController
 
-@property (nonatomic,strong) YHPayInfoModel     *model;
-@property (nonatomic,strong)QuickPayConfigModel *quickPayConfigModel;
+@property (nonatomic,copy) NSString  *msgBody;
+
+// @property (nonatomic,strong) YHPayInfoModel     *model;
+// @property (nonatomic,strong) QuickPayConfigModel *quickPayConfigModel;
 
 
 

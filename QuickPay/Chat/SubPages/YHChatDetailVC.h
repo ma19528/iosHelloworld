@@ -13,8 +13,12 @@
 
 @interface YHChatDetailVC : UIViewController
 
+// 这里接受直接进来的数据
+@property(nonatomic, strong)  QuickPayConfigModel*  cofigModel;
+
+// 这里接受从list 进来的数据。
 @property (nonatomic,strong)YHChatListModel     *model;
-@property (nonatomic,strong)QuickPayConfigModel *quickPayConfigModel;
+
 
 
 - (void)processMsgEntry:(NSDictionary *)dict;

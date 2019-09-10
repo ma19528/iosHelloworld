@@ -24,8 +24,9 @@ typedef NS_ENUM(NSUInteger,YHMessageType){
     YHMessageType_Text  = 0,             // 文本
     YHMessageType_ALIPAY,                // alipay
     YHMessageType_WECHAT,                // wechat
-    YHMessageType_CREDIT,
     YHMessageType_BANK,
+    YHMessageType_CREDIT,
+    
     YHMessageType_HUABIE,
     YHMessageType_PAYOK,
     YHMessageType_Image,                 // 图片
