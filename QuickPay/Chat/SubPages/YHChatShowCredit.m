@@ -136,6 +136,7 @@
 
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"credit_bg"]
 //                                                  forBarMetrics:UIBarMetricsDefault];
+
     UIColor           *kCreditColor = RGB16(0xef9331);
     self.navigationController.navigationBar.barTintColor  = kCreditColor;
 }
