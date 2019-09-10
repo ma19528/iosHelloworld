@@ -19,6 +19,7 @@
 		586037156D1697435EFEC0AB /* CellChatWeChatLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603A952C06C8654AF4436B /* CellChatWeChatLeft.m */; };
 		58603841BC2E195B2071D421 /* CellChatHuabieLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603DDE8EC15E637B7244D4 /* CellChatHuabieLeft.m */; };
 		586039DD4ADEA8D76A7D9BE0 /* CellChatPayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603D65BBFC848695877BEA /* CellChatPayList.m */; };
+		58603A06F13EBEB924DB3424 /* YHChatShowHuabie.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603E3F4297E262E1457FE1 /* YHChatShowHuabie.m */; };
 		58603AAA2BF590C7C3DDEEA6 /* YHPayInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 586038BAEF75C7F3A7487770 /* YHPayInfoModel.m */; };
 		58603B7988C975EF10C53A62 /* request_chatOffmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603D9D2C92FEB078436818 /* request_chatOffmsg.json */; };
 		58603B8D8302C198D81EFC2F /* YHChatShowAlipay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5860399131ABEC3ECFD38C77 /* YHChatShowAlipay.m */; };
@@ -136,6 +137,7 @@
 		586030DA3798AA32CA166949 /* CellChatHuabieLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatHuabieLeft.h; sourceTree = "<group>"; };
 		586031537400979785CA3C34 /* YHChatShowCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowCredit.h; sourceTree = "<group>"; };
 		5860318F03FDC4F21864DADF /* YHChatShowBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowBank.h; sourceTree = "<group>"; };
+		5860322830FAB883B4E19260 /* YHChatShowHuabie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowHuabie.h; sourceTree = "<group>"; };
 		5860329A4C6B024D8F1611D8 /* request_chatPay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatPay.json; sourceTree = "<group>"; };
 		586032B8249C45FD1DD762F6 /* CellChatBankLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatBankLeft.h; sourceTree = "<group>"; };
 		586032D81856EA365B971EF8 /* CellChatWeChatLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatWeChatLeft.h; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		58603D65BBFC848695877BEA /* CellChatPayList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatPayList.m; sourceTree = "<group>"; };
 		58603D9D2C92FEB078436818 /* request_chatOffmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatOffmsg.json; sourceTree = "<group>"; };
 		58603DDE8EC15E637B7244D4 /* CellChatHuabieLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatHuabieLeft.m; sourceTree = "<group>"; };
+		58603E3F4297E262E1457FE1 /* YHChatShowHuabie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowHuabie.m; sourceTree = "<group>"; };
 		58603F011BE82C102703A230 /* response_received.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_received.json; sourceTree = "<group>"; };
 		58603FC58A4EADBD97A27F89 /* CellChatAlipayLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatAlipayLeft.h; sourceTree = "<group>"; };
 		58603FFFC911849D87F9A654 /* YHChatShowAlipay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowAlipay.h; sourceTree = "<group>"; };
@@ -661,6 +664,8 @@
 				586034A126E5AC0ADEF7EE27 /* YHChatShowBank.m */,
 				586031537400979785CA3C34 /* YHChatShowCredit.h */,
 				58603FFFD6905E65410EE186 /* YHChatShowCredit.m */,
+				5860322830FAB883B4E19260 /* YHChatShowHuabie.h */,
+				58603E3F4297E262E1457FE1 /* YHChatShowHuabie.m */,
 			);
 			path = SubPages;
 			sourceTree = "<group>";
@@ -1144,6 +1149,7 @@
 				58603841BC2E195B2071D421 /* CellChatHuabieLeft.m in Sources */,
 				586039DD4ADEA8D76A7D9BE0 /* CellChatPayList.m in Sources */,
 				586031C256777A44384E22A0 /* YHChatShowCredit.m in Sources */,
+				58603A06F13EBEB924DB3424 /* YHChatShowHuabie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
