@@ -76,12 +76,6 @@
     //设置导航栏
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
 
-//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem rightItemWithTitle:@"更多" target:self selector:@selector(onMore:) block:^(UIButton *btn) {
-//        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-//        [btn setTitle:@"取消" forState:UIControlStateSelected];
-//        [btn setTitle:@"更多" forState:UIControlStateNormal];
-//    }];
-
     if (self.model.agentName != nil) {
         self.title = self.model.agentName;
     } else {
@@ -151,6 +145,13 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar.barTintColor  = RGBCOLOR(239, 236, 236);;
+}
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {

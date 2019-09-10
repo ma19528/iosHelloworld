@@ -166,6 +166,13 @@
     self.title = @"收款";
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"wechat_bg"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar.barTintColor  = RGBCOLOR(239, 236, 236);;
+}
 
 - (void)processModel {
     if (_msgBody == nil) {

@@ -18,9 +18,9 @@
 #import "SqliteManager.h"
 //#import "CellChatPayList.h"
 
-@interface YHChatListVC ()<UITableViewDelegate,UITableViewDataSource,CellChatListDelegate>
-@property (nonatomic,strong) YHRefreshTableView *tableView;
-@property (nonatomic,strong) NSMutableArray *dataArray;
+@interface YHChatListVC () <UITableViewDelegate, UITableViewDataSource, CellChatListDelegate>
+@property(nonatomic, strong) YHRefreshTableView *tableView;
+@property(nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation YHChatListVC
@@ -30,8 +30,7 @@
     // Do any additional setup after loading the view.
     self.title = @"信息";
     self.navigationController.navigationBar.translucent = NO;
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
-    //                                                       forBarMetrics:UIBarMetricsDefault];
+
     // self.navigationController.navigationBar.barTintColor    = kGrayColor;
     [self initUI];
 
@@ -40,13 +39,17 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+
+    //self.navigationController.navigationBar.barTintColor = RGBCOLOR(244, 244, 244);
     [super viewWillAppear:animated];
-     NSLog(@"执行刷新数据了");
+    NSLog(@"执行刷新数据了");
     [self loadData];
 }
 
-- (void) loadData {
+- (void)loadData {
     // TODO... 暂不清除数据，上线要放开。
     // [self.dataArray removeAllObjects];
     [[SqliteManager sharedInstance] queryChatListTableWithType:DBChatType_ChatList sessionID:KChatList userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
@@ -56,7 +59,7 @@
                 [self.dataArray addObject:model];
             }
             if (self.dataArray.count) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                 });
             }
@@ -66,14 +69,14 @@
     }];
 
     if (self.dataArray.count) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     }
 }
 
 
-- (NSMutableArray *)dataArray{
+- (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray new];
     }
@@ -81,10 +84,9 @@
 }
 
 
-- (void)initUI{
+- (void)initUI {
     //tableview
-    self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH
-                                                                          , SCREEN_HEIGHT-64) style:UITableViewStylePlain];
+    self.tableView = [[YHRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -94,8 +96,9 @@
 }
 
 #pragma mark - @protocol CellChatListDelegate
+
 //3DTouch
-- (void)touchOnCell:(CellChatList *)cell{
+- (void)touchOnCell:(CellChatList *)cell {
     [YHChatTouch registerForPreviewInVC:self sourceView:cell model:cell.model];
 }
 
@@ -108,17 +111,15 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     CellChatList *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CellChatList class])];
     if (indexPath.row < self.dataArray.count) {
-        cell.model         = self.dataArray[indexPath.row];
+        cell.model = self.dataArray[indexPath.row];
         cell.touchDelegate = self;
     }
     return cell;
@@ -140,7 +141,7 @@
 }
 
 //设置进入编辑状态时，Cell不会缩进
-- (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
 
@@ -163,13 +164,11 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60.0f;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YHChatDetailVC *vc = [[YHChatDetailVC alloc] init];
     vc.model = self.dataArray[indexPath.row];
     vc.hidesBottomBarWhenPushed = YES;

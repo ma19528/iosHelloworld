@@ -130,7 +130,12 @@
     [self relayoutType];
 
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bank_bg"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+}
 
 - (void)setupNavigationBar {
     UIColor          *kAlipayColor = RGB16(0x478bf6);

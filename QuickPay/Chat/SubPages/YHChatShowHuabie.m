@@ -131,6 +131,13 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"huabie_bg"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    //self.navigationController.navigationBar.barTintColor  = RGBCOLOR(239, 236, 236);;
+}
 
 - (void)setupNavigationBar {
     UIColor          *kAlipayColor = RGB16(0x478bf6);
