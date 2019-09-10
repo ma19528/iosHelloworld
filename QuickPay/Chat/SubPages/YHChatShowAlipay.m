@@ -177,10 +177,6 @@
 
 
 - (void)processModel {
-    // TODO..在这处理要显示的数据model
-    //    if (_model = nil) {
-    //        _displayType = _model.displayType;
-    //    }
     if (_msgBody == nil) {
         NSLog(@"_msgBody nil.......");
         return;
@@ -292,18 +288,18 @@
         make.left.and.top.mas_equalTo(10);
         // 添加右边距约束
         make.right.mas_equalTo(-10);
-        make.height.mas_equalTo(268);
+        make.height.mas_equalTo(288);
     }];
 
     [_imgQcodeIconPayType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(28);
         make.top.mas_equalTo(5);
-        make.right.equalTo(weakSelf.lbTitlePayType.mas_left).offset(-5);
+        make.right.equalTo(weakSelf.lbTitlePayType.mas_left).offset(-13);
     }];
 
     [_lbQcodeTitlePayType mas_makeConstraints:^(MASConstraintMaker *make) {
         // 添加左、上边距约束
-        make.centerX.mas_equalTo(_imgQcodePayBgType).offset(10);
+        make.centerX.mas_equalTo(_imgQcodePayBgType).offset(28);
         // 添加右边距约束
         make.top.mas_equalTo(10);
     }];
@@ -316,24 +312,24 @@
 
     [_lbQcodePayTipsPayType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_imgQcodePayBgType);
-        make.top.mas_equalTo(_imgQcodePaySubline).offset(20);
+        make.top.mas_equalTo(_imgQcodePaySubline).offset(10);
     }];
 
     [_imgQrCode mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_imgQcodePayBgType);
-        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(20);
-        make.width.height.mas_equalTo(148);
+        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(30);
+        make.width.height.mas_equalTo(168);
     }];
 
     [_imgQrCodeIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.and.centerY.mas_equalTo(_imgQrCode);
-        make.width.height.mas_equalTo(28);
+        make.width.height.mas_equalTo(30);
     }];
 
     [_lbQcodeSaveQrcode mas_makeConstraints:^(MASConstraintMaker *make) {
         //make.width.height.mas_equalTo(60);
         make.centerX.mas_equalTo(_lbQcodePayTipsPayType);
-        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(180);
+        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(210);
     }];
 
 }
@@ -505,7 +501,7 @@
         [_imgPayBgTypeAccount mas_makeConstraints:^(MASConstraintMaker *make) {
             // 添加左、上边距约束
             make.left.mas_equalTo(10);
-            make.top.mas_equalTo(300);
+            make.top.mas_equalTo(320);
             // 添加右边距约束
             make.right.mas_equalTo(-10);
             make.height.mas_equalTo(268);
@@ -531,7 +527,7 @@
 
     [_lbTitlePayType mas_makeConstraints:^(MASConstraintMaker *make) {
         // 添加左、上边距约束
-        make.centerX.mas_equalTo(_imgPayBgTypeAccount).offset(3);
+        make.centerX.mas_equalTo(_imgPayBgTypeAccount).offset(5);
         // 添加右边距约束
         make.top.mas_equalTo(10);
     }];
@@ -547,19 +543,35 @@
         make.top.mas_equalTo(_imgPaySubline).offset(20);
     }];
 
-    // 支付宝账号一行
-    [_lbPayAccountsT mas_makeConstraints:^(MASConstraintMaker *make) {
+    // 支付宝姓一行
+    [_lbPayFullNameT mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_lbPayTipsPayType).offset(40);
         make.left.mas_equalTo(10);
     }];
 
-    [_lbPayAccountsContens mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_lbPayFullNameContens mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_lbPayTipsPayType).offset(40);
+        make.right.mas_equalTo(_lbPayFullNameCopy).offset(-40);
+    }];
+
+    [_lbPayFullNameCopy mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_lbPayTipsPayType).offset(40);
+        make.right.mas_equalTo(-10);
+    }];
+
+    // 支付宝账号一行
+    [_lbPayAccountsT mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_lbPayFullNameCopy).offset(40);
+        make.left.mas_equalTo(10);
+    }];
+
+    [_lbPayAccountsContens mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_lbPayFullNameCopy).offset(40);
         make.right.mas_equalTo(_lbPayAccountsCopy).offset(-40);
     }];
 
     [_lbPayAccountsCopy mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_lbPayTipsPayType).offset(40);
+        make.top.mas_equalTo(_lbPayFullNameCopy).offset(40);
         make.right.mas_equalTo(-10);
     }];
 
@@ -596,21 +608,7 @@
     }];
 
 
-    // 支付宝姓一行
-    [_lbPayFullNameT mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_lbPayLastNameT).offset(40);
-        make.left.mas_equalTo(10);
-    }];
 
-    [_lbPayFullNameContens mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_lbPayLastNameT).offset(40);
-        make.right.mas_equalTo(_lbPayFullNameCopy).offset(-40);
-    }];
-
-    [_lbPayFullNameCopy mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_lbPayLastNameT).offset(40);
-        make.right.mas_equalTo(-10);
-    }];
 }
 
 - (void)setupTipsUI {
@@ -681,7 +679,7 @@
     [_imgBgTypeTips mas_makeConstraints:^(MASConstraintMaker *make) {
         // 添加左、上边距约束
         make.left.mas_equalTo(10);
-        make.top.mas_equalTo(300);
+        make.top.mas_equalTo(320);
         // 添加右边距约束
         make.right.mas_equalTo(-10);
         make.height.mas_equalTo(188);
@@ -742,7 +740,38 @@
 * ****/
 - (void)setContents {
 
-    _imgQcodeIconPayType.image = [UIImage imageNamed:@"icon_alipay"]; // 二维码标题的icon。
+ 
+
+    // 顺序是和协议定义的类型数据一样的排列
+    NSArray *arrayQrcodeTitle = @[@"支付宝二维码收款", @"微信二维码收款", @"银行卡收款", @"信用卡二维码收款", @"蚂蚁花呗二维码收款"];
+    NSArray *arrayAccountTitle = @[@"支付宝账号转账", @"微信转账", @"银行卡转账", @"信用卡转账", @"蚂蚁花呗转账"];
+
+    /**
+     * 支付宝转账收款*/
+    NSArray *arrayAccountAlipay = @[@"支付宝账户", @"支付宝姓", @"支付宝名", @"支付宝名"];
+    NSArray *arrayAccountWeChat = @[@"微信账户", @"微信姓", @"微信名", @"微信姓名"];
+    NSArray *arrayAccountBank = @[@"银行卡姓名", @"银行卡号", @"开户银行", @"开户支行"];
+    NSArray *arrayAccountCredit = @[@"银行卡姓名", @"银行卡号", @"开户银行", @"开户支行"];
+    NSArray *arrayAccountHuabie = @[@"支付宝账户", @"支付宝姓", @"支付宝名", @"支付宝名"];
+
+    /**银行卡转账提示**/
+    NSArray *arrayBankTips = @[@"支持各种银行，支付宝，微信的银行卡转账",
+            @"支付宝转到银行卡功能路径：打开支付宝>转账>转到银行卡",
+            @"微信转到银行卡功能路径：打开微信>右上角+号>收付款>转到银行卡"];
+
+    /**信用卡提示  : 一般为 二维码 + 提示。 **/
+    NSArray *arrayCreditTips = @[@"*信用卡充值会收取手续费，详情请咨询专员*",
+            @"为避免扫码失败，使用支付宝/微信扫码之前，请关闭wifi，用手机流量来扫码支付",
+            @"若进行大额支付，使用微信扫码会比支付宝成功率高哦～"];
+
+    /** 花呗 提示  : 一般为 二维码 + 提示。 **/
+    NSArray *arrayHuabeiTips = @[@"*花呗充值会收取手续费，详情请咨询专员*",
+            @"为避免扫码失败，使用支付宝扫码之前，请关闭wifi，用手机流量来扫码支付"];
+
+    /** 微信 提示  : 一般为 二维码 + 提示。 **/
+    NSArray *arrayWechatTips = @[@"*微信充值会收取手续费，详情请咨询专员*",
+            @"为避免扫码失败，使用微信扫码之前，请关闭wifi，用手机流量来扫码支付"];
+   _imgQcodeIconPayType.image = [UIImage imageNamed:@"icon_alipay"]; // 二维码标题的icon。
     _imgIconPayType.image = [UIImage imageNamed:@"icon_alipay"];
 
     _lbQcodeTitlePayType.text = @"支付宝二维码收款";
@@ -776,37 +805,6 @@
     } else {
         [_imgBgTypeTips setHidden:YES]; // 整个背景隐藏
     }
-
-
-    // 顺序是和协议定义的类型数据一样的排列
-    NSArray *arrayQrcodeTitle = @[@"支付宝二维码收款", @"微信二维码收款", @"银行卡收款", @"信用卡二维码收款", @"蚂蚁花呗二维码收款"];
-    NSArray *arrayAccountTitle = @[@"支付宝账号转账", @"微信转账", @"银行卡转账", @"信用卡转账", @"蚂蚁花呗转账"];
-
-    /**
-     * 支付宝转账收款*/
-    NSArray *arrayAccountAlipay = @[@"支付宝账户", @"支付宝姓", @"支付宝名", @"支付宝名"];
-    NSArray *arrayAccountWeChat = @[@"微信账户", @"微信姓", @"微信名", @"微信姓名"];
-    NSArray *arrayAccountBank = @[@"银行卡姓名", @"银行卡号", @"开户银行", @"开户支行"];
-    NSArray *arrayAccountCredit = @[@"银行卡姓名", @"银行卡号", @"开户银行", @"开户支行"];
-    NSArray *arrayAccountHuabie = @[@"支付宝账户", @"支付宝姓", @"支付宝名", @"支付宝名"];
-
-    /**银行卡转账提示**/
-    NSArray *arrayBankTips = @[@"支持各种银行，支付宝，微信的银行卡转账",
-            @"支付宝转到银行卡功能路径：打开支付宝>转账>转到银行卡",
-            @"微信转到银行卡功能路径：打开微信>右上角+号>收付款>转到银行卡"];
-
-    /**信用卡提示  : 一般为 二维码 + 提示。 **/
-    NSArray *arrayCreditTips = @[@"*信用卡充值会收取手续费，详情请咨询专员*",
-            @"为避免扫码失败，使用支付宝/微信扫码之前，请关闭wifi，用手机流量来扫码支付",
-            @"若进行大额支付，使用微信扫码会比支付宝成功率高哦～"];
-
-    /** 花呗 提示  : 一般为 二维码 + 提示。 **/
-    NSArray *arrayHuabeiTips = @[@"*花呗充值会收取手续费，详情请咨询专员*",
-            @"为避免扫码失败，使用支付宝扫码之前，请关闭wifi，用手机流量来扫码支付"];
-
-    /** 微信 提示  : 一般为 二维码 + 提示。 **/
-    NSArray *arrayWechatTips = @[@"*微信充值会收取手续费，详情请咨询专员*",
-            @"为避免扫码失败，使用微信扫码之前，请关闭wifi，用手机流量来扫码支付"];
 
     // 二维码图片
     NSString *urlst = _payInfoModel.payQrcodeUrl; // @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567604177802&di=ace866794ddbbbd631a98b9a88b7aeac&imgtype=0&src=http%3A%2F%2Fpic16.nipic.com%2F20111006%2F6239936_092702973000_2.jpg";

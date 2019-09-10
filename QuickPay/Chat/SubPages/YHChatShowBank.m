@@ -279,18 +279,18 @@
         make.left.and.top.mas_equalTo(10);
         // 添加右边距约束
         make.right.mas_equalTo(-10);
-        make.height.mas_equalTo(268);
+        make.height.mas_equalTo(288);
     }];
 
     [_imgQcodeIconPayType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(28);
         make.top.mas_equalTo(5);
-        make.right.equalTo(weakSelf.lbTitlePayType.mas_left).offset(-10);
+        make.right.equalTo(weakSelf.lbTitlePayType.mas_left).offset(-13);
     }];
 
     [_lbQcodeTitlePayType mas_makeConstraints:^(MASConstraintMaker *make) {
         // 添加左、上边距约束
-        make.centerX.mas_equalTo(_imgQcodePayBgType).offset(25);
+        make.centerX.mas_equalTo(_imgQcodePayBgType).offset(28);
         // 添加右边距约束
         make.top.mas_equalTo(10);
     }];
@@ -303,24 +303,24 @@
 
     [_lbQcodePayTipsPayType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_imgQcodePayBgType);
-        make.top.mas_equalTo(_imgQcodePaySubline).offset(20);
+        make.top.mas_equalTo(_imgQcodePaySubline).offset(10);
     }];
 
     [_imgQrCode mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_imgQcodePayBgType);
-        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(20);
-        make.width.height.mas_equalTo(148);
+        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(30);
+        make.width.height.mas_equalTo(168);
     }];
 
     [_imgQrCodeIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.and.centerY.mas_equalTo(_imgQrCode);
-        make.width.height.mas_equalTo(28);
+        make.width.height.mas_equalTo(30);
     }];
 
     [_lbQcodeSaveQrcode mas_makeConstraints:^(MASConstraintMaker *make) {
         //make.width.height.mas_equalTo(60);
         make.centerX.mas_equalTo(_lbQcodePayTipsPayType);
-        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(180);
+        make.top.mas_equalTo(_lbQcodePayTipsPayType).offset(210);
     }];
 
 }
@@ -492,7 +492,7 @@
         [_imgPayBgTypeAccount mas_makeConstraints:^(MASConstraintMaker *make) {
             // 添加左、上边距约束
             make.left.mas_equalTo(10);
-            make.top.mas_equalTo(300);
+            make.top.mas_equalTo(320);
             // 添加右边距约束
             make.right.mas_equalTo(-10);
             make.height.mas_equalTo(268);
@@ -670,7 +670,7 @@
     [_imgBgTypeTips mas_makeConstraints:^(MASConstraintMaker *make) {
         // 添加左、上边距约束
         make.left.mas_equalTo(10);
-        make.top.mas_equalTo(300);
+        make.top.mas_equalTo(320);
         // 添加右边距约束
         make.right.mas_equalTo(-10);
         make.height.mas_equalTo(188);
