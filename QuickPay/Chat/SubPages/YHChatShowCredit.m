@@ -495,7 +495,7 @@
             make.top.mas_equalTo(300);
             // 添加右边距约束
             make.right.mas_equalTo(-10);
-            make.height.mas_equalTo(288);
+            make.height.mas_equalTo(269);
         }];
     } else {
         [_imgPayBgTypeAccount mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -504,7 +504,7 @@
             make.top.mas_equalTo(10);
             // 添加右边距约束
             make.right.mas_equalTo(-10);
-            make.height.mas_equalTo(288);
+            make.height.mas_equalTo(268);
         }];
     }
 
@@ -673,7 +673,7 @@
         make.top.mas_equalTo(300);
         // 添加右边距约束
         make.right.mas_equalTo(-10);
-        make.height.mas_equalTo(188);
+        make.height.mas_equalTo(208);
     }];
 
 
