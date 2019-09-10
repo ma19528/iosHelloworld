@@ -159,7 +159,7 @@
     [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
     
     NSString *msgContent = self.model.msgContent;
-    if (self.model.msgType == 3 && msgContent) {
+    if (self.model.msgType == YHMessageType_Doc && msgContent) {
 
         _lbFileName.text = self.model.fileModel.fileName;
         NSNumber *num = self.model.fileModel.fileType;

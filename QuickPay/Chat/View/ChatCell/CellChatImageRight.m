@@ -121,11 +121,11 @@
     [self.imgvAvatar sd_setImageWithURL:self.model.speakerAvatar placeholderImage:[UIImage imageNamed:@"common_avatar_80px"]];
     
     //消息图片下载
-    if (self.model.msgContent && self.model.msgType == 1) {
+    if (self.model.msgContent && self.model.msgType == YHMessageType_Image) {
         NSURL *url = [self getImageUrl];
         [_imgvContent sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"chat_img_defaultPhoto"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
-//            [self updateImageCellHeightWith:image maxSize:CGSizeMake(200, 200)];
+            [self updateImageCellHeightWith:image maxSize:CGSizeMake(100, 100)];
             
         }];
     }

@@ -127,7 +127,7 @@
     
     //gif图片下载
     WeakSelf
-    if (self.model.msgContent && self.model.msgType == 4) {
+    if (self.model.msgContent && self.model.msgType == YHMessageType_GIF) {
         
         YHGIFModel *gifModel = self.model.gifModel;
         _cstWidthConetent.constant  = gifModel.width;
