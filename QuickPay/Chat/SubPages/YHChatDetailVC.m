@@ -41,6 +41,7 @@
 #import "CellChatHuabieLeft.h"
 #import "CellChatBankLeft.h"
 #import "YHChatShowWePay.h"
+#import "YHChatShowBank.h"
 
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
@@ -339,8 +340,8 @@
 
 - (void)onChatBank:(YHChatModel *)chatAlipay inLeftCell:(CellChatBankLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
-    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    //vc.model = chatAlipay.payInfoModel;
+    YHChatShowBank *vc = [[YHChatShowBank alloc] init];
+    vc.msgBody = chatAlipay.msgBodyJson;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
