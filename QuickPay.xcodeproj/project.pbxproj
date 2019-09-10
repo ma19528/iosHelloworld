@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		586030BC6E80501371347457 /* receive_normal_chatmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */; };
 		58603148C658F39826D420E7 /* response_pay_mehtod.json in Resources */ = {isa = PBXBuildFile; fileRef = 586033932F29D801434E5BEE /* response_pay_mehtod.json */; };
+		586031C256777A44384E22A0 /* YHChatShowCredit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603FFFD6905E65410EE186 /* YHChatShowCredit.m */; };
 		5860322AECF89C15D0F855F7 /* request_text.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603BD4162EC049BF50351F /* request_text.json */; };
 		58603311DA64FE72B7C5D4C8 /* YHChatShowWePay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603034BAB75F49E173C77B /* YHChatShowWePay.m */; };
 		586033B2811420E5584F3AC4 /* request_pay.json in Resources */ = {isa = PBXBuildFile; fileRef = 586037F9E1F153E64D344AD3 /* request_pay.json */; };
@@ -133,6 +134,7 @@
 		58603034BAB75F49E173C77B /* YHChatShowWePay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowWePay.m; sourceTree = "<group>"; };
 		5860304E8D07763A0B3D691D /* CellChatCreditLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatCreditLeft.h; sourceTree = "<group>"; };
 		586030DA3798AA32CA166949 /* CellChatHuabieLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatHuabieLeft.h; sourceTree = "<group>"; };
+		586031537400979785CA3C34 /* YHChatShowCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowCredit.h; sourceTree = "<group>"; };
 		5860318F03FDC4F21864DADF /* YHChatShowBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowBank.h; sourceTree = "<group>"; };
 		5860329A4C6B024D8F1611D8 /* request_chatPay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatPay.json; sourceTree = "<group>"; };
 		586032B8249C45FD1DD762F6 /* CellChatBankLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatBankLeft.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		58603F011BE82C102703A230 /* response_received.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_received.json; sourceTree = "<group>"; };
 		58603FC58A4EADBD97A27F89 /* CellChatAlipayLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatAlipayLeft.h; sourceTree = "<group>"; };
 		58603FFFC911849D87F9A654 /* YHChatShowAlipay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowAlipay.h; sourceTree = "<group>"; };
+		58603FFFD6905E65410EE186 /* YHChatShowCredit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowCredit.m; sourceTree = "<group>"; };
 		5C5EA0762A3D65A285B0C43B /* Pods-QuickPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.release.xcconfig"; sourceTree = "<group>"; };
 		762089047A00BECC39D4D733 /* Pods_QuickPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8015156D9238E30B7B818700 /* Pods-QuickPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-QuickPay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -656,6 +659,8 @@
 				58603034BAB75F49E173C77B /* YHChatShowWePay.m */,
 				5860318F03FDC4F21864DADF /* YHChatShowBank.h */,
 				586034A126E5AC0ADEF7EE27 /* YHChatShowBank.m */,
+				586031537400979785CA3C34 /* YHChatShowCredit.h */,
+				58603FFFD6905E65410EE186 /* YHChatShowCredit.m */,
 			);
 			path = SubPages;
 			sourceTree = "<group>";
@@ -1138,6 +1143,7 @@
 				58603FF20B3BDF204346B5FA /* CellChatBankLeft.m in Sources */,
 				58603841BC2E195B2071D421 /* CellChatHuabieLeft.m in Sources */,
 				586039DD4ADEA8D76A7D9BE0 /* CellChatPayList.m in Sources */,
+				586031C256777A44384E22A0 /* YHChatShowCredit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

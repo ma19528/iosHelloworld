@@ -42,6 +42,7 @@
 #import "CellChatBankLeft.h"
 #import "YHChatShowWePay.h"
 #import "YHChatShowBank.h"
+#import "YHChatShowCredit.h"
 
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
@@ -330,10 +331,10 @@
 
 }
 
-- (void)onChatCredit:(YHChatModel *)chatFile inLeftCell:(CellChatCreditLeft *)leftCell {
-    DDLog(@"alipay jump:%@", chatFile);
-    YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    //vc.model = chatFile.payInfoModel;
+- (void)onChatCredit:(YHChatModel *)chatCredit inLeftCell:(CellChatCreditLeft *)leftCell {
+    DDLog(@"alipay jump:%@", chatCredit);
+    YHChatShowCredit *vc = [[YHChatShowCredit alloc] init];
+    vc.msgBody = chatCredit.msgBodyJson;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -350,7 +351,7 @@
 - (void)onChatHuabie:(YHChatModel *)chatAlipay inLeftCell:(CellChatHuabieLeft *)leftCell {
     DDLog(@"alipay jump:%@", chatAlipay);
     YHChatShowAlipay *vc = [[YHChatShowAlipay alloc] init];
-    //vc.model = chatAlipay.payInfoModel;
+    vc.msgBody = chatAlipay.msgBodyJson;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 
