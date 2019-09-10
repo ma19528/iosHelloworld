@@ -133,8 +133,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bank_bg"]
-                                                  forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bank_bg"]
+//                                                  forBarMetrics:UIBarMetricsDefault];
+
+    UIColor          *kBankColor   = RGB16(0xe9b428);
+    self.navigationController.navigationBar.barTintColor  = kBankColor;
 }
 
 - (void)setupNavigationBar {

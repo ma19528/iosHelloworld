@@ -169,9 +169,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"wechat_bg"]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    //self.navigationController.navigationBar.barTintColor  = RGBCOLOR(239, 236, 236);;
+   // [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"wechat_bg"]
+   //                                               forBarMetrics:UIBarMetricsDefault];
+
+    UIColor             *kWechatColor = RGB16(0x14ae58);
+    self.navigationController.navigationBar.barTintColor  = kWechatColor;
 }
 
 - (void)processModel {

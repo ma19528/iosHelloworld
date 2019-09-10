@@ -136,6 +136,9 @@
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"huabie_bg"]
                                                   forBarMetrics:UIBarMetricsDefault];
+
+    UIColor          *kWechatColor = RGB16(0x14ae58);
+    self.navigationController.navigationBar.barTintColor  = kWechatColor;
     //self.navigationController.navigationBar.barTintColor  = RGBCOLOR(239, 236, 236);;
 }
 

@@ -148,9 +148,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    //self.navigationController.navigationBar.barTintColor  = RGBCOLOR(239, 236, 236);;
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
+//                                                  forBarMetrics:UIBarMetricsCompact];
+    self.navigationController.navigationBar.barTintColor  = kBlueColor ;  // RGBCOLOR(239, 236, 236);;
 }
 
 - (NSMutableArray *)dataArray {
