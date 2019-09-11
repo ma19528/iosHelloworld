@@ -13,7 +13,7 @@
 #import "YHChatHeader.h"
 #import "YHChatModel.h"
 #import "YHExpressionKeyboard.h"
-#import "QuickPayConfigModel.h"
+#import "PayConfigModel.h"
 #import "YHUserInfo.h"
 #import "HHUtils.h"
 #import "YHChatHeader.h"

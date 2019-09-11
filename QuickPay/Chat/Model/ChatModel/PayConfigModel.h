@@ -1,5 +1,5 @@
 //
-//  QuickPayConfigModel.h
+//  PayConfigModel.h
 //  samuelandkevin github:https://github.com/samuelandkevin/YHChat
 //
 //  Created by samuelandkevin on 16/12/29.
@@ -15,7 +15,7 @@
 #import "YHGIFModel.h"
 
 #pragma mark - 聊天记录Model
-@interface QuickPayConfigModel : NSObject
+@interface PayConfigModel : NSObject
 
 @property (nonatomic,copy) NSString *serviceToken;   // 这个是 websocet 的服务token
 @property (nonatomic,copy) NSString *myID;           // 本人的ID

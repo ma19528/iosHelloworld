@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "YHChatModel.h"
 
-@class QuickPayConfigModel;
+@class PayConfigModel;
 
 @interface YHChatShowWePay : UIViewController
 
 @property (nonatomic,copy) NSString  *msgBody;
 
 // @property (nonatomic,strong) YHPayInfoModel     *model;
-// @property (nonatomic,strong) QuickPayConfigModel *quickPayConfigModel;
+// @property (nonatomic,strong) PayConfigModel *quickPayConfigModel;
 
 
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YHChatModel.h"
 
-@class QuickPayConfigModel;
+@class PayConfigModel;
 
 @interface YHChatShowCredit : UIViewController
 

@@ -14,7 +14,6 @@
 		58603311DA64FE72B7C5D4C8 /* YHChatShowWePay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603034BAB75F49E173C77B /* YHChatShowWePay.m */; };
 		586033B2811420E5584F3AC4 /* request_pay.json in Resources */ = {isa = PBXBuildFile; fileRef = 586037F9E1F153E64D344AD3 /* request_pay.json */; };
 		586033FD847C3329F06FD7CC /* CellChatAlipayLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */; };
-		586035A22666158FEC75E64E /* QuickPaySocketConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603C242AD5CD07E1E47E76 /* QuickPaySocketConstant.m */; };
 		586035FEFE720034721F176E /* YHChatShowBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 586034A126E5AC0ADEF7EE27 /* YHChatShowBank.m */; };
 		586037156D1697435EFEC0AB /* CellChatWeChatLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603A952C06C8654AF4436B /* CellChatWeChatLeft.m */; };
 		58603841BC2E195B2071D421 /* CellChatHuabieLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603DDE8EC15E637B7244D4 /* CellChatHuabieLeft.m */; };
@@ -29,7 +28,7 @@
 		58603EB85BDCD766F59C597D /* response_received.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603F011BE82C102703A230 /* response_received.json */; };
 		58603ED54B6403E684FAC618 /* CellChatCreditLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 586036A2FBBEAD9F9964B16B /* CellChatCreditLeft.m */; };
 		58603EDA682F540CCA511DC5 /* response_offSingle.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860302E5B2F0C1654B8678A /* response_offSingle.json */; };
-		58603F2E87D034F3865D1D6A /* QuickPayConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603869CD3C267475D26037 /* QuickPayConfigModel.m */; };
+		58603F2E87D034F3865D1D6A /* PayConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603869CD3C267475D26037 /* PayConfigModel.m */; };
 		58603FF20B3BDF204346B5FA /* CellChatBankLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 586034CD9F092BAD76EF4A00 /* CellChatBankLeft.m */; };
 		840E06A92320E641004045F0 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840E06A82320E641004045F0 /* Photos.framework */; };
 		847B52B9232637DB002AC882 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847B52B8232637DB002AC882 /* PhotosUI.framework */; };
@@ -149,17 +148,15 @@
 		586036A2FBBEAD9F9964B16B /* CellChatCreditLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatCreditLeft.m; sourceTree = "<group>"; };
 		58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPayNetConstants.m; sourceTree = "<group>"; };
 		5860374D0C9481292D0D34C0 /* request_chat_int.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chat_int.json; sourceTree = "<group>"; };
-		586037A1EFABD579C915F24D /* QuickPaySocketConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPaySocketConstant.h; sourceTree = "<group>"; };
 		586037F9E1F153E64D344AD3 /* request_pay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_pay.json; sourceTree = "<group>"; };
-		58603869CD3C267475D26037 /* QuickPayConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPayConfigModel.m; sourceTree = "<group>"; };
+		58603869CD3C267475D26037 /* PayConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayConfigModel.m; sourceTree = "<group>"; };
 		586038BAEF75C7F3A7487770 /* YHPayInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHPayInfoModel.m; sourceTree = "<group>"; };
 		5860399131ABEC3ECFD38C77 /* YHChatShowAlipay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowAlipay.m; sourceTree = "<group>"; };
 		586039C9B24F14E2BA61FD64 /* YHChatShowWePay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowWePay.h; sourceTree = "<group>"; };
 		58603A952C06C8654AF4436B /* CellChatWeChatLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatWeChatLeft.m; sourceTree = "<group>"; };
-		58603BBCD1148FFCE71EDA2F /* QuickPayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayConfigModel.h; sourceTree = "<group>"; };
+		58603BBCD1148FFCE71EDA2F /* PayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayConfigModel.h; sourceTree = "<group>"; };
 		58603BD4162EC049BF50351F /* request_text.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_text.json; sourceTree = "<group>"; };
 		58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatAlipayLeft.m; sourceTree = "<group>"; };
-		58603C242AD5CD07E1E47E76 /* QuickPaySocketConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPaySocketConstant.m; sourceTree = "<group>"; };
 		58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = receive_normal_chatmsg.json; sourceTree = "<group>"; };
 		58603D06182C56A73CD7CB4D /* QuickPayNetConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayNetConstants.h; sourceTree = "<group>"; };
 		58603D65BBFC848695877BEA /* CellChatPayList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatPayList.m; sourceTree = "<group>"; };
@@ -445,10 +442,8 @@
 				ACCCFB9E1E8A4DD4006E1B0E /* YHFileModel.m */,
 				AC5518061E9DC488003CBD1C /* YHGIFModel.h */,
 				AC5518071E9DC488003CBD1C /* YHGIFModel.m */,
-				58603869CD3C267475D26037 /* QuickPayConfigModel.m */,
-				58603BBCD1148FFCE71EDA2F /* QuickPayConfigModel.h */,
-				586037A1EFABD579C915F24D /* QuickPaySocketConstant.h */,
-				58603C242AD5CD07E1E47E76 /* QuickPaySocketConstant.m */,
+				58603869CD3C267475D26037 /* PayConfigModel.m */,
+				58603BBCD1148FFCE71EDA2F /* PayConfigModel.h */,
 				586034D006E37AFFFC280988 /* YHPayInfoModel.h */,
 				586038BAEF75C7F3A7487770 /* YHPayInfoModel.m */,
 			);
@@ -1136,8 +1131,7 @@
 				ACF8047D1E5D264800B27336 /* YHChatHelper.m in Sources */,
 				AC6400741E8BB976001DF0F2 /* MJPropertyType.m in Sources */,
 				58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */,
-				58603F2E87D034F3865D1D6A /* QuickPayConfigModel.m in Sources */,
-				586035A22666158FEC75E64E /* QuickPaySocketConstant.m in Sources */,
+				58603F2E87D034F3865D1D6A /* PayConfigModel.m in Sources */,
 				586033FD847C3329F06FD7CC /* CellChatAlipayLeft.m in Sources */,
 				58603B8D8302C198D81EFC2F /* YHChatShowAlipay.m in Sources */,
 				58603311DA64FE72B7C5D4C8 /* YHChatShowWePay.m in Sources */,

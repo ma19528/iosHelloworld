@@ -226,6 +226,13 @@
 
 - (void) showPaySupport: (NSArray*) support {
     NSLog(@"==========showPaySupport 开始");
+    int count = support.count;
+    for (int i=0; i< count; i++) {
+        NSString *pay =  support[i];
+//        switch [pay intValue]:
+//            case :
+//                break;
+    }
 }
 
 #pragma mark - filePrivate

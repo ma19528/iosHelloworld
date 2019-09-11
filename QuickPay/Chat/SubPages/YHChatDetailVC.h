@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "YHChatListModel.h"
 
-@class QuickPayConfigModel;
+@class PayConfigModel;
 
 @interface YHChatDetailVC : UIViewController
 
 // 这里接受直接进来的数据
-@property(nonatomic, strong)  QuickPayConfigModel*  cofigModel;
+@property(nonatomic, strong)  PayConfigModel*  cofigModel;
 
 // 这里接受从list 进来的数据。
 @property (nonatomic,strong)YHChatListModel     *model;
