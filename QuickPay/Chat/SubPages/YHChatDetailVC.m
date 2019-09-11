@@ -46,7 +46,11 @@
 #import "YHChatShowHuabie.h"
 
 
-@interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource, YHExpressionKeyboardDelegate, CellChatTextLeftDelegate, CellChatTextRightDelegate, CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate, CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
+@interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource,
+        YHExpressionKeyboardDelegate,
+        CellChatTextLeftDelegate, CellChatTextRightDelegate,
+        CellChatVoiceLeftDelegate, CellChatVoiceRightDelegate,
+        CellChatImageLeftDelegate, CellChatImageRightDelegate, CellChatBaseDelegate,
         CellChatFileLeftDelegate, CellChatFileRightDelegate,
         CellChatAlipayLeftDelegate, CellChatWeChatLeftDelegate,
         CellChatCreditLeftDelegate, CellChatBankLeftDelegate,
@@ -62,7 +66,7 @@
 @property(nonatomic, strong) YHChatHelper *chatHelper;
 
 @property(nonatomic, assign) BOOL showCheckBox;
-
+@property(nonatomic, strong) NSMutableDictionary *msgDict;
 @end
 
 @implementation YHChatDetailVC
@@ -83,15 +87,14 @@
     }
 
     [self initUI];
+    _msgDict = [NSMutableDictionary dictionary];
 
-
-    //模拟数据源
-     [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
+    // 模拟数据源
+    // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
     // TODO。。。 sessionID 用 代理的id。。
     [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:self.model.agentId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
-            //----
             CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
             for (YHChatModel *chatModel in obj) {
                 [self.dataArray addObject:chatModel];
@@ -145,12 +148,12 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_bg"]
 //                                                  forBarMetrics:UIBarMetricsCompact];
-    self.navigationController.navigationBar.barTintColor  = kBlueColor ;  // RGBCOLOR(239, 236, 236);;
+    self.navigationController.navigationBar.barTintColor  = kBlueColor ; // RGBCOLOR(239, 236, 236);;
 }
 
 - (NSMutableArray *)dataArray {
@@ -902,7 +905,7 @@
 
     // 测试的时候用本地的数据
 // TODO>>> 重要重要重要
-    jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_offSingle" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
+    jsonStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"response_pay_mehtod" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     // jsonStr = note.object; // TODO。。用网络服务器时候要打开打开。
     NSLog(@"%@", jsonStr);
 
@@ -970,13 +973,37 @@
     NSLog(@"==========processOffSinleMsg end");
 }
 
+/**
+       "id":1,
+       "support":[
+            "1",
+            "2"
+        ]
+ * ***/
 - (void)processPayMethodMsg:(NSDictionary *)dict {
     NSLog(@"==========processPayMethodMsg 开始");
+    // 支持的支付类型处理。
+    id agentID   = [dict objectForKey:kKey_id];
+    BOOL test1 = [agentID isKindOfClass:[NSNumber class]];
+    NSString *strAgentID = nil;
+    if (test1) {
+        strAgentID = [agentID stringValue];
+    } else {
+        strAgentID = agentID;
+    }
+    NSArray *support = [dict objectForKey:kKey_support];
+    NSLog(@"==========processPayMethodMsg support 为：");
+    [_keyboard showPaySupport:support];
 }
 
 - (void)processReceivedMsg:(NSDictionary *)dict {
-    NSLog(@"==========processReceivedMsg 开始");
+    NSLog(@"==========processReceivedMsg 处理回执消息开始");
 }
+
+/////////////////////
+/*
+ * 处理消息消息。
+ * */
 
 - (void)processChatMsg:(NSDictionary *)dict {
     NSLog(@"==========processChatMsg 开始");
@@ -999,6 +1026,7 @@
     } else {
         strMsgID = msgID;
     }
+    DDLog(@" 此消息的 msgID为:%@", strMsgID);
 
     NSString *strMessageText = [NSString new];
     if ([msgType longValue] == TEXT) {
@@ -1006,13 +1034,13 @@
         strMessageText = [msgBodyDict objectForKey:kKey_message];
     } else if ([msgType longValue] >= ALIPAY && [msgType longValue] <= PAYOK) {
         NSLog(@"==========msgBody 为 支付 类型");
+        // 先不处理里面的数据，跳转到页面再处理。
     } else if ([msgType longValue] == IMAGE) {
         NSLog(@"==========msgBody 为 图片 类型");
         strMessageText = [msgBodyDict objectForKey:kKey_message];
     }
 
     // 构造要显示的消息。
-
 
     YHChatModel *chatModel = [YHChatHelper creatRecvMessage:strMessageText
                                                     msgType:[msgType longValue]
@@ -1022,8 +1050,13 @@
                                                   agentName:nickName
                                                       msgID:strMsgID
                                                     msgTime:sendTime];
+    if (_msgDict[strMsgID] == nil) {
+        //  新消息
+        [self.dataArray addObject:chatModel];
+    }
 
-    [self.dataArray addObject:chatModel];
+    // 更新完chatModel后
+    [_msgDict setObject:chatModel forKey:strMsgID];
 
     // 历史消息存在数据库里面。
     [[SqliteManager sharedInstance] createOneChat:chatModel.agentId chatModel:chatModel complete:^(BOOL success, id obj) {

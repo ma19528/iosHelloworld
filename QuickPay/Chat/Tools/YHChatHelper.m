@@ -87,17 +87,17 @@
     model.speakerAvatar = [NSURL URLWithString:agentAvater]; //  MYAVTARURL;
     model.speakerName   = agentName;   //@"samuelandkevin";  // 这个是 显示用的。
 
-
-    model.audienceId = MYUID;
+    model.audienceId     = MYUID;
     model.audienceAvatar = MYAVTARURL;
-    model.audienceName =@"samuelandkevin";
+    model.audienceName   = @"samuelandkevin";
 
-    model.agentId = agentID;
+    model.agentId     = agentID;
     model.agentAvatar = [NSURL URLWithString:agentAvater]; ;
-    model.agentName = agentName;
+    model.agentName   = agentName;
 
+    model.chatId = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
+    model.msgId  = msgID;
 
-    model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
     CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
 
     UIColor *textColor = [UIColor blackColor];
@@ -113,7 +113,7 @@
     [layout layoutWithText:msg fontSize:addFontSize+14 textColor:textColor matchTextColor:matchTextColor matchTextHighlightBGColor:matchTextHighlightBGColor];
     model.layout = layout;
 
-//    NSDate *datenow =[NSDate date];//现在时间,你可以输出来看下是什么格式
+//    NSDate *datenow =[NSDate date];   //现在时间,你可以输出来看下是什么格式
 //
 //    NSTimeZone *zone = [NSTimeZone systemTimeZone];
 //
@@ -133,7 +133,7 @@
 
     NSDate *date = [[NSDate alloc] init ];
     NSString *dat = [date getNowDate];
-    model.createTime  = strData;//  [date getNowDate];
+    model.createTime  = strData;        //  [date getNowDate];
     return model;
 }
 
@@ -150,6 +150,7 @@
     model.isGroupChat = 0;
     model.lastContent = msg;
     model.chatId        = msgID;//本地消息记录ID是手动设置，等消息发送成功后将此替换。
+    model.msgId = msgID;
     model.lastContent = msg;
     model.msgType       = msgType;
 
@@ -158,7 +159,7 @@
 
     model.userId = agentID;
     model.agentId = agentID;
-    model.agentAvatar = [NSURL URLWithString:agentAvater]; ;
+    model.agentAvatar = [NSURL URLWithString:agentAvater];
     model.agentName = agentName;
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -175,8 +176,7 @@
 
     model.status = 0;
     model.updateTime = @"2019-2-27 13:38";
-    model.creatTime = @"2017-2-27 13:38";
-//    model.lastCreatTime = @"2018-2-27 9:38";
+    model.creatTime  = @"2017-2-27 13:38";
 
     return model;
 }

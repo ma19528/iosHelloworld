@@ -35,7 +35,7 @@
     [self initUI];
 
     //模拟数据源
-    // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatListModel:3]];
+     [self.dataArray addObjectsFromArray:[TestData randomGenerateChatListModel:3]];
 
 }
 

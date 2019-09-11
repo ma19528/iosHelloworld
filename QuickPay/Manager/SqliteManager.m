@@ -442,6 +442,9 @@
 
 
 //插入一条聊天信息
+/*
+ * 插入了到YH_sessionID的表中。
+ * **/
 - (void)createOneChat:(NSString *)sessionID
             chatModel:(YHChatModel *)chatModel
              complete:(void (^)(BOOL success, id obj))complete {

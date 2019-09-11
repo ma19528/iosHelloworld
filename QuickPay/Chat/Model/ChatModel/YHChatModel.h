@@ -33,19 +33,21 @@
 @property(nonatomic, assign) int msgType;          // 消息类型      // 0是文本 1是图片 2是语音 3是文件 4是gif
 @property(nonatomic, assign) int direction;        // 0: 自己发出的消息， 1： 收到的消息
 @property(nonatomic, assign) int status;           //消息状态（撤回：1,未撤回：0）
-@property(nonatomic, copy) NSString *msgId;        //消息ID
 
-@property(nonatomic, copy) NSString *msgBodyJson;        // 各消息类型的json String
+
+@property(nonatomic, copy) NSString *msgBodyJson;    // 各消息类型的json String
 // @property(nonatomic, strong) YHPayInfoModel *payInfoModel;
+// 新建的字段
+@property(nonatomic, assign) int msgSendStatus;     // 消息发送状态。 0：default  1, sending , 2 failed, 3 send ）
 
 /**add by quick pay***/
 @property(nonatomic, copy) NSString *agentId;   //代理Id
 @property(nonatomic, copy) NSURL *agentAvatar;  //代理头像
 @property(nonatomic, copy) NSString *agentName; //代理名字
 
-
+@property(nonatomic, copy) NSString *msgId;        //消息ID
 //--- 原来的字段。下面不做改动
-@property(nonatomic, copy) NSString *chatId;       //聊天记录Id
+@property(nonatomic, copy) NSString *chatId;       //聊天记录Id 必须等于 msgId
 @property(nonatomic, copy) NSString *audienceId;   //听众Id
 @property(nonatomic, copy) NSURL *audienceAvatar;  //听众头像
 @property(nonatomic, copy) NSString *audienceName; //听众名字

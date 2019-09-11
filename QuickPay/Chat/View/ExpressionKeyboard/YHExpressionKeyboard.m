@@ -222,7 +222,10 @@
     }else{
         [self.textView resignFirstResponder];
     }
-    
+}
+
+- (void) showPaySupport: (NSArray*) support {
+    NSLog(@"==========showPaySupport 开始");
 }
 
 #pragma mark - filePrivate
@@ -631,7 +634,6 @@
 - (void)textViewDidChange:(UITextView *)textView{
     
     [self _textViewChangeText];
-    
 
 }
 
@@ -886,7 +888,7 @@
 /**
  只显示toolBar
  */
-- (void)_onlyShowToolbar{
+- (void)_onlyShowToolbar {
     WeakSelf
     
     [_inputV mas_updateConstraints:^(MASConstraintMaker *make) {

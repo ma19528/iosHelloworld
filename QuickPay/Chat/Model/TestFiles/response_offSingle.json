@@ -31,11 +31,11 @@
             {
                 "from_id":1,
                 "data":{"emit":"chat","data":{"msgId":1564648288850,"sendTime":1564648288850,"formId":"67553","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{
-                    "accounts":"accounts=1",
-                    "firstName":"firstName=",
-                    "lastName":"lastName=",
+                    "accounts":"accounts=test2",
+                    "firstName":"firstName=test2",
+                    "lastName":"lastName=test2",
                     "displayType":2,
-                    "downUrl":"downUrl=",
+                    "downUrl":"downUrl=xxx",
                     "extra":"extra=",
                     "accountAddr":"accountAddr=",
                     "accountSubAddr":"accountSubAddr=",
@@ -45,7 +45,7 @@
             },
             {
                 "from_id":1,
-                "data":{"emit":"chat","data":{"msgId":1564648288850,"sendTime":1564648288850,"formId":"67553","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{
+                "data":{"emit":"chat","data":{"msgId":1564648288852,"sendTime":1564648288850,"formId":"67553","nickname":"test","avatar":"\\upload\/20190729\/705e1b15a038263b0a63d4cc9758afd3.jpg","body":{
                     "accounts":"accounts=1",
                     "firstName":"firstName=",
                     "lastName":"lastName=",

@@ -53,4 +53,6 @@
  */
 - (void)endEditing;
 
+- (void) showPaySupport: (NSArray*) support;
+
 @end

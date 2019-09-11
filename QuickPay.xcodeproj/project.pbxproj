@@ -941,7 +941,7 @@
 				TargetAttributes = {
 					AC4446B51E568E5D00685571 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6LP5PP3S2F;
+						DevelopmentTeam = 7T8D8M9DVF;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1262,7 +1262,7 @@
 			baseConfigurationReference = 8015156D9238E30B7B818700 /* Pods-QuickPay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6LP5PP3S2F;
+				DEVELOPMENT_TEAM = 7T8D8M9DVF;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "QuickPay/QuickPay-PrefixHeader.pch";
 				INFOPLIST_FILE = QuickPay/Info.plist;
@@ -1282,7 +1282,7 @@
 			baseConfigurationReference = 5C5EA0762A3D65A285B0C43B /* Pods-QuickPay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6LP5PP3S2F;
+				DEVELOPMENT_TEAM = 7T8D8M9DVF;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "QuickPay/QuickPay-PrefixHeader.pch";
 				INFOPLIST_FILE = QuickPay/Info.plist;
