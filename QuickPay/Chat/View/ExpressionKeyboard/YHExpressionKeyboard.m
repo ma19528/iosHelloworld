@@ -13,6 +13,7 @@
 #import "YHExpressionInputView.h"
 #import "YHExpressionAddView.h"
 #import "QuickPayNetConstants.h"
+#import "YHChatServiceDefs.h"
 
 #define kNaviBarH       64   //导航栏高度
 #define kTopToolbarH    50   //顶部工具栏高度
@@ -229,9 +230,33 @@
     int count = support.count;
     for (int i=0; i< count; i++) {
         NSString *pay =  support[i];
-//        switch [pay intValue]:
-//            case :
-//                break;
+        int intPay = [pay intValue];
+        switch (intPay) {
+            case YHMessageType_ALIPAY:
+                NSLog(@"========== alipay 开始");
+                _lbAlipay.hidden = NO;
+                break;
+            case YHMessageType_WECHAT:
+                NSLog(@"========== wechat 开始");
+                _lbWechat.hidden = NO;
+                break;
+            case YHMessageType_BANK:
+                NSLog(@"==========  bank 开始");
+                _lbBank.hidden = NO;
+                break;
+            case YHMessageType_CREDIT:
+                NSLog(@"========== credit 开始");
+                _lbCredit.hidden = NO;
+                break;
+            case YHMessageType_HUABIE:
+                NSLog(@"========== huabie 开始");
+                _lbHuabie.hidden = NO;
+                break;
+            case YHMessageType_PAYOK:
+                NSLog(@"========== payok 开始");
+                _lbPayOK.hidden = NO;
+                break;
+        }
     }
 }
 
@@ -413,6 +438,7 @@
     _lbAlipay.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     _lbAlipay.layer.cornerRadius = 5;
     _lbAlipay.userInteractionEnabled = YES;
+    _lbAlipay.hidden = YES;
     UITapGestureRecognizer *tapSendAlipay = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendAlipay)];
     [_lbAlipay addGestureRecognizer:tapSendAlipay];
 
