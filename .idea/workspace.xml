@@ -25,17 +25,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3631bf4f-513d-4eda-aa1a-b5db778a1922" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowAlipay.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowBank.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowBank.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowCredit.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowCredit.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowHuabie.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowHuabie.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowWePay.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatShowWePay.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatBase.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatBase.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatTextRight.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatTextRight.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QuickPay/Chat/YHChatListVC.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/Chat/YHChatListVC.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuickPay/TestData/TestData.m" beforeDir="false" afterPath="$PROJECT_DIR$/QuickPay/TestData/TestData.m" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +143,7 @@
       <workItem from="1568009552535" duration="1329000" />
       <workItem from="1568011856104" duration="6257000" />
       <workItem from="1568101976350" duration="15268000" />
-      <workItem from="1568128544450" duration="1637000" />
+      <workItem from="1568128544450" duration="4165000" />
     </task>
     <servers />
   </component>
@@ -192,7 +186,7 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>736</line>
+          <line>737</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -207,12 +201,12 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>953</line>
+          <line>954</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>963</line>
+          <line>964</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -447,17 +441,17 @@
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>867</line>
+          <line>868</line>
           <option name="timeStamp" value="397" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>878</line>
+          <line>879</line>
           <option name="timeStamp" value="398" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>885</line>
+          <line>886</line>
           <option name="timeStamp" value="399" />
         </line-breakpoint>
         <line-breakpoint type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -487,18 +481,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>973</line>
+          <line>974</line>
           <option name="timeStamp" value="427" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/QuickPay/Chat/SubPages/YHChatDetailVC.m</url>
-          <line>988</line>
-          <option name="timeStamp" value="428" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/QuickPay/Chat/View/ChatCell/CellChatImageLeft.m</url>
-          <line>101</line>
-          <option name="timeStamp" value="439" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

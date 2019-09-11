@@ -131,7 +131,6 @@ const float kCheckBoxWidth = 30;//勾选框宽高
     self.model = model;
    
     
-    
 //    [_viewTimeBG dr_cornerWithRadius:10 backgroundColor: RGBCOLOR(239, 236, 236)];
     if (self.showCheckBox) {
         _checkBoxisActivity = YES;
@@ -146,6 +145,8 @@ const float kCheckBoxWidth = 30;//勾选框宽高
     }
    
     self.btnCheckBox.selected = self.model.isSelected;
+    // TODO。。 判断消息是否发送失败
+    //self.imgvSendMsgFail.hidden = NO;
 }
 
 #pragma mark - Prviate

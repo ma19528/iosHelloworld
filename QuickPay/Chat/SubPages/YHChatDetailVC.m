@@ -86,7 +86,7 @@
 
 
     //模拟数据源
-    // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
+     [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
     //---TODO...从数据库拿数据。
     // TODO。。。 sessionID 用 代理的id。。
     [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:self.model.agentId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
@@ -713,6 +713,7 @@
         } else if (_model.sessionUserName != nil) {
             chatModel.agentName = _model.sessionUserName;
         }
+        chatModel.status = 0;
 
         [self.dataArray addObject:chatModel];
 

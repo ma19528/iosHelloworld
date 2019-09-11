@@ -399,7 +399,7 @@
     }
     
 
-    model.status = 0;
+    model.status = 1;
     model.updateTime = @"";
     model.creatTime = @"2017-2-27 13:38";
     model.lastCreatTime = @"2017-2-27 9:38";

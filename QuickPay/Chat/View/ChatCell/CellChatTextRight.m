@@ -177,7 +177,7 @@
     } else {
         self.imgvAvatar.image = [UIImage imageNamed:@"default_header"];
     }
-
+    super.imgvSendMsgFail.hidden = NO;
     //关联聊天到数据库
     [[SqliteManager sharedInstance] createOneChat:model.agentId chatModel:model complete:^(BOOL success, id obj) {
         if (success) {
