@@ -134,15 +134,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
 
     // 测试要发送的消息的数据结构json
+    // 构造 chat.int 请求
     NSString *initStr = [[QuickPayNetConstants sharedInstance] assembleReqChatInit:@"1234567890"];
+    // 构造 chat.off_msg 请求
     NSString *testOffMsg = [[QuickPayNetConstants sharedInstance] assembleReqOffMsg:@"1234567890"];
+    // 构造 chat.pay 请求
     NSString *testSupportPay = [[QuickPayNetConstants sharedInstance] assembleReqChatPay:@"1234567890"];
+    // 构造 chat.agent alipay 请求
     NSString *alipy = [[QuickPayNetConstants sharedInstance] assembleSendAlipay:@"1234567890"];
     NSString *wechat = [[QuickPayNetConstants sharedInstance] assembleSendWeChat:@"1234567890"];
     NSString *bank = [[QuickPayNetConstants sharedInstance] assembleSendBank:@"1234567890"];
     NSString *credit = [[QuickPayNetConstants sharedInstance] assembleSendCredit:@"1234567890"];
     NSString *hub = [[QuickPayNetConstants sharedInstance] assembleSendHuaBie:@"1234567890"];
     NSString *sendok = [[QuickPayNetConstants sharedInstance] assembleSendOK:@"1234567890"];
+    // 构造 chat.agent 文本 请求
     NSString *normakltext = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowod" agentID:@"1234567890"];
     NSString *normakltext2 = [[QuickPayNetConstants sharedInstance] assembleSendNormalText:@"hellowoddd4444" agentID:@"1234567890"];
 
