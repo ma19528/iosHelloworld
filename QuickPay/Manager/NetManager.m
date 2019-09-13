@@ -9,6 +9,7 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "NetManager.h"
+#import "../Chat/Config/YHGeneralHeader.h"
 
 
 static NSMutableArray *sg_requestTasks;

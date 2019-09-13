@@ -13,6 +13,7 @@
 #import "YHChatModel.h"
 #import "YHChatLabel.h"
 #import "SqliteManager.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatTextLeft()
 
@@ -131,7 +132,7 @@
 - (void)setupModel:(YHChatModel *)model{
     [super setupModel:model];
     
-//    _lbContent.attributedText = self.model.msgContent;
+//    _lbContent.attributedText = self.chatListModel.msgContent;
     _lbContent.str        = model.msgContent;
     _lbContent.textLayout = model.layout.textLayout;
     self.lbName.text    = self.model.speakerName;

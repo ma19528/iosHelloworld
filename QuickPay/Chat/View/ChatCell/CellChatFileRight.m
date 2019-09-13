@@ -14,6 +14,7 @@
 #import "YHDownLoadManager.h"
 #import "NetManager.h"
 #import "YHChatButton.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatFileRight()
 @property (nonatomic,strong) UIImageView  *imgvBubble;

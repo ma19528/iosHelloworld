@@ -7,6 +7,8 @@
 //
 
 #import "YHChatLabel.h"
+#import "../Config/YHGeneralHeader.h"
+
 
 @implementation YHChatLabel
 

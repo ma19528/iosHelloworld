@@ -8,6 +8,8 @@
 
 #import "YHShootView.h"
 #import "YHVideoHelper.h"
+#import "../Config/YHGeneralHeader.h"
+
 
 @interface YHShootView()
 @property (nonatomic,strong) YHShootBotView *viewBot;//底部view

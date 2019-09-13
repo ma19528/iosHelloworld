@@ -16,6 +16,7 @@
 #import "HHUtils.h"
 #import "SqliteManager.h"
 #import "YHChatButton.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatFileLeft()
 @property (nonatomic,strong) UIImageView  *imgvBubble;

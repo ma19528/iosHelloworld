@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "YHDownLoadManager.h"
 #import "VoiceConverter.h"
+#import "../Config/YHGeneralHeader.h"
 
 @interface YHAudioPlayer()<AVAudioPlayerDelegate>
 @property (nonatomic,strong) AVAudioPlayer *player;

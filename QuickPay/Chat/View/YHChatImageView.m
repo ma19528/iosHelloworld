@@ -8,6 +8,8 @@
 
 #import "YHChatImageView.h"
 #import "UIImage+Extension.h"
+#import "../Config/YHGeneralHeader.h"
+
 
 @implementation YHChatImageView
 

@@ -12,6 +12,7 @@
 #import "YHChatListModel.h"
 #import "YHGroupIconView.h"
 #import "YHChatModel.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatPayList()
 
@@ -166,8 +167,8 @@
     
     _lbContent.text = _model.content;
     _lbTime.text    = _model.createTime;
-//    if (_model.isGroupChat) {
-//        _imgvGroupIcon.picUrlArray = _model.sessionUserHead;
+//    if (_chatListModel.isGroupChat) {
+//        _imgvGroupIcon.picUrlArray = _chatListModel.sessionUserHead;
 //        _imgvGroupIcon.hidden = NO;
 //        _imgvAvatar.hidden = YES;
 //    }else{

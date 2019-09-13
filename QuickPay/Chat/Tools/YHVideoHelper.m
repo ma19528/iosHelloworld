@@ -7,6 +7,7 @@
 //
 
 #import "YHVideoHelper.h"
+#import "../Config/YHGeneralHeader.h"
 
 
 #define kVideoType @".mp4"            // video类型

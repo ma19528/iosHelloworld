@@ -8,6 +8,8 @@
 
 #import "YHChatTextLayout.h"
 #import "YHExpressionHelper.h"
+#import "../../Config/YHGeneralHeader.h"
+
 /**
  文本 Line 位置修改
  将每行文本的高度和位置固定下来，不受中英文/Emoji字体的 ascent/descent 影响

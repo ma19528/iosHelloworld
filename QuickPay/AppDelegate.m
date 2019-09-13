@@ -10,6 +10,7 @@
 #import "YHChatListVC.h"
 #import "YHNavigationController.h"
 #import "NetManager.h"
+#import "Chat/Config/YHGeneralHeader.h"
 
 @interface AppDelegate ()
 

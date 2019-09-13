@@ -13,6 +13,9 @@
 #import "YHFileModel.h"
 #import "YHSqilteConfig.h"
 #import "YHGIFModel.h"
+#import "YHDebug.h"
+#import "../Chat/Config/YHGeneralHeader.h"
+
 
 @implementation TestData
 

@@ -11,6 +11,7 @@
 #import "CellChatList.h"
 #import "YHChatListVC.h"
 #import "YHChatDetailVC.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface YHChatTouch()<UIViewControllerPreviewingDelegate>
 @property (nonatomic,weak)YHChatListVC *previewVC;
@@ -47,7 +48,7 @@
     
     //设定预览的界面
     YHChatDetailVC *vc = [[YHChatDetailVC alloc] init];
-    vc.model = model;
+    vc.chatListModel = model;
   
     //返回预览界面
     return vc;

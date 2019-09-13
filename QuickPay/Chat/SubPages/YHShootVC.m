@@ -8,6 +8,7 @@
 
 #import "YHShootVC.h"
 #import "YHShootView.h"
+#import "../Config/YHGeneralHeader.h"
 
 @interface YHShootVC ()
 

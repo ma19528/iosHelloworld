@@ -16,6 +16,7 @@
 #import "QuickPayNetConstants.h"
 #import "YHChatManager.h"
 #import "SqliteManager.h"
+#import "Chat/Config/YHGeneralHeader.h"
 //#import "CellChatPayList.h"
 
 @interface YHChatListVC () <UITableViewDelegate, UITableViewDataSource, CellChatListDelegate>
@@ -104,7 +105,7 @@
 
 - (void)onAvatarInCell:(CellChatList *)cell {
     YHChatDetailVC *vc = [[YHChatDetailVC alloc] init];
-    vc.model = cell.model;
+    vc.chatListModel = cell.model;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -170,7 +171,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YHChatDetailVC *vc = [[YHChatDetailVC alloc] init];
-    vc.model = self.dataArray[indexPath.row];
+    vc.chatListModel = self.dataArray[indexPath.row];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

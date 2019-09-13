@@ -7,6 +7,7 @@
 //
 
 #import "YHActionSheet.h"
+#import "../Chat/Config/YHGeneralHeader.h"
 
 
 const CGFloat YH_Edges = 15.; //左右边距

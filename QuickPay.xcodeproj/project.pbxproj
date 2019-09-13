@@ -14,12 +14,16 @@
 		58603311DA64FE72B7C5D4C8 /* YHChatShowWePay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603034BAB75F49E173C77B /* YHChatShowWePay.m */; };
 		586033B2811420E5584F3AC4 /* request_pay.json in Resources */ = {isa = PBXBuildFile; fileRef = 586037F9E1F153E64D344AD3 /* request_pay.json */; };
 		586033FD847C3329F06FD7CC /* CellChatAlipayLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */; };
+		586034AF51120B9C7218193C /* YHChatDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603E0463C8132EC121880D /* YHChatDetailVC.m */; };
 		586035FEFE720034721F176E /* YHChatShowBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 586034A126E5AC0ADEF7EE27 /* YHChatShowBank.m */; };
 		586037156D1697435EFEC0AB /* CellChatWeChatLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603A952C06C8654AF4436B /* CellChatWeChatLeft.m */; };
 		58603841BC2E195B2071D421 /* CellChatHuabieLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603DDE8EC15E637B7244D4 /* CellChatHuabieLeft.m */; };
 		586039DD4ADEA8D76A7D9BE0 /* CellChatPayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603D65BBFC848695877BEA /* CellChatPayList.m */; };
 		58603A06F13EBEB924DB3424 /* YHChatShowHuabie.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603E3F4297E262E1457FE1 /* YHChatShowHuabie.m */; };
+		58603A28AA080D0AFD0516DF /* YHChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603F8664C8E3EB57B923FB /* YHChatListModel.m */; };
 		58603AAA2BF590C7C3DDEEA6 /* YHPayInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 586038BAEF75C7F3A7487770 /* YHPayInfoModel.m */; };
+		58603B15813C12AD3AFFC8A1 /* PayConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 586035E7015A75F336D404D1 /* PayConfigModel.m */; };
+		58603B511DB60ADDB275D336 /* YHChatListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603001BB8A83F22A5C11D1 /* YHChatListVC.m */; };
 		58603B7988C975EF10C53A62 /* request_chatOffmsg.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603D9D2C92FEB078436818 /* request_chatOffmsg.json */; };
 		58603B8D8302C198D81EFC2F /* YHChatShowAlipay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5860399131ABEC3ECFD38C77 /* YHChatShowAlipay.m */; };
 		58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */; };
@@ -28,13 +32,11 @@
 		58603EB85BDCD766F59C597D /* response_received.json in Resources */ = {isa = PBXBuildFile; fileRef = 58603F011BE82C102703A230 /* response_received.json */; };
 		58603ED54B6403E684FAC618 /* CellChatCreditLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 586036A2FBBEAD9F9964B16B /* CellChatCreditLeft.m */; };
 		58603EDA682F540CCA511DC5 /* response_offSingle.json in Resources */ = {isa = PBXBuildFile; fileRef = 5860302E5B2F0C1654B8678A /* response_offSingle.json */; };
-		58603F2E87D034F3865D1D6A /* PayConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58603869CD3C267475D26037 /* PayConfigModel.m */; };
 		58603FF20B3BDF204346B5FA /* CellChatBankLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 586034CD9F092BAD76EF4A00 /* CellChatBankLeft.m */; };
 		840E06A92320E641004045F0 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840E06A82320E641004045F0 /* Photos.framework */; };
 		847B52B9232637DB002AC882 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847B52B8232637DB002AC882 /* PhotosUI.framework */; };
 		84F6D59922F329E100FA10B4 /* ChatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6D59722F329E100FA10B4 /* ChatInfo.m */; };
 		AC002DA21E63AE5600EE2851 /* YHGroupIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DA11E63AE5600EE2851 /* YHGroupIconView.m */; };
-		AC002DB41E63BBF100EE2851 /* YHChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DA81E63BBF100EE2851 /* YHChatListModel.m */; };
 		AC002DB61E63BBF100EE2851 /* YHEducationExperienceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DAD1E63BBF100EE2851 /* YHEducationExperienceModel.m */; };
 		AC002DB71E63BBF100EE2851 /* YHUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DAF1E63BBF100EE2851 /* YHUserInfo.m */; };
 		AC002DB81E63BBF100EE2851 /* YHUserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC002DB11E63BBF100EE2851 /* YHUserSetting.m */; };
@@ -66,9 +68,7 @@
 		AC4446BE1E568E5D00685571 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4446BD1E568E5D00685571 /* AppDelegate.m */; };
 		AC4446C61E568E5D00685571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC4446C51E568E5D00685571 /* Assets.xcassets */; };
 		AC4446C91E568E5D00685571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC4446C71E568E5D00685571 /* LaunchScreen.storyboard */; };
-		AC4446DC1E56992C00685571 /* YHChatDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4446DB1E56992C00685571 /* YHChatDetailVC.m */; };
 		AC4446DE1E5699A200685571 /* ExpressionKeyboard.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AC4446DD1E5699A200685571 /* ExpressionKeyboard.bundle */; };
-		AC4446F21E569A5600685571 /* YHChatListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4446F11E569A5600685571 /* YHChatListVC.m */; };
 		AC4725BC1E67B8C900C34684 /* YHAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4725BB1E67B8C900C34684 /* YHAudioPlayer.m */; };
 		AC4725BF1E67BC3800C34684 /* YHAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4725BE1E67BC3800C34684 /* YHAudioRecorder.m */; };
 		AC5518081E9DC488003CBD1C /* YHGIFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5518071E9DC488003CBD1C /* YHGIFModel.m */; };
@@ -130,40 +130,46 @@
 /* Begin PBXFileReference section */
 		2EB0B0CF0EC5B60F2CBE1C61 /* Pods-YHChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-YHChat.debug.xcconfig"; sourceTree = "<group>"; };
 		4EA88F2431203C5A9749AB4E /* Pods-YHChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YHChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickPay/Pods-YHChat.release.xcconfig"; sourceTree = "<group>"; };
+		58603001BB8A83F22A5C11D1 /* YHChatListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatListVC.m; sourceTree = "<group>"; };
 		5860302E5B2F0C1654B8678A /* response_offSingle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_offSingle.json; sourceTree = "<group>"; };
 		58603034BAB75F49E173C77B /* YHChatShowWePay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowWePay.m; sourceTree = "<group>"; };
 		5860304E8D07763A0B3D691D /* CellChatCreditLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatCreditLeft.h; sourceTree = "<group>"; };
 		586030DA3798AA32CA166949 /* CellChatHuabieLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatHuabieLeft.h; sourceTree = "<group>"; };
 		586031537400979785CA3C34 /* YHChatShowCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowCredit.h; sourceTree = "<group>"; };
 		5860318F03FDC4F21864DADF /* YHChatShowBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowBank.h; sourceTree = "<group>"; };
+		586031D86D5638FA349C1A3C /* YHChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatListModel.h; sourceTree = "<group>"; };
 		5860322830FAB883B4E19260 /* YHChatShowHuabie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowHuabie.h; sourceTree = "<group>"; };
 		5860329A4C6B024D8F1611D8 /* request_chatPay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatPay.json; sourceTree = "<group>"; };
 		586032B8249C45FD1DD762F6 /* CellChatBankLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatBankLeft.h; sourceTree = "<group>"; };
 		586032D81856EA365B971EF8 /* CellChatWeChatLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatWeChatLeft.h; sourceTree = "<group>"; };
 		58603314A21AF36427E17A46 /* CellChatPayList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatPayList.h; sourceTree = "<group>"; };
+		58603358510789F81B4D4F5D /* YHChatListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatListVC.h; sourceTree = "<group>"; };
 		586033932F29D801434E5BEE /* response_pay_mehtod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_pay_mehtod.json; sourceTree = "<group>"; };
+		58603416D202C4F66A12812C /* YHChatDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatDetailVC.h; sourceTree = "<group>"; };
 		586034A126E5AC0ADEF7EE27 /* YHChatShowBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowBank.m; sourceTree = "<group>"; };
 		586034CD9F092BAD76EF4A00 /* CellChatBankLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatBankLeft.m; sourceTree = "<group>"; };
 		586034D006E37AFFFC280988 /* YHPayInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHPayInfoModel.h; sourceTree = "<group>"; };
+		586035E7015A75F336D404D1 /* PayConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayConfigModel.m; sourceTree = "<group>"; };
 		586036A2FBBEAD9F9964B16B /* CellChatCreditLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatCreditLeft.m; sourceTree = "<group>"; };
 		58603709F35CC2683D4447C3 /* QuickPayNetConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPayNetConstants.m; sourceTree = "<group>"; };
 		5860374D0C9481292D0D34C0 /* request_chat_int.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chat_int.json; sourceTree = "<group>"; };
 		586037F9E1F153E64D344AD3 /* request_pay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_pay.json; sourceTree = "<group>"; };
-		58603869CD3C267475D26037 /* PayConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayConfigModel.m; sourceTree = "<group>"; };
 		586038BAEF75C7F3A7487770 /* YHPayInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHPayInfoModel.m; sourceTree = "<group>"; };
 		5860399131ABEC3ECFD38C77 /* YHChatShowAlipay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowAlipay.m; sourceTree = "<group>"; };
 		586039C9B24F14E2BA61FD64 /* YHChatShowWePay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowWePay.h; sourceTree = "<group>"; };
 		58603A952C06C8654AF4436B /* CellChatWeChatLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatWeChatLeft.m; sourceTree = "<group>"; };
-		58603BBCD1148FFCE71EDA2F /* PayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayConfigModel.h; sourceTree = "<group>"; };
 		58603BD4162EC049BF50351F /* request_text.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_text.json; sourceTree = "<group>"; };
 		58603BD603E4E7A0CF72FED9 /* CellChatAlipayLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatAlipayLeft.m; sourceTree = "<group>"; };
+		58603C8154D77530B98C9814 /* PayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayConfigModel.h; sourceTree = "<group>"; };
 		58603C893A1BC573C22A37ED /* receive_normal_chatmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = receive_normal_chatmsg.json; sourceTree = "<group>"; };
 		58603D06182C56A73CD7CB4D /* QuickPayNetConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayNetConstants.h; sourceTree = "<group>"; };
 		58603D65BBFC848695877BEA /* CellChatPayList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatPayList.m; sourceTree = "<group>"; };
 		58603D9D2C92FEB078436818 /* request_chatOffmsg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = request_chatOffmsg.json; sourceTree = "<group>"; };
 		58603DDE8EC15E637B7244D4 /* CellChatHuabieLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellChatHuabieLeft.m; sourceTree = "<group>"; };
+		58603E0463C8132EC121880D /* YHChatDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatDetailVC.m; sourceTree = "<group>"; };
 		58603E3F4297E262E1457FE1 /* YHChatShowHuabie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowHuabie.m; sourceTree = "<group>"; };
 		58603F011BE82C102703A230 /* response_received.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_received.json; sourceTree = "<group>"; };
+		58603F8664C8E3EB57B923FB /* YHChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatListModel.m; sourceTree = "<group>"; };
 		58603FC58A4EADBD97A27F89 /* CellChatAlipayLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellChatAlipayLeft.h; sourceTree = "<group>"; };
 		58603FFFC911849D87F9A654 /* YHChatShowAlipay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatShowAlipay.h; sourceTree = "<group>"; };
 		58603FFFD6905E65410EE186 /* YHChatShowCredit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatShowCredit.m; sourceTree = "<group>"; };
@@ -176,8 +182,6 @@
 		84F6D59822F329E100FA10B4 /* ChatInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInfo.h; sourceTree = "<group>"; };
 		AC002DA01E63AE5600EE2851 /* YHGroupIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHGroupIconView.h; sourceTree = "<group>"; };
 		AC002DA11E63AE5600EE2851 /* YHGroupIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHGroupIconView.m; sourceTree = "<group>"; };
-		AC002DA71E63BBF100EE2851 /* YHChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatListModel.h; sourceTree = "<group>"; };
-		AC002DA81E63BBF100EE2851 /* YHChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatListModel.m; sourceTree = "<group>"; };
 		AC002DAC1E63BBF100EE2851 /* YHEducationExperienceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHEducationExperienceModel.h; sourceTree = "<group>"; };
 		AC002DAD1E63BBF100EE2851 /* YHEducationExperienceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHEducationExperienceModel.m; sourceTree = "<group>"; };
 		AC002DAE1E63BBF100EE2851 /* YHUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHUserInfo.h; sourceTree = "<group>"; };
@@ -240,11 +244,7 @@
 		AC4446C51E568E5D00685571 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC4446C81E568E5D00685571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC4446CA1E568E5D00685571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC4446DA1E56992C00685571 /* YHChatDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatDetailVC.h; sourceTree = "<group>"; };
-		AC4446DB1E56992C00685571 /* YHChatDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatDetailVC.m; sourceTree = "<group>"; };
 		AC4446DD1E5699A200685571 /* ExpressionKeyboard.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ExpressionKeyboard.bundle; sourceTree = "<group>"; };
-		AC4446F01E569A5600685571 /* YHChatListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChatListVC.h; sourceTree = "<group>"; };
-		AC4446F11E569A5600685571 /* YHChatListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChatListVC.m; sourceTree = "<group>"; };
 		AC4446F31E569B3900685571 /* QuickPay-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QuickPay-PrefixHeader.pch"; sourceTree = "<group>"; };
 		AC4725BA1E67B8C900C34684 /* YHAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHAudioPlayer.h; sourceTree = "<group>"; };
 		AC4725BB1E67B8C900C34684 /* YHAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHAudioPlayer.m; sourceTree = "<group>"; };
@@ -436,14 +436,10 @@
 				AC028152209FE2D2001DF6DA /* YHChatModel.m */,
 				AC02814F209FDEB3001DF6DA /* YHChatTouch.h */,
 				AC028150209FDEB3001DF6DA /* YHChatTouch.m */,
-				AC002DA71E63BBF100EE2851 /* YHChatListModel.h */,
-				AC002DA81E63BBF100EE2851 /* YHChatListModel.m */,
 				ACCCFB9D1E8A4DD4006E1B0E /* YHFileModel.h */,
 				ACCCFB9E1E8A4DD4006E1B0E /* YHFileModel.m */,
 				AC5518061E9DC488003CBD1C /* YHGIFModel.h */,
 				AC5518071E9DC488003CBD1C /* YHGIFModel.m */,
-				58603869CD3C267475D26037 /* PayConfigModel.m */,
-				58603BBCD1148FFCE71EDA2F /* PayConfigModel.h */,
 				586034D006E37AFFFC280988 /* YHPayInfoModel.h */,
 				586038BAEF75C7F3A7487770 /* YHPayInfoModel.m */,
 			);
@@ -615,6 +611,14 @@
 				AC4446CA1E568E5D00685571 /* Info.plist */,
 				AC4446D91E5697C500685571 /* Resource */,
 				AC4446B91E568E5D00685571 /* Supporting Files */,
+				58603001BB8A83F22A5C11D1 /* YHChatListVC.m */,
+				58603358510789F81B4D4F5D /* YHChatListVC.h */,
+				58603E0463C8132EC121880D /* YHChatDetailVC.m */,
+				58603416D202C4F66A12812C /* YHChatDetailVC.h */,
+				58603F8664C8E3EB57B923FB /* YHChatListModel.m */,
+				586031D86D5638FA349C1A3C /* YHChatListModel.h */,
+				58603C8154D77530B98C9814 /* PayConfigModel.h */,
+				586035E7015A75F336D404D1 /* PayConfigModel.m */,
 			);
 			path = QuickPay;
 			sourceTree = "<group>";
@@ -635,9 +639,7 @@
 				AC4446D11E56970E00685571 /* SubPages */,
 				AC4446D21E56970E00685571 /* Model */,
 				AC4446D31E56970E00685571 /* View */,
-				AC4446F01E569A5600685571 /* YHChatListVC.h */,
 				AC4446BD1E568E5D00685571 /* AppDelegate.m */,
-				AC4446F11E569A5600685571 /* YHChatListVC.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -645,8 +647,6 @@
 		AC4446D11E56970E00685571 /* SubPages */ = {
 			isa = PBXGroup;
 			children = (
-				AC4446DA1E56992C00685571 /* YHChatDetailVC.h */,
-				AC4446DB1E56992C00685571 /* YHChatDetailVC.m */,
 				ACF8DADF1E8A0B8400C6AB62 /* YHDocumentVC.h */,
 				ACF8DAE01E8A0B8400C6AB62 /* YHDocumentVC.m */,
 				AC5D7C201E9F4E9500840E90 /* YHShootVC.h */,
@@ -1060,7 +1060,6 @@
 				AC9246401E6E4E960032FD3D /* YHBrowserImageView.m in Sources */,
 				AC6400471E8B42C1001DF0F2 /* CellChatFileLeft.m in Sources */,
 				AC002DB71E63BBF100EE2851 /* YHUserInfo.m in Sources */,
-				AC4446DC1E56992C00685571 /* YHChatDetailVC.m in Sources */,
 				AC002DDF1E641B1700EE2851 /* YHDownLoadManager.m in Sources */,
 				AC002DB81E63BBF100EE2851 /* YHUserSetting.m in Sources */,
 				AC9246421E6E4E960032FD3D /* YHWaitingView.m in Sources */,
@@ -1080,10 +1079,8 @@
 				AC4446BB1E568E5D00685571 /* main.m in Sources */,
 				AC30AA3F1E7A1D5000E0C9A6 /* YHChatManager.m in Sources */,
 				AC6400501E8BB6B3001DF0F2 /* SqliteManager.m in Sources */,
-				AC4446F21E569A5600685571 /* YHChatListVC.m in Sources */,
 				AC9246791E6ED7B20032FD3D /* YHProtocolConfig.m in Sources */,
 				AC002DDE1E641B1700EE2851 /* NetManager.m in Sources */,
-				AC002DB41E63BBF100EE2851 /* YHChatListModel.m in Sources */,
 				ACD188FE1E9CD7A7006F6A42 /* CellChatGIFLeft.m in Sources */,
 				AC9246561E6E8EFC0032FD3D /* amrFileCodec.mm in Sources */,
 				AC8289391EA60CC200332013 /* YHShootBotView.m in Sources */,
@@ -1131,7 +1128,6 @@
 				ACF8047D1E5D264800B27336 /* YHChatHelper.m in Sources */,
 				AC6400741E8BB976001DF0F2 /* MJPropertyType.m in Sources */,
 				58603C1C3434516AC2AB0F8E /* QuickPayNetConstants.m in Sources */,
-				58603F2E87D034F3865D1D6A /* PayConfigModel.m in Sources */,
 				586033FD847C3329F06FD7CC /* CellChatAlipayLeft.m in Sources */,
 				58603B8D8302C198D81EFC2F /* YHChatShowAlipay.m in Sources */,
 				58603311DA64FE72B7C5D4C8 /* YHChatShowWePay.m in Sources */,
@@ -1144,6 +1140,10 @@
 				586039DD4ADEA8D76A7D9BE0 /* CellChatPayList.m in Sources */,
 				586031C256777A44384E22A0 /* YHChatShowCredit.m in Sources */,
 				58603A06F13EBEB924DB3424 /* YHChatShowHuabie.m in Sources */,
+				58603B511DB60ADDB275D336 /* YHChatListVC.m in Sources */,
+				586034AF51120B9C7218193C /* YHChatDetailVC.m in Sources */,
+				58603A28AA080D0AFD0516DF /* YHChatListModel.m in Sources */,
+				58603B15813C12AD3AFFC8A1 /* PayConfigModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

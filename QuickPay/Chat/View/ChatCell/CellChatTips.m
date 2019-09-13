@@ -7,6 +7,7 @@
 //
 
 #import "CellChatTips.h"
+#import "../../Config/YHGeneralHeader.h"
 #import <Masonry/Masonry.h>
 #import <HYBMasonryAutoCellHeight/UITableViewCell+HYBMasonryAutoCellHeight.h>
 

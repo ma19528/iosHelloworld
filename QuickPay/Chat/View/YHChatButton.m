@@ -7,6 +7,8 @@
 //
 
 #import "YHChatButton.h"
+#import "../Config/YHGeneralHeader.h"
+
 
 @implementation YHChatButton
 

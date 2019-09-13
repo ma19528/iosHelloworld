@@ -9,6 +9,8 @@
 #import "YHExpressionInputView.h"
 #import "YHExpressionHelper.h"
 #import "YHModel.h"
+#import "../../Config/YHGeneralHeader.h"
+
 
 #define kViewHeight 216
 #define kToolbarHeight 37

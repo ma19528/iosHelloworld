@@ -17,6 +17,7 @@
 #import "SqliteManager.h"
 #import "YHChatButton.h"
 #import "QuickPayNetConstants.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatBankLeft()
 @property (nonatomic,strong) UIImageView  *imgvBubble;

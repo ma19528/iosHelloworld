@@ -19,6 +19,8 @@
 #import "CellChatBankLeft.h"
 #import "CellChatHuabieLeft.h"
 #import "YHChatListModel.h"
+#import "YHDebug.h"
+#import "../Config/YHGeneralHeader.h"
 
 @interface YHChatHelper()
 

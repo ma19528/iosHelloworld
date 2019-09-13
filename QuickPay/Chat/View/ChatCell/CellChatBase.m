@@ -9,6 +9,7 @@
 #import "CellChatBase.h"
 #import <Masonry/Masonry.h>
 #import "UIView+DRCorner.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatBase()
 @property (nonatomic,assign) BOOL checkBoxisActivity;

@@ -10,6 +10,9 @@
 #import "HHUtils.h"
 #import <objc/runtime.h>
 #import "UIBarButtonItem+Extension.h"
+#import "YHNavigationController.h"
+#import "../Chat/Config/YHGeneralHeader.h"
+
 
 @interface YHWebViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 

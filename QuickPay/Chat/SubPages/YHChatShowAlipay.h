@@ -15,7 +15,7 @@
 
 @property (nonatomic,copy) NSString  *msgBody;
 
-// @property (nonatomic,strong) YHPayInfoModel     *model;
+// @property (nonatomic,strong) YHPayInfoModel     *chatListModel;
 // @property (nonatomic,strong) PayConfigModel *quickPayConfigModel;
 
 

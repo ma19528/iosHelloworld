@@ -12,6 +12,8 @@
 #import <HYBMasonryAutoCellHeight/UITableViewCell+HYBMasonryAutoCellHeight.h>
 #import "YHAudioPlayer.h"
 #import "YHChatImageView.h"
+#import "../../Config/YHGeneralHeader.h"
+
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface CellChatVoiceRight()

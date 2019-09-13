@@ -11,6 +11,9 @@
 #import "YHSqilteConfig.h"
 #import "SqliteManager.h"
 #import "YHFileTool.h"
+#import "YHDebug.h"
+#import "../Chat/Config/YHGeneralHeader.h"
+
 
 #define kDownloadAudioMAXCount 3      //下载音频数量限制
 #define kDownloadOfficeFileMAXCount 3 //下载办公格式文件数量限制

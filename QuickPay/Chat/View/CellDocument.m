@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "YHChatHelper.h"
 #import "NSString+Extension.h"
+#import "../Config/YHGeneralHeader.h"
 
 @interface CellDocument()
 

@@ -8,6 +8,9 @@
 
 #import "YHFileTool.h"
 #import "YHSqilteConfig.h"
+#import "YHDebug.h"
+#import "../Chat/Config/YHGeneralHeader.h"
+
 
 @implementation YHFileTool
 

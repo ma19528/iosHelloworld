@@ -7,6 +7,8 @@
 //
 
 #import "YHNavigationController.h"
+#import "../Chat/Config/YHGeneralHeader.h"
+
 
 @interface YHNavigationController ()
 

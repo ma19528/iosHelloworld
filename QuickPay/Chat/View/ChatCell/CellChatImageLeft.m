@@ -15,6 +15,8 @@
 #import "YHPhotoBrowserView.h"
 #import "YHChatImageView.h"
 #import "SqliteManager.h"
+#import "../../Config/YHGeneralHeader.h"
+
 
 @interface CellChatImageLeft()<YHPhotoBrowserViewDelegate>
 @property (nonatomic,strong) YHChatImageView *imgvContent;

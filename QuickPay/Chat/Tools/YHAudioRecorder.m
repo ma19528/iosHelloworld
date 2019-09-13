@@ -12,6 +12,7 @@
 #import "HHUtils.h"
 #import "YHFileTool.h"
 #import "VoiceConverter.h"
+#import "../Config/YHGeneralHeader.h"
 
 
 #define kChildPath   @"Chat/Recorder"

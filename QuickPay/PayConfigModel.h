@@ -9,10 +9,10 @@
 // 导出给外面的model
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "YHChatServiceDefs.h"
-#import "YHChatTextLayout.h"
-#import "YHFileModel.h"
-#import "YHGIFModel.h"
+//#import "YHChatServiceDefs.h"
+//#import "YHChatTextLayout.h"
+//#import "YHFileModel.h"
+//#import "YHGIFModel.h"
 
 #pragma mark - 聊天记录Model
 @interface PayConfigModel : NSObject

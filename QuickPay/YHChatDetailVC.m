@@ -44,6 +44,7 @@
 #import "YHChatShowBank.h"
 #import "YHChatShowCredit.h"
 #import "YHChatShowHuabie.h"
+#import "Chat/Config/YHGeneralHeader.h"
 
 
 @interface YHChatDetailVC () <UITableViewDelegate, UITableViewDataSource,
@@ -80,20 +81,20 @@
     //设置导航栏
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithTarget:self selector:@selector(onBack:)];
 
-    if (self.model.agentName != nil) {
-        self.title = self.model.agentName;
+    if (self.chatListModel.agentName != nil) {
+        self.title = self.chatListModel.agentName;
     } else {
-        self.title = self.model.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.model.sessionUserName, (unsigned long) self.model.sessionUserHead.count] : self.model.sessionUserName;
+        self.title = self.chatListModel.isGroupChat ? [NSString stringWithFormat:@"%@(%lu)", self.chatListModel.sessionUserName, (unsigned long) self.chatListModel.sessionUserHead.count] : self.chatListModel.sessionUserName;
     }
 
     [self initUI];
     _msgDict = [NSMutableDictionary dictionary];
 
     // 模拟数据源
-    // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.model]];
+    // [self.dataArray addObjectsFromArray:[TestData randomGenerateChatModel:5 aChatListModel:self.chatListModel]];
     //---TODO...从数据库拿数据。
     // TODO。。。 sessionID 用 代理的id。。
-    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:self.model.agentId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
+    [[SqliteManager sharedInstance] queryChatLogTableWithType:DBChatType_Private sessionID:self.chatListModel.agentId userInfo:nil fuzzyUserInfo:nil complete:^(BOOL success, id obj) {
         if (success) {
             CGFloat addFontSize = [[[NSUserDefaults standardUserDefaults] valueForKey:kSetSystemFontSize] floatValue];
             for (YHChatModel *chatModel in obj) {
@@ -708,18 +709,18 @@
         YHChatModel *chatModel = [YHChatHelper creatMessage:text msgType:YHMessageType_Text toID:nil];
         // TODO.... agentID 要写如对应的那个代理。
         chatModel.agentId = @"67553";
-        if (_model.agentAvatar == nil) {
-            if (_model.sessionUserHead != nil) {
-                chatModel.agentAvatar = _model.sessionUserHead[0];
+        if (_chatListModel.agentAvatar == nil) {
+            if (_chatListModel.sessionUserHead != nil) {
+                chatModel.agentAvatar = _chatListModel.sessionUserHead[0];
             }
         } else {
-            chatModel.agentAvatar = _model.agentAvatar;
+            chatModel.agentAvatar = _chatListModel.agentAvatar;
         }
 
-        if (_model.agentName != nil) {
-            chatModel.agentName = _model.agentName;
-        } else if (_model.sessionUserName != nil) {
-            chatModel.agentName = _model.sessionUserName;
+        if (_chatListModel.agentName != nil) {
+            chatModel.agentName = _chatListModel.agentName;
+        } else if (_chatListModel.sessionUserName != nil) {
+            chatModel.agentName = _chatListModel.sessionUserName;
         }
         chatModel.status = 0;
 

@@ -6,12 +6,14 @@
 //  Copyright (c) 2016年 samuelandkevin. All rights reserved.
 //
 
+#import <SDWebImage/SDWebImageManager.h>
 #import "YHPhotoBrowserView.h"
 #import "UIImageView+WebCache.h"
 #import "YHBrowserImageView.h"
 #import "YHActionSheet.h"
 
 #import "SDWebImageManager.h"
+
 //  ============在这里方便配置样式相关设置===========
 
 //                      ||
@@ -21,6 +23,8 @@
 //                      \/
 
 #import "YHPhotoBrowserConfig.h"
+#import "../../Chat/Config/YHGeneralHeader.h"
+
 
 //  =============================================
 

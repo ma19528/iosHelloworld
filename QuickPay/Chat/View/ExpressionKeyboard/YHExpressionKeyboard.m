@@ -6,6 +6,7 @@
 //  Copyright © 2017年 samuelandkevin. All rights reserved.
 //
 
+#import <Masonry/MASConstraintMaker.h>
 #import "YHExpressionKeyboard.h"
 #import "YYKit.h"
 #import "YHExpressionHelper.h"
@@ -14,6 +15,7 @@
 #import "YHExpressionAddView.h"
 #import "QuickPayNetConstants.h"
 #import "YHChatServiceDefs.h"
+#import "../../Config/YHGeneralHeader.h"
 
 #define kNaviBarH       64   //导航栏高度
 #define kTopToolbarH    50   //顶部工具栏高度
@@ -438,7 +440,6 @@
     _lbAlipay.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     _lbAlipay.layer.cornerRadius = 5;
     _lbAlipay.userInteractionEnabled = YES;
-    _lbAlipay.hidden = YES;
     UITapGestureRecognizer *tapSendAlipay = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendAlipay)];
     [_lbAlipay addGestureRecognizer:tapSendAlipay];
 
@@ -667,6 +668,7 @@
 - (void)textViewDidChange:(UITextView *)textView{
     
     [self _textViewChangeText];
+    
 
 }
 
@@ -921,7 +923,7 @@
 /**
  只显示toolBar
  */
-- (void)_onlyShowToolbar {
+- (void)_onlyShowToolbar{
     WeakSelf
     
     [_inputV mas_updateConstraints:^(MASConstraintMaker *make) {

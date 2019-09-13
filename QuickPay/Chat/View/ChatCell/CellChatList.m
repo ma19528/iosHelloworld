@@ -11,6 +11,7 @@
 #import <Masonry/Masonry.h>
 #import "YHChatListModel.h"
 #import "YHGroupIconView.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatList ()
 

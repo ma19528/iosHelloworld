@@ -13,6 +13,7 @@
 #import <HYBMasonryAutoCellHeight/UITableViewCell+HYBMasonryAutoCellHeight.h>
 #import "YHChatModel.h"
 #import "YHDownLoadManager.h"
+#import "../../Config/YHGeneralHeader.h"
 
 @interface CellChatGIFRight()
 @property (nonatomic,strong) YYAnimatedImageView *imgvContent;

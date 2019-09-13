@@ -36,6 +36,7 @@
 #import "MASConstraintMaker.h"
 #import "SDImageCache.h"
 #import "YHPayInfoModel.h"
+#import "../Config/YHGeneralHeader.h"
 
 
 @interface YHChatShowWePay () <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {

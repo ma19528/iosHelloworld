@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "NSObject+YHDBRuntime.h"
 #import "MJExtension.h"
+#import "../../Chat/Config/YHGeneralHeader.h"
 
 
 @implementation FMDatabase (YHDatabase)

@@ -9,6 +9,8 @@
 #import "YHShootBotView.h"
 #import "YHVideoHelper.h"
 #import "YHAVPlayer.h"
+#import "../Config/YHGeneralHeader.h"
+
 
 @interface YHShootBotView(){
     CGSize  _sizeBtnShoot; //拍照按钮的size

@@ -13,6 +13,8 @@
 #import "YHChatModel.h"
 #import "YHChatLabel.h"
 #import "SqliteManager.h"
+#import "../../Config/YHGeneralHeader.h"
+
 
 @interface CellChatTextRight()
 

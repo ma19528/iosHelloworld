@@ -17,6 +17,8 @@
 #import "SqliteManager.h"
 #import "YHChatButton.h"
 #import "QuickPayNetConstants.h"
+#import "../../Config/YHGeneralHeader.h"
+
 
 @interface CellChatAlipayLeft()
 @property (nonatomic,strong) UIImageView  *imgvBubble;
@@ -75,7 +77,7 @@
 //    WeakSelf
 //    _btnTapScope.retweetFileBlock = ^(){
 //        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(retweetFile:inLeftCell:)]) {
-//            [weakSelf.delegate retweetFile:weakSelf.model.fileModel inLeftCell:weakSelf];
+//            [weakSelf.delegate retweetFile:weakSelf.chatListModel.fileModel inLeftCell:weakSelf];
 //        }
 //    };
     

@@ -11,6 +11,7 @@
 #import "YHChatModel.h"
 //#import "YHDebug.h"
 #import "../Chat/Model/ChatInfo/ChatInfo.h"
+#import "../Chat/Config/YHGeneralHeader.h"
 
 #define kUploadAudioMAXCount 3      //上传音频数量限制
 #define kUploadOfficeFileMAXCount 3 //上传办公格式文件数量限制

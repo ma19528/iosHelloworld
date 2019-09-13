@@ -10,6 +10,8 @@
 #import "SqliteManager.h"
 #import "NetManager.h"
 #import "YHChatListModel.h"
+#import "YHDebug.h"
+#import "../Chat/Config/YHGeneralHeader.h"
 
 
 @implementation CreatTable

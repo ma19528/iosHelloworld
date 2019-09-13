@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+Extension.h"
+#import "../Chat/Config/YHGeneralHeader.h"
 
 @implementation UIImage (Extension)
 

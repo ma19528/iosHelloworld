@@ -16,6 +16,7 @@
 #import "YHFileTool.h"
 #import "NSString+Extension.h"
 #import "SqliteManager.h"
+#import "../Config/YHGeneralHeader.h"
 
 @interface YHDocumentVC ()<UITableViewDelegate,UITableViewDataSource,CellDocumentDelegate>
 
